@@ -1,0 +1,380 @@
+
+/* 기본설정 */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    list-style: none;
+    
+    font-style: normal;
+}
+
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+
+/*  */
+
+html, body {
+    height:100vh;
+    z-index: -1;
+}
+
+/* 기본틀 */
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(./images/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+.left-dark-wrap {
+    width: 45vw;
+    height: 100vh;
+    background-color: black;
+
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    opacity: .4;
+}
+
+.top-dark-wrap {
+    width: 155vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    position: absolute;
+    left: 45%;
+    bottom: 100%;
+}
+
+/*  */
+
+
+/* 기본폰트 설정 */
+
+.logo-text {
+    font-family: 'Great Vibes', cursive;
+    font-family: 'PT Mono', monospace;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Zhi Mang Xing', cursive;
+    font-family: 'Pacifico', cursive;
+}
+
+.main-text {
+    font-family: 'Great Vibes', cursive;
+    font-family: 'PT Mono', monospace;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Zhi Mang Xing', cursive;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Martel Sans', sans-serif;
+    font-family: 'Kanit', sans-serif;
+}
+
+.nav-text {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-family: 'PT Mono', monospace;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Zhi Mang Xing', cursive;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Martel Sans', sans-serif;
+    font-family: 'Kanit', sans-serif;
+}
+
+.form-group {
+    font-family: 'Great Vibes', cursive;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*  */
+
+/* 헤더 */
+
+header {
+    width: 100vw;
+    height: 10vh;
+}
+
+.header-logo-text{
+    width: 10vw;
+    height: 100vh;
+    
+    position: absolute;
+    margin-left: 5vw;
+    float: left;
+    
+    color: rgb(255, 136, 156);
+	text-shadow: -1px 0 rgb(255, 225, 225), 0 1px rgb(255, 225, 225), 5px 0 rgb(255, 225, 225), 0 -1px rgb(255, 225, 225);
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+
+    cursor: pointer;
+    z-index: 200;
+}
+
+.nav-container {
+    width: 20vw;
+    height: 5vh;
+
+    margin-top: 3vh;
+    float: right;
+}
+
+/* 햄버거메뉴 */
+.hamburger{
+    width: 10px;
+    height: 8px;
+    
+    position: absolute;
+    top: 0.5%;
+    right: 5%;
+
+    padding: 25px 0 0 20px;
+    display: block;
+}
+
+.center {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+
+input[id="menuicon"] {
+    display:none;
+    position: absolute;
+}
+
+input[id="menuicon"] + label {
+    display:block;
+    width:45px;
+    height:30px;
+    position:relative;
+    cursor:pointer;
+    z-index: 200;
+}
+
+input[id="menuicon"] + label span {
+    display:block;
+    position:absolute;
+    width:100%;
+    height:1px;
+    border-radius:30px;
+    background:white;
+    transition:all .35s;
+}
+
+input[id="menuicon"] + label span:nth-child(1) {
+    top:0;
+}
+
+input[id="menuicon"] + label span:nth-child(2) {
+    top:50%;transform:translateY(-50%);
+}
+
+input[id="menuicon"] + label span:nth-child(3) {
+    bottom:0;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(1) {
+    top:50%;transform:translateY(-50%) rotate(45deg);
+}
+
+input[id="menuicon"]:checked + label span:nth-child(2) {
+    opacity:0;
+}
+
+input[id="menuicon"]:checked + label span:nth-child(3) {
+    bottom:50%;transform:translateY(50%) rotate(-45deg);
+}   
+
+input[id="menuicon"]:checked {
+    display: none;
+}
+
+.top-dark-wrap > nav {
+    width: 12vw;
+    height: 50vh;
+
+    margin: 5% 0 0 3.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.init-form {
+    width: 45vw;
+    height: 10vh;
+    
+    padding: 0 0 20px 20px;
+    margin: 0 20px 80px 0;
+    border-bottom: 3px solid #fff;
+}
+
+.loginBtn {
+    width: 5vw;
+    float: left;
+}
+
+.joinBtn {
+    width: 4vw;
+    padding-left: 1.3vw;
+}
+
+.top-dark-wrap > nav > a {
+    margin-bottom: 2vh;
+    padding: 0 0 10px 10px;
+
+    transform: scale(1);
+}
+
+.nav-text:hover {
+    transform: scale(1.1);
+
+    color: rgb(255, 87, 115);
+}
+/* 햄버거메뉴 */
+
+/*  */
+
+/* form */
+
+#login, #join {
+    width: 21.85vw;
+    height: 48.3vh;
+
+    position: absolute;
+    right: 25%;
+    top: 10%;
+    background-color: white;
+
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.6);
+    opacity: 0;
+}
+
+#join {
+    height: 80vh;
+}
+
+.form-header-text {
+    width: 100%;
+    margin-top: 7%;
+    
+    font-size: 1.45rem;
+    font-weight: 550;
+    text-align: center;
+    line-height: 1.9em;
+    color: #272727;
+}
+
+.form-group {
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.form-group > label {
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+
+.form-group > input {
+    height: 45px;  
+    border: 2px solid #d6d6d6;;
+}
+
+#login-form-btn {
+    height: 40px;
+
+    font-size: 17px;
+    text-align: center;
+    color: white;
+
+    /* margin-top: 5px; */
+    border: none;
+    border-radius: 0px;
+    background-color: coral;
+}
+
+.init-dif-form {
+    width: 100%;
+    height: 60px;
+
+    position: absolute;
+    bottom: 0%;
+    
+    font-size: 15px;
+    text-align: center;
+    color: #999;
+
+    background: #ecf0f1;
+    border-color: #dee4e7;
+    border-radius: 5px;
+}
+
+.init-dif-form > a {
+    color: #999;
+    line-height: 50px;
+}
+
+.init-dif-form > a:hover {
+    color: #999; text-decoration: underline;
+}
+
+/*  */
+
+/* 배경 */
+
+.background-logo-text {
+    width:600px;
+    height: auto;
+    
+    position: absolute;
+    left: 7%;
+    top: 20%;
+    padding-left: 30px;
+
+    color: rgb(255, 82, 111);
+	text-shadow: -1px 0 rgb(255, 225, 225), 0 1px rgb(255, 225, 225), 10px 0 rgb(255, 225, 225), 0 -1px rgb(255, 225, 225);
+    font-size: 150px;
+    font-weight: bold;
+
+    opacity: .7;
+    border-bottom: 10px solid rgb(252, 135, 155);
+    border-radius: 30px;
+}
+
+.background-main-text {
+    width: 1000px;
+    height: auto;
+    
+    position: absolute;
+    left: -3%;
+    top: 55%;
+
+    color: rgb(236, 237, 243);
+	text-shadow: -1px 0 rgb(83, 83, 83), 0 1px rgb(43, 43, 43), 3px 0 rgb(83, 83, 83), 0 -1px rgb(83, 83, 83);
+    font-size: 55px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 70px;
+    
+    opacity: .8;
+}
+
+.background-main-text > span{
+    font-size: 80px;
+}
+
+/*  */
