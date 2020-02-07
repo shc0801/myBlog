@@ -7,8 +7,6 @@
     box-sizing: border-box;
     list-style-type: none;
     list-style: none;
-    
-    font-style: normal;
 }
 
 a:link {text-decoration: none;}
@@ -20,6 +18,7 @@ a:hover {text-decoration: none;}
 html, body {
     height:100vh;
     z-index: -1;
+    overflow: hidden;
 }
 
 /* 기본틀 */
@@ -53,6 +52,8 @@ html, body {
     position: absolute;
     left: 45%;
     bottom: 100%;
+    
+    z-index: 190;
 }
 
 /*  */
@@ -123,14 +124,6 @@ header {
     z-index: 200;
 }
 
-.nav-container {
-    width: 20vw;
-    height: 5vh;
-
-    margin-top: 3vh;
-    float: right;
-}
-
 /* 햄버거메뉴 */
 .hamburger{
     width: 10px;
@@ -138,10 +131,11 @@ header {
     
     position: absolute;
     top: 0.5%;
-    right: 5%;
+    right: 4.5%;
 
     padding: 25px 0 0 20px;
     display: block;
+    z-index: 200;
 }
 
 .center {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
@@ -217,13 +211,17 @@ input[id="menuicon"]:checked {
 }
 
 .loginBtn {
-    width: 5vw;
+    width: 6vw;
     float: left;
 }
 
 .joinBtn {
-    width: 4vw;
+    width: 10vw;
     padding-left: 1.3vw;
+}
+
+.logoutBtn {
+    width: 10vw;
 }
 
 .top-dark-wrap > nav > a {
@@ -294,17 +292,19 @@ input[id="menuicon"]:checked {
     border: 2px solid #d6d6d6;;
 }
 
-#login-form-btn {
+.form-btn {
     height: 40px;
 
     font-size: 17px;
     text-align: center;
     color: white;
+    line-height: 40px;
 
     /* margin-top: 5px; */
     border: none;
     border-radius: 0px;
     background-color: coral;
+    cursor: pointer;
 }
 
 .init-dif-form {
@@ -326,46 +326,220 @@ input[id="menuicon"]:checked {
 .init-dif-form > a {
     color: #999;
     line-height: 50px;
+
+    cursor: pointer;
 }
 
 .init-dif-form > a:hover {
     color: #999; text-decoration: underline;
 }
 
+/* 토스트메세지 */
+#toast {
+    width: 30vw;
+    height: 55px;
+    
+    border-radius: 20px;
+    position: absolute;
+    left: 38%;
+    top: 100%;
+
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+
+    background-color: black;
+    opacity: .6;
+}
+/*  */
+
+/* write */
+#write-area {
+    width: 80vw;
+    height: 90vh;
+    background-color: rgb(245, 245, 245);
+
+    position: absolute;
+    left: 10%;
+    top: 5%;
+    
+    z-index: 100;
+    overflow: scroll;
+}
+
+.write-tool {
+    width: 100%;
+    height: 5vh;
+
+    position: absolute;
+    top: 0;
+
+    outline: none;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.write-sub-tool {
+    width: 100%;
+    height: 3vh;
+
+    position: absolute;
+    top: 5vh;
+
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.write-back-icon {
+    font-size: 30px;
+    color: rgb(75, 74, 74);
+
+    float: right;
+    margin: 5px 15px 0 0;
+    cursor: pointer;
+}
+
+.write-select {
+    width: 100px; 
+    height: 100%;
+
+    font-size: 13px;
+    
+    float: left;
+    outline: none;
+    border: none; 
+}
+
+.first-select {
+    margin-left: 50px;
+}
+
+.font-tool {
+    width: 150px;
+
+    font-size: 15px;
+
+    float: left;
+    margin-left: 10px;
+}
+
+#title-tool {
+    display: none;
+}
+
+#content-tool {
+    width: 200px;
+}
+
+.tool-btn {
+    width: 11.66px;
+
+    float: left;
+    margin: 6px 4px 0 10px;
+    background-color: unset;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.tool-btn::before {
+    width: 100%;
+}
+
+.tool-btn:hover {
+    color: rgb(252, 121, 143);
+}
+
+#write {
+    width: 40vw;
+    min-height: 80vh;
+
+    position: relative;
+    top: 8.5vh;
+    background-color: #fff;
+    margin: auto;
+    border: solid #e8e8e8;
+    border-width: 0 1px;
+    
+    box-sizing: content-box;
+}
+
+.write-header {
+    width: 80%;
+
+    padding-top: 50px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.write-title {
+    width: 100%;
+    height: auto;
+
+    font-size: 20px;
+}
+
+.write-content {
+    width: 80%;
+
+    font-size: 15px;
+
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: white;
+}
+
+/* div에 글씨쓰기 속성 */
+
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    display: block; 
+}
+ 
+div[contenteditable=true] {
+    color : #333;
+
+    padding: 5px;
+    outline: none;
+    cursor: text;
+} 
+
 /*  */
 
 /* 배경 */
 
 .background-logo-text {
-    width:600px;
+    width:550px;
     height: auto;
     
     position: absolute;
     left: 7%;
     top: 20%;
-    padding-left: 30px;
 
     color: rgb(255, 82, 111);
 	text-shadow: -1px 0 rgb(255, 225, 225), 0 1px rgb(255, 225, 225), 10px 0 rgb(255, 225, 225), 0 -1px rgb(255, 225, 225);
     font-size: 150px;
+    text-align: center;
     font-weight: bold;
 
     opacity: .7;
     border-bottom: 10px solid rgb(252, 135, 155);
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .background-main-text {
-    width: 1000px;
+    width: 550px;
     height: auto;
     
     position: absolute;
-    left: -3%;
+    left: 7%;
     top: 55%;
 
     color: rgb(236, 237, 243);
 	text-shadow: -1px 0 rgb(83, 83, 83), 0 1px rgb(43, 43, 43), 3px 0 rgb(83, 83, 83), 0 -1px rgb(83, 83, 83);
-    font-size: 55px;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
     line-height: 70px;

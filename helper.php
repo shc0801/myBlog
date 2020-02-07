@@ -7,18 +7,6 @@ function view($view_path, $data = []){
     include $view_path;
 }
 
-function back($message = ""){
-    echo "<script>";
-    if($message) echo "alert('$message');";
-    echo "history.back()";
-    echo "</script>";
-    exit;
-}
-
-function go($url, $message = ""){
-    echo "<script>";
-    if($message) echo "alert('$message');";
-    echo "location.href='$url';";
-    echo "</script>";
-    exit;
+function message($message = ""){
+    if($message) echo $message;
 }

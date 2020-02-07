@@ -2,6 +2,7 @@
 
 function classLoader($className){
     $classPath = ROOT."./src/$className.php";
+    
     if(is_file($classPath))
         include $classPath;
 }
