@@ -430,6 +430,7 @@ input[id="menuicon"]:checked {
 
 #content-tool {
     width: 200px;
+    height: auto;
 }
 
 .tool-btn {
