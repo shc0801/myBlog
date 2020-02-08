@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Oswald|PT+Mono|Pacifico|Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Kanit|Martel+Sans|Oswald|PT+Mono|Pacifico|Zhi+Mang+Xing&display=swap" rel="stylesheet">
-    <link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto&display=swap" rel="stylesheet">
@@ -66,7 +63,7 @@
                 </div>
                 <a id="home" class="nav-text line-1" href="/"> 홈페이지 </a>
                 <a id="" class="nav-text line-2" href="#"> 자기소개 </a>
-                <a class="nav-text line-3" href="#"> 글쓰기 </a>
+                <a id="init-write" class="nav-text line-3" href="#"> 글쓰기 </a>
                 <a class="nav-text line-4" href="#"> 지도 </a>
             </nav>
 
@@ -125,43 +122,63 @@
         </div>
         <div id="write-area">
             <div class="write-tool">
-                
                 <i class="fas fa-times write-back-icon"></i>
             </div>
             <div class="write-sub-tool">
-            <select name="font-family" id="font-family" class="write-select first-select">
-                    <option value="기본">폰트설정</option>
-                    <option value="집">집</option>
-                    <option value="가">가</option>
-                    <option value="고싶다">고싶다</option>
-                </select>
-                <select name="font-size" id="font-size" class="write-select">
-                    <option value="15px">15px</option>
-                    <option value="17px">17px</option>
-                    <option value="18px">18px</option>
-                    <option value="25px">25px</option>
-                </select>
-                <select name="font-weight" id="font-weight" class="write-select">
-                    <option value="기본">폰트크기</option>
-                    <option value="100">100</option>
-                    <option value="200">200</option>
-                    <option value="300">300</option>
-                    <option value="400">400</option>
-                    <option value="500">500</option>
-                    <option value="600">600</option>
-                    <option value="bold">bold</option>
-                </select>
-
                 <div id="title-tool" class="font-tool">
-                    <button id="aignLeft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft" onclick="document.execCommand('aignLeft')"></i></button>
-                    <button id="aignCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter" onclick="document.execCommand('aignCenter')"></i></button>
-                    <button id="aignRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight" onclick="document.execCommand('aignRight')"></i></button>
+                    <select name="font-family" id="font-family" class="write-select first-select">
+                        <option value="기본">폰트설정</option>
+                        <option value="집">집</option>
+                        <option value="가">가</option>
+                        <option value="고싶다">고싶다</option>
+                    </select>
+                    <select name="font-size" id="font-size" class="write-select">
+                        <option value="15px">15px</option>
+                        <option value="17px">17px</option>
+                        <option value="18px">18px</option>
+                        <option value="25px">25px</option>
+                    </select>
+                    <select name="font-weight" id="font-weight" class="write-select">
+                        <option value="기본">폰트크기</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                        <option value="600">600</option>
+                        <option value="bold">bold</option>
+                    </select>
+                    <button id="aignLeft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
+                    <button id="aignCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
+                    <button id="aignRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
                 </div>
 
                 <div id="content-tool" class="font-tool">  
-                    <button id="aignLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft" onclick="document.execCommand('aignLeft')"></i></button>
-                    <button id="aignCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter" onclick="document.execCommand('aignCenter')"></i></button>
-                    <button id="aignRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight" onclick="document.execCommand('aign')"></i></button>
+                    <select name="font-family" id="font-family" class="write-select first-select">
+                        <option value="기본">폰트설정</option>
+                        <option value="집">집</option>
+                        <option value="가">가</option>
+                        <option value="고싶다">고싶다</option>
+                    </select>
+                    <select name="font-size" id="font-size" class="write-select">
+                        <option value="15px">15px</option>
+                        <option value="17px">17px</option>
+                        <option value="18px">18px</option>
+                        <option value="25px">25px</option>
+                    </select>
+                    <select name="font-weight" id="font-weight" class="write-select">
+                        <option value="기본">폰트크기</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                        <option value="600">600</option>
+                        <option value="bold">bold</option>
+                    </select>
+                    <button id="aignLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
+                    <button id="aignCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
+                    <button id="aignRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
                     <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
                     <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
                     <button id="textLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
@@ -174,21 +191,12 @@
                 <div class="write-bottom">
                     <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
                 </div>
+                <div class="linkForm">
+                    <input type="text" id="url-link" placeholder="url을 입력하세요">
+                    <button id="textLink" class="link content-tool"><i class="fas fa-paperclip linkForm-icon" onclick="document.execCommand('textLink')"></i></button>
+                </div>
             </form>
         </div>
     </div>
 </body>
-
-<script>
-    // function doInit() {
-    //     for(i=0;i<document.all.length;i++) {
-    //     document.all(i).unselectable="on";
-    //     oDiv.unselectable="off";
-    //     oDiv.innerHTML="";
-    //     oDiv.focus();
-    //     }
-    // }
-
-    // window.onload=doInit;
-</script>
 </html>

@@ -13,10 +13,13 @@ class App{
         
         this.$menuIcon = $("#menuicon");
         this.$initForm = $("#init-form");
+
+        this.$writeArea = $("#write-area"); 
+        this.$writeTitle = $(".write-title");
+        this.$writeContent = $(".write-content");
         // 
 
         let menu = new Menu(this);
-        let write = new Write(this);
     }
 }
 

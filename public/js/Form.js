@@ -67,9 +67,9 @@ class Form {
             return;
         }
         // 화면전환
-        this.app.$topDarkWrap.clearQueue().animate({'left':'-55%'},500);
-        this.app.$leftDarkWrap.clearQueue().animate({'opacity':'0'},500);
-        this.app.$main.clearQueue().animate({'opacity':'0'},500);
+        this.app.$topDarkWrap.clearQueue().animate({'left':'-55%'},'slow');
+        this.app.$leftDarkWrap.clearQueue().animate({'opacity':'0'},'slow');
+        this.app.$main.clearQueue().animate({'opacity':'0'},'slow');
 
         let leftDarkWrap = document.querySelector(".left-dark-wrap")
         setTimeout(() => {
@@ -101,21 +101,21 @@ class Form {
     toastMsg(msg){
         let toast = document.createElement("div");
         toast.id = 'toast';
+        toast.style.zIndex = "200";
         toast.innerText = msg;
 
         if(document.querySelector("#toast") === null) 
             document.querySelector("body").appendChild(toast);
         else {
             toast.remove();
-            document.querySelector("body").appendChild(toast);
         }
 
         let $toast = $("#toast");
-        $toast.clearQueue().animate({'opacity':'0.5'},500);
-        $toast.clearQueue().animate({'top':'85%'},500);
+        $toast.clearQueue().animate({'opacity':'0.5'},'slow');
+        $toast.clearQueue().animate({'top':'85%'},'slow');
         setTimeout(()=>{
-            $toast.clearQueue().animate({'opacity':'0'},500);
-            $toast.clearQueue().animate({'top':'100%'},500);
+            $toast.clearQueue().animate({'opacity':'0'},'slow');
+            $toast.clearQueue().animate({'top':'100%'},'slow');
             setTimeout(() => {
                 $toast.remove();
             }, 500);

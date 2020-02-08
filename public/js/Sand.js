@@ -22,9 +22,9 @@ class Sand {
             data:form,
             success:(data)=>{
                 this.form.toastMsg(data);
-                // this.menu.closeMenu();
+                this.menu.closeMenu();
 
-                // this.app.$menuIcon.prop("checked", false);
+                this.app.$menuIcon.prop("checked", false);
                 
                 if(this.id === 'login') {
                     setTimeout(() => {

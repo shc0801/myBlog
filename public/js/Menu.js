@@ -4,13 +4,18 @@ class Menu {
         this.app = app;
 
         this.initForm = document.querySelectorAll(".init-form > a");
+        this.initWrite = document.querySelector("#init-write");
         this.main = document.querySelectorAll(".main");
-
+        
         this.addEvent();
     }
 
     addEvent() {
         this.app.$menu.addEventListener("click", this.menu)
+
+        this.initWrite.addEventListener("click", ()=>{
+            let write = new Write(this.app, this);
+        })
 
         // viewForm
         setInterval(() => {
@@ -38,7 +43,7 @@ class Menu {
         this.app.$topDarkWrap.clearQueue().animate({
             'bottom':'0%',
             'opacity':'1'
-        },500);
+        },'slow');
         // 
     }
 
@@ -47,10 +52,10 @@ class Menu {
         this.app.$topDarkWrap.clearQueue().animate({
             'bottom' : '100%',
             'opacity':'0'
-        },500);
+        },'slow');
         
-        this.app.$login.clearQueue().animate({'opacity':'0'},500);
-        this.app.$join.clearQueue().animate({'opacity':'0'},500);
+        this.app.$login.clearQueue().animate({'opacity':'0'},'slow');
+        this.app.$join.clearQueue().animate({'opacity':'0'},'slow');
 
         let leftDarkWrap = document.querySelector(".left-dark-wrap")
         let topDarkWrap = document.querySelector(".top-dark-wrap")
@@ -60,8 +65,8 @@ class Menu {
                 text.style.visibility = 'visible';
             });
             topDarkWrap.style.left = '45%';
-            this.app.$leftDarkWrap.clearQueue().animate({'opacity':'0.4'},500);
-            this.app.$main.clearQueue().animate({'opacity':'1'},500);
+            this.app.$leftDarkWrap.clearQueue().animate({'opacity':'0.4'},'slow');
+            this.app.$main.clearQueue().animate({'opacity':'1'},'slow');
         }, 300);
         // 
     }
