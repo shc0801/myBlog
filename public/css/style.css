@@ -525,19 +525,20 @@ input[id="menuicon"]:checked {
 
 #write-save-btn, #write-back-btn {
     position: fixed;
-    left: 75%;
-    top: 80%;
+    left: 79%;
+    top: 5.8%;
 
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);
     
-    padding: 8px 20px;
-    border: 2px solid rgba(110, 110, 110, 0.8);
+    padding: 4px 18px;
+    border: 2px solid rgba(128, 127, 127, 0.8);
+    border-radius: 5px;
 }
 
 #write-back-btn {
-    left: 79.5%;
+    left: 83.5%;
 }
 
 #write-save-btn:hover, #write-back-btn:hover {

@@ -21,7 +21,7 @@
     <script src="/js/Menu.js"></script>
     <script src="/js/Write.js"></script>
     <script src="/js/Form.js"></script>
-    <script src="/js/Sand.js"></script>
+    <script src="/js/SandUser.js"></script>
 </head>
 <body>
     <div id="container">
@@ -111,7 +111,6 @@
         </div>
         <div id="write-area">
             <div class="write-tool">
-                <i class="fas fa-times write-back-icon"></i>
             </div>
             <div class="write-sub-tool">
                 <div id="title-tool" class="font-tool">
@@ -124,9 +123,9 @@
                     <select name="font-size" id="font-size" class="write-select">
                         <option value="15px">20px</option>
                     </select>
-                    <button id="aignLeft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
-                    <button id="aignCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
-                    <button id="aignRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
+                    <button id="justifyleft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
+                    <button id="justifyCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
+                    <button id="justifyRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
                     <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
                 </div>
 
@@ -140,13 +139,13 @@
                     <select name="font-size" id="font-size" class="write-select">
                         <option value="15px">15px</option>
                     </select>
-                    <button id="aignLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
-                    <button id="aignCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
-                    <button id="aignRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
+                    <button id="justifyLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
+                    <button id="justifyCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
+                    <button id="justifyRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
                     <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
                     <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
                     <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
-                    <button id="textLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
+                    <button id="CreateLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
                 </div>
             </div>
             <form id="write">
@@ -158,7 +157,7 @@
                 </div>
                 <div class="linkForm">
                     <input type="text" id="url-link" placeholder="url을 입력하세요">
-                    <button id="textLink" class="link content-tool"><i class="fas fa-paperclip linkForm-icon" onclick="document.execCommand('textLink')"></i></button>
+                    <button class="CreateLink" class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon" onclick="document.execCommand('CreateLink')"></i></button>
                 </div>
                 <a href="#" id="write-save-btn">저장</a>
                 <a href="#" id="write-back-btn">취소</a>

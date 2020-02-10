@@ -9,7 +9,11 @@ class Write {
         this.writeToolBtn = document.querySelectorAll(".tool-btn");
         this.writeArea = document.querySelector("#write-area");
 
-        this.closeIcon = document.querySelector(".write-back-icon");
+        this.closeIcon = document.querySelector("#write-back-btn");
+        this.linkBtn = document.querySelector(".CreateLink");
+
+        // jqurey
+        this.$urlLink = $("#url-link");
 
         this.addEvent();
     }
@@ -26,6 +30,8 @@ class Write {
         this.writeArea.addEventListener("click", e=>{
             this.setFocus(e);
         });
+
+        this.linkBtn.addEventListener("click", this.createLink);
 
         this.closeIcon.addEventListener("click", this.closeWrite);
 
@@ -59,7 +65,6 @@ class Write {
             this.app.$writeContent.focus();
         else if(btn.parentNode.id === 'title-tool')
             this.app.$writeTitle.focus();
-        console.log("toolEvent")
 
         if(btn.style.color === '') 
             btn.style.color = "rgb(252, 34, 70)";
@@ -67,22 +72,11 @@ class Write {
             btn.style.color = "";
 
         document.execCommand(`${btn.id}`);
-
-        // var EdRange = Editor.document.body.createTextRange();
-        // EdRange.execCommand('CreateLink');
-
-        // if (EdRange.parentElement().tagName=='A') {
-        // var href = EdRange.parentElement().href;
-        //     var data = EdRange.text;
-        //     EdRange.execCommand('UnLink');
-        //     EdRange.pasteHTML(''+data+'');
-        // }
     }
 
     setFocus(e) {
         if(e.target.classList[0] === 'linkForm' || e.target.parentNode.classList[0] === 'linkForm'|| e.target.classList[2] === 'linkForm-icon') return;
         if(e.target.id === 'url-link') return;
-        console.log("setFocus")
         if(e.clientY < 213 && e.clientY > 122) {
             this.app.$writeTitle.focus();
         } else if(e.clientY > 213) {
@@ -90,8 +84,12 @@ class Write {
         }
     }
 
+    createLink = () => {
+        this.app.$writeContent.focus();
+        document.execCommand('CreateLink', false, `${this.$urlLink.val()}`);
+    }
+
     hideTool() {
-        console.log("hideTool")
         setInterval(() => {
             if(document.activeElement === this.app.$writeTitle[0])  {
                 this.writeHeadTool.style.display = "block";
