@@ -370,7 +370,7 @@ input[id="menuicon"]:checked {
     overflow: scroll;
 }
 
-.write-tool {
+.write-main-tool {
     width: 100%;
     height: 5vh;
     position: absolute;
@@ -455,6 +455,13 @@ input[id="menuicon"]:checked {
     color: rgb(252, 121, 143);
 }
 
+#insertImage {
+    font-size: 30px;
+    color: rgb(92, 92, 92);
+
+    margin-left: 50px;
+}
+
 #write {
     width: 40vw;
     min-height: 80vh;
@@ -494,17 +501,32 @@ input[id="menuicon"]:checked {
     background-color: white;
 }
 
+.imageForm {
+    width: 250px;
+    
+    position: absolute;
+    left: -25%;
+    top: 12%;
+    transform: translate(-50%, -100%);
+
+    float: left;
+    padding: 15px 0px 15px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .linkForm {
     width: 20vw;
     height: 5vh;
 
     position: absolute;
-    left: 30%;
+    left: 20%;
     top: 5.5%;
     transform: translate(-50%, -100%);
+
+    visibility: hidden;
 }
 
-#url-link {
+#link-url-link {
     width: 100%;
     height: 100%;
 

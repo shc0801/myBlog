@@ -110,7 +110,8 @@
             <div class="background-main-text main-text">Vlogging changed <br> My life</div>
         </div>
         <div id="write-area">
-            <div class="write-tool">
+            <div class="write-main-tool">
+                <button id="image-btn" class="tool-btn image content-tool"><i class="far fa-image"></i></button>
             </div>
             <div class="write-sub-tool">
                 <div id="title-tool" class="font-tool">
@@ -155,9 +156,14 @@
                 <div class="write-bottom">
                     <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
                 </div>
+                <div class="imageForm">
+                    <input type="file">
+                    <input type="text" id="file-url-link" name="file-url-link" placeholder="이미지의 url을 복사 후 입력하세요">
+                    <a class="file content-tool insertImage"><i id="image-icon" class="far fa-image imageForm-icon"></i></a>
+                </div>
                 <div class="linkForm">
-                    <input type="text" id="url-link" placeholder="url을 입력하세요">
-                    <button class="CreateLink" class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon" onclick="document.execCommand('CreateLink')"></i></button>
+                    <input type="text" id="link-url-link" placeholder="url을 입력하세요">
+                    <a class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon"></i></a>
                 </div>
                 <a href="#" id="write-save-btn">저장</a>
                 <a href="#" id="write-back-btn">취소</a>
