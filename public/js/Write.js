@@ -27,12 +27,6 @@ class Write {
             this.setFocus(e);
         });
 
-        this.writeSelect.forEach(option=>{
-            option.addEventListener("change", e=>{
-                this.changeFont(option, e);
-            })
-        })
-
         this.closeIcon.addEventListener("click", this.closeWrite);
 
         this.hideTool();
@@ -65,6 +59,7 @@ class Write {
             this.app.$writeContent.focus();
         else if(btn.parentNode.id === 'title-tool')
             this.app.$writeTitle.focus();
+        console.log("toolEvent")
 
         if(btn.style.color === '') 
             btn.style.color = "rgb(252, 34, 70)";
@@ -86,6 +81,8 @@ class Write {
 
     setFocus(e) {
         if(e.target.classList[0] === 'linkForm' || e.target.parentNode.classList[0] === 'linkForm'|| e.target.classList[2] === 'linkForm-icon') return;
+        if(e.target.id === 'url-link') return;
+        console.log("setFocus")
         if(e.clientY < 213 && e.clientY > 122) {
             this.app.$writeTitle.focus();
         } else if(e.clientY > 213) {
@@ -94,35 +91,15 @@ class Write {
     }
 
     hideTool() {
+        console.log("hideTool")
         setInterval(() => {
-            if(document.activeElement === document.querySelector("body")) return;
             if(document.activeElement === this.app.$writeTitle[0])  {
                 this.writeHeadTool.style.display = "block";
                 this.writeContentTool.style.display = "none";
-            } else {
+            } else if(document.activeElement === this.app.$writeContent[0]) {
                 this.writeHeadTool.style.display = "none";
                 this.writeContentTool.style.display = "block";
             }
-            console.log("a");
         }, 100);
-    }
-
-    changeFont(option, e) {
-        if(option.id === 'font-family') {
-            if(option.parentNode.id === 'title-tool')
-                this.writeHeadTool.style.fontWeight = `${e.target.value}`;
-            else
-                this.writeContentTool.style.fontWeight = `${e.target.value}`;
-        } else if(option.id === 'font-size') {
-            if(option.parentNode.id === 'title-tool')
-                this.writeHeadTool.style.fontWeight = `${e.target.value}`;
-            else
-                this.writeContentTool.style.fontWeight = `${e.target.value}`;
-        } else if(option === 'font-weight') {
-            if(option.parentNode.id === 'title-tool')
-                this.writeHeadTool.style.fontWeight = `${e.target.value}`;
-            else
-                this.writeContentTool.style.fontWeight = `${e.target.value}`;
-        }
     }
 }

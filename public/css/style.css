@@ -428,11 +428,11 @@ input[id="menuicon"]:checked {
 
 #title-tool {
     width: 1000px;
-    display: none;
 }
 
 #content-tool {
     width: 1000px;
+    display: none;
 }
 
 .tool-btn {
@@ -521,6 +521,27 @@ input[id="menuicon"]:checked {
     top: 30%;
 
     cursor: pointer;
+}
+
+#write-save-btn, #write-back-btn {
+    position: fixed;
+    left: 75%;
+    top: 80%;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+    
+    padding: 8px 20px;
+    border: 2px solid rgba(110, 110, 110, 0.8);
+}
+
+#write-back-btn {
+    left: 79.5%;
+}
+
+#write-save-btn:hover, #write-back-btn:hover {
+    background-color: rgb(233, 233, 233);
 }
 /* div에 글씨쓰기 속성 */
 

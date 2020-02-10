@@ -22,17 +22,6 @@
     <script src="/js/Write.js"></script>
     <script src="/js/Form.js"></script>
     <script src="/js/Sand.js"></script>
-
-    <!-- 글쓰기 에디터 -->
-    <!-- include libraries(jQuery, bootstrap) -->
-    <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
-
-    <!-- include summernote css/js-->
-    <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
-    <!-- -->
 </head>
 <body>
     <div id="container">
@@ -62,7 +51,7 @@
                     </div>
                 </div>
                 <a id="home" class="nav-text line-1" href="/"> 홈페이지 </a>
-                <a id="" class="nav-text line-2" href="#"> 자기소개 </a>
+                <a id="" class="nav-text line-2" href="#"> 화원정보 </a>
                 <a id="init-write" class="nav-text line-3" href="#"> 글쓰기 </a>
                 <a class="nav-text line-4" href="#"> 지도 </a>
             </nav>
@@ -133,24 +122,12 @@
                         <option value="고싶다">고싶다</option>
                     </select>
                     <select name="font-size" id="font-size" class="write-select">
-                        <option value="15px">15px</option>
-                        <option value="17px">17px</option>
-                        <option value="18px">18px</option>
-                        <option value="25px">25px</option>
-                    </select>
-                    <select name="font-weight" id="font-weight" class="write-select">
-                        <option value="기본">폰트크기</option>
-                        <option value="100">100</option>
-                        <option value="200">200</option>
-                        <option value="300">300</option>
-                        <option value="400">400</option>
-                        <option value="500">500</option>
-                        <option value="600">600</option>
-                        <option value="bold">bold</option>
+                        <option value="15px">20px</option>
                     </select>
                     <button id="aignLeft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
                     <button id="aignCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
                     <button id="aignRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
+                    <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
                 </div>
 
                 <div id="content-tool" class="font-tool">  
@@ -162,23 +139,11 @@
                     </select>
                     <select name="font-size" id="font-size" class="write-select">
                         <option value="15px">15px</option>
-                        <option value="17px">17px</option>
-                        <option value="18px">18px</option>
-                        <option value="25px">25px</option>
-                    </select>
-                    <select name="font-weight" id="font-weight" class="write-select">
-                        <option value="기본">폰트크기</option>
-                        <option value="100">100</option>
-                        <option value="200">200</option>
-                        <option value="300">300</option>
-                        <option value="400">400</option>
-                        <option value="500">500</option>
-                        <option value="600">600</option>
-                        <option value="bold">bold</option>
                     </select>
                     <button id="aignLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
                     <button id="aignCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
                     <button id="aignRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
+                    <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
                     <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
                     <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
                     <button id="textLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
@@ -195,6 +160,8 @@
                     <input type="text" id="url-link" placeholder="url을 입력하세요">
                     <button id="textLink" class="link content-tool"><i class="fas fa-paperclip linkForm-icon" onclick="document.execCommand('textLink')"></i></button>
                 </div>
+                <a href="#" id="write-save-btn">저장</a>
+                <a href="#" id="write-back-btn">취소</a>
             </form>
         </div>
     </div>
