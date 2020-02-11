@@ -1,4 +1,4 @@
-class Sand {
+class SandUser {
     constructor(app, menu, form, id) {
         this.app = app;
         this.menu = menu;

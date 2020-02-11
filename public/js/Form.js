@@ -30,7 +30,7 @@ class Form {
         this.formBtn.forEach(btn=>{
             btn.addEventListener("click", (e)=>{
                 let id = document.querySelector(`#${e.target.id}`).parentNode.parentNode.id;
-                let sand = new SandUser(this.app, this.menu, this, id);
+                let sandUser = new SandUser(this.app, this.menu, this, id);
                 setTimeout(()=>{
                     this.input.forEach(input=>{
                         input.value = '';
