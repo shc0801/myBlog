@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/blog.css">
+
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Oswald|PT+Mono|Pacifico|Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Kanit|Martel+Sans|Oswald|PT+Mono|Pacifico|Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
@@ -14,7 +16,6 @@
     <link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="/write.css">
     <title>blog</title>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/App.js"></script>
@@ -53,7 +54,7 @@
                 </div>
                 <a id="home" class="nav-text line-1" href="/"> 홈페이지 </a>
                 <a id="" class="nav-text line-2" href="#"> 화원정보 </a>
-                <a id="init-write" class="nav-text line-3" href="#"> 글쓰기 </a>
+                <!-- <a id="init-write" class="nav-text line-3" href="#"> 계시판 </a> -->
                 <a class="nav-text line-4" href="#"> 지도 </a>
             </nav>
 
@@ -110,10 +111,15 @@
             <div class="background-logo-text logo-text">ForEver</div>
             <div class="background-main-text main-text">Vlogging changed <br> My life</div>
         </div>
-        <div id="write-area">
-            <div class="write-main-tool">
-                <button id="image-btn" class="tool-btn image content-tool"><i class="far fa-image"></i></button>
+        <div id="blog">
+            <div id="blog-header" class="blog-logo-text logo-text">
+                FE
             </div>
+            <nav id="blog-nav"> 
+                <button id="init-write" class="form-group line-3" href="#">글쓰기 </button>
+            </nav>
+        </div>
+        <div id="write-area">
             <div class="write-sub-tool">
                 <div id="title-tool" class="font-tool">
                     <select name="font-family" id="font-family" class="write-select first-select">

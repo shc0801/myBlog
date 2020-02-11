@@ -241,7 +241,6 @@ input[id="menuicon"]:checked {
 /*  */
 
 /* form */
-
 #login, #join {
     width: 21.85vw;
     height: 48.3vh;
@@ -362,7 +361,7 @@ input[id="menuicon"]:checked {
 
     position: absolute;
     left: 10%;
-    top: 5%;
+    top: 10%;
     
     z-index: 100;
     opacity: 0;
@@ -370,23 +369,9 @@ input[id="menuicon"]:checked {
     overflow: scroll;
 }
 
-.write-main-tool {
-    width: 100%;
-    height: 5vh;
-    position: absolute;
-    top: 0;
-
-    outline: none;
-    background-color: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .write-sub-tool {
     width: 100%;
     height: 3vh;
-
-    position: absolute;
-    top: 5vh;
 
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -467,7 +452,7 @@ input[id="menuicon"]:checked {
     min-height: 80vh;
 
     position: relative;
-    top: 8.5vh;
+    top: 3.5vh;
     background-color: #fff;
     margin: auto;
     border: solid #e8e8e8;
