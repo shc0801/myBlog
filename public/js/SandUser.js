@@ -21,7 +21,7 @@ class SandUser {
             method:'post',
             data:form,
             success:(data)=>{
-                this.form.toastMsg(data);
+                this.menu.toastMsg(data);
                 this.menu.closeMenu();
 
                 this.app.$menuIcon.prop("checked", false);

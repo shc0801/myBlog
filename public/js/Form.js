@@ -54,7 +54,7 @@ class Form {
                 url: `/logout`,
                 method:'post',
                 success:(data)=>{
-                    this.toastMsg(data);
+                    this.menu.toastMsg(data);
                     this.menu.closeMenu();
 
                     this.app.$menuIcon.prop("checked", false);
@@ -95,30 +95,5 @@ class Form {
             this.app.$login.clearQueue().animate({'opacity':'1'},1000);
             this.app.$join.clearQueue().animate({'opacity':'0'},1000);
         }
-    }
-
-    //토스트 메시지
-    toastMsg(msg){
-        let toast = document.createElement("div");
-        toast.id = 'toast';
-        toast.style.zIndex = "200";
-        toast.innerText = msg;
-
-        if(document.querySelector("#toast") === null) 
-            document.querySelector("body").appendChild(toast);
-        else {
-            toast.remove();
-        }
-
-        let $toast = $("#toast");
-        $toast.clearQueue().animate({'opacity':'0.5'},'slow');
-        $toast.clearQueue().animate({'top':'85%'},'slow');
-        setTimeout(()=>{
-            $toast.clearQueue().animate({'opacity':'0'},'slow');
-            $toast.clearQueue().animate({'top':'100%'},'slow');
-            setTimeout(() => {
-                $toast.remove();
-            }, 500);
-        }, 2000)
     }
 }

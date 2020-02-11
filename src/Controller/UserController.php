@@ -9,11 +9,7 @@ class UserController
     //회원가입 처리를 하는 곳
     public function registerProcess()
     {
-        $userid = $_POST['userid'];
-        $useremail = $_POST['email'];
-        $password = $_POST['password'];
-        $passwordc = $_POST['password-2'];
-        $username = $_POST['username'];
+        extract($_POST);
 
         //입력값 검증
         /*
@@ -54,8 +50,7 @@ class UserController
 
     public function loginProcess()
     {
-        $userid = $_POST['userid'];
-        $password = $_POST['password'];
+        extract($_POST);
 
         $errors = [];
         if(trim($userid) === "") $errors['userid'] = "유저 아이디는 공백일 수 없습니다.";

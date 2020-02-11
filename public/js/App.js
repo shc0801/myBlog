@@ -16,7 +16,9 @@ class App{
 
         this.$writeArea = $("#write-area"); 
         this.$writeTitle = $(".write-title");
+        this.$writeTitleInput = $("#write-title-input");
         this.$writeContent = $(".write-content");
+        this.$writeContentInput = $("#write-content-input");
         // 
 
         let menu = new Menu(this);

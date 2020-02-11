@@ -22,6 +22,7 @@
     <script src="/js/Write.js"></script>
     <script src="/js/Form.js"></script>
     <script src="/js/SandUser.js"></script>
+    <script src="/js/SandWrite.js"></script>
 </head>
 <body>
     <div id="container">
@@ -152,13 +153,15 @@
             <form id="write">
                 <div class="write-header">
                     <div class="write-title" contenteditable="true" placeholder="제목"></div>
+                    <input id="write-title-input" name="title" type="hidden">
                 </div>
                 <div class="write-bottom">
                     <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
+                    <input id="write-content-input" name="content" type="hidden">
                 </div>
                 <div class="imageForm">
                     <input type="file">
-                    <input type="text" id="file-url-link" name="file-url-link" placeholder="이미지의 url을 복사 후 입력하세요">
+                    <input type="text" id="file-url-link" placeholder="이미지의 url을 복사 후 입력하세요">
                     <a class="file content-tool insertImage"><i id="image-icon" class="far fa-image imageForm-icon"></i></a>
                 </div>
                 <div class="linkForm">

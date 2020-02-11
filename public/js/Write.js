@@ -21,6 +21,8 @@ class Write {
         this.linkViewBtn = document.querySelector("#CreateLink");
         this.linkBtn = document.querySelector(".CreateLink");
 
+        this.writeSaveBtn = document.querySelector("#write-save-btn");
+
         // jqurey
         this.$urlImage= $("#file-url-link");
         this.$urlLink = $("#link-url-link");
@@ -48,6 +50,8 @@ class Write {
         this.linkBtn.addEventListener("click", this.createLink);
 
         this.closeIcon.addEventListener("click", this.closeWrite);
+
+        this.writeSaveBtn.addEventListener("click", this.saveWrite);
 
         this.hideTool();
     }
@@ -101,7 +105,6 @@ class Write {
     uploadImage = () => {
         let filePath = this.imageInput.value;
         let fileKind = filePath.substr(filePath.length - 3, 3);
-        console.log(this.imageInput)
         if(fileKind !== "jpg" && fileKind !== "gif" && fileKind !== "png")
         {
             alert("jpg, gif, png 확장자를 가진 이미지 파일만 올려주세요.");
@@ -112,7 +115,6 @@ class Write {
         }
 
         this.app.$writeContent.focus();
-        console.log(this.$urlImage.val())
         document.execCommand('insertImage', false, `${this.$urlImage.val()}`);
     }
 
@@ -126,6 +128,20 @@ class Write {
     createLink = () => {
         this.app.$writeContent.focus();
         document.execCommand('CreateLink', false, `${this.$urlLink.val()}`);
+    }
+
+    saveWrite = () => {
+        if(this.app.$writeTitle.text() === '') {
+            this.menu.toastMsg("제목을 입력해주세요");
+            return;
+        } else if(this.app.$writeContent.text() === '') {
+            this.menu.toastMsg("본문을 입력해주세요");
+            return;
+        }
+        this.app.$writeTitleInput.val(`${this.app.$writeTitle.html()}`) ;
+        this.app.$writeContentInput.val(`${this.app.$writeContent.html()}`);
+            
+        let sandWrite = new SandWrite(this.app, this.menu, this);
     }
 
     hideTool() {

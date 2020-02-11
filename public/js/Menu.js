@@ -70,4 +70,29 @@ class Menu {
         }, 300);
         // 
     }
+
+    //토스트 메시지
+    toastMsg(msg){
+        let toast = document.createElement("div");
+        toast.id = 'toast';
+        toast.style.zIndex = "200";
+        toast.innerText = msg;
+
+        if(document.querySelector("#toast") === null) 
+            document.querySelector("body").appendChild(toast);
+        else {
+            toast.remove();
+        }
+
+        let $toast = $("#toast");
+        $toast.clearQueue().animate({'opacity':'0.5'},'300');
+        $toast.clearQueue().animate({'top':'85%'},'300');
+        setTimeout(()=>{
+            $toast.clearQueue().animate({'opacity':'0'},'300');
+            $toast.clearQueue().animate({'top':'100%'},'300');
+            setTimeout(() => {
+                $toast.remove();
+            }, 300);
+        }, 2000)
+    }
 }
