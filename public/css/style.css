@@ -371,7 +371,7 @@ input[id="menuicon"]:checked {
 
 .write-sub-tool {
     width: 100%;
-    height: 3vh;
+    height: 5vh;
 
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -408,7 +408,7 @@ input[id="menuicon"]:checked {
     font-size: 15px;
 
     float: left;
-    margin-left: 10px;
+    margin: 10px 0 0 10px;
 }
 
 #title-tool {
@@ -423,6 +423,8 @@ input[id="menuicon"]:checked {
 .tool-btn {
     width: 11.66px;
 
+    font-size: 16px;
+
     float: left;
     margin: 6px 4px 0 10px;
     background-color: unset;
@@ -436,8 +438,8 @@ input[id="menuicon"]:checked {
     width: 100%;
 }
 
-.tool-btn:hover {
-    color: rgb(252, 121, 143);
+#Bold {
+    margin-left: 20px;
 }
 
 #insertImage {
@@ -497,6 +499,8 @@ input[id="menuicon"]:checked {
     float: left;
     padding: 15px 0px 15px 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    
+    visibility: hidden;
 }
 
 .linkForm {
@@ -505,7 +509,7 @@ input[id="menuicon"]:checked {
 
     position: absolute;
     left: 20%;
-    top: 5.5%;
+    top: 2.5%;
     transform: translate(-50%, -100%);
 
     visibility: hidden;

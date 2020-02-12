@@ -111,6 +111,7 @@
             <div class="background-logo-text logo-text">ForEver</div>
             <div class="background-main-text main-text">Vlogging changed <br> My life</div>
         </div>
+
         <div id="blog">
             <div id="blog-header" class="blog-logo-text logo-text">
                 FE
@@ -119,6 +120,7 @@
                 <button id="init-write" class="form-group line-3" href="#">글쓰기 </button>
             </nav>
         </div>
+        
         <div id="write-area">
             <div class="write-sub-tool">
                 <div id="title-tool" class="font-tool">
@@ -154,26 +156,27 @@
                     <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
                     <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
                     <button id="CreateLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
+                    <button id="insertHTML" class="tool-btn image content-tool"><i class="far fa-image imageForm-icon"></i></button>
                 </div>
             </div>
             <form id="write">
                 <div class="write-header">
                     <div class="write-title" contenteditable="true" placeholder="제목"></div>
-                    <input id="write-title-input" name="title" type="hidden">
                 </div>
                 <div class="write-bottom">
                     <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
-                    <input id="write-content-input" name="content" type="hidden">
                 </div>
-                <div class="imageForm">
-                    <input type="file">
-                    <input type="text" id="file-url-link" placeholder="이미지의 url을 복사 후 입력하세요">
-                    <a class="file content-tool insertImage"><i id="image-icon" class="far fa-image imageForm-icon"></i></a>
+                <div class="write-image imageForm">
+                    <input id="image-change-input" class="write-image" type="file">
+                    <input type="text" id="image-width-input" class="write-image" placeholder="이미지의 width값 ex)100">
+                    <input type="text" id="image-height-input" class="write-image" placeholder="이미지의 height값 ex)100">
+                    <a class="write-image file content-tool insertImage"><i id="image-icon" class="write-image far fa-image imageForm-icon"></i></a>
                 </div>
                 <div class="linkForm">
                     <input type="text" id="link-url-link" placeholder="url을 입력하세요">
                     <a class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon"></i></a>
                 </div>
+
                 <a href="#" id="write-save-btn">저장</a>
                 <a href="#" id="write-back-btn">취소</a>
             </form>

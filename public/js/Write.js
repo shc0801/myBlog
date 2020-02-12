@@ -1,3 +1,5 @@
+const selection = window.getSelection();
+
 class Write {
     constructor(app, menu) {
         this.app = app;
@@ -14,18 +16,40 @@ class Write {
         this.writeArea = document.querySelector("#write-area");
 
         this.closeIcon = document.querySelector("#write-back-btn");
-        this.imageBtn = document.querySelector("#image-btn");
+        this.imageInput = document.querySelector("#image-change-input");
         this.imageIcon = document.querySelector("#image-icon");
-        this.imageInput = document.querySelector("#file-url-link");
+        this.imageForm = document.querySelector(".imageForm");
+        this.imageViewBtn = document.querySelector(".imageForm-icon");
         this.linkForm = document.querySelector(".linkForm");
         this.linkViewBtn = document.querySelector("#CreateLink");
         this.linkBtn = document.querySelector(".CreateLink");
 
         this.writeSaveBtn = document.querySelector("#write-save-btn");
-
+        
         // jqurey
         this.$urlImage= $("#file-url-link");
         this.$urlLink = $("#link-url-link");
+
+        // this.title = {
+        //     line: new Array()
+        // }
+
+        // this.content = {
+        //     line: new Array()
+        // }
+
+        this.nowFocus;
+        this.nowNode;
+
+        this.endFocus = {
+            title: null,
+            content: null
+        }
+        
+        this.endNode = {
+            title: null,
+            content: null
+        }
 
         this.addEvent();
     }
@@ -43,7 +67,11 @@ class Write {
             this.setFocus(e);
         });
 
-        this.imageIcon.addEventListener("click", this.uploadImage)
+        this.imageViewBtn.addEventListener("click", this.viewImageForm)
+
+        this.imageInput.addEventListener("change", this.ImageCheck)
+
+        this.imageIcon.addEventListener("click", this.uploadImg)
 
         this.linkViewBtn.addEventListener("click", this.viewLinkForm);
 
@@ -53,7 +81,32 @@ class Write {
 
         this.writeSaveBtn.addEventListener("click", this.saveWrite);
 
-        this.hideTool();
+        
+        document.addEventListener('selectionchange', () => {
+            let {anchorNode} = document.getSelection();
+            if((anchorNode) && ((anchorNode.parentNode === this.writeContent || anchorNode.parentNode.parentNode === this.writeContent) || (anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle))) {
+                
+                this.nowNode = document.getSelection().anchorNode;
+                this.nowFocus = document.getSelection().anchorOffset;
+                
+                if(anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle) {
+                    this.endNode.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].firstChild;
+                    if(this.endNode.title === null) {
+                        this.endNode.title = this.nowNode;
+                        this.endFocus.title = this.endFocus
+                    } else 
+                        this.endFocus.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].anchorOffset;
+                }
+                else {
+                    this.endNode.content = this.writeContent.childNodes[this.writeContent.childNodes.length - 1].firstChild;
+                    if(this.endNode.content === null) {
+                        this.endNode.content = this.nowNode;
+                        this.endFocus.content = this.endFocus
+                    } else 
+                        this.endFocus.content = this.writeContent.childNodes[this.writeContent.childNodes.length - 1].anchorOffset;
+                }
+            }
+        });
     }
 
     init() {
@@ -75,19 +128,14 @@ class Write {
         setTimeout(() => {
             document.querySelector("#write-area").style.visibility = "hidden";
         }, 500);
-        
     }
 
     toolEvent(btn, e) {
-        if(btn.parentNode.id === 'content-tool') 
+        if(btn.parentNode.id === 'content-tool') {
             this.app.$writeContent.focus();
+        }
         else if(btn.parentNode.id === 'title-tool')
             this.app.$writeTitle.focus();
-
-        if(btn.style.color === '') 
-            btn.style.color = "rgb(252, 34, 70)";
-        else 
-            btn.style.color = '';
 
         document.execCommand(`${btn.id}`);
     }
@@ -95,16 +143,39 @@ class Write {
     setFocus(e) {
         if(e.target.classList[0] === 'linkForm' || e.target.parentNode.classList[0] === 'linkForm'|| e.target.classList[2] === 'linkForm-icon') return;
         if(e.target.id === 'link-url-link' || e.target.id === 'file-url-link') return;
-        if(e.clientY < 213 && e.clientY > 122) {
+        if(e.target.classList[0] === "write-image") return;
+
+        if(e.clientY < 260 && e.clientY > 137) {
             this.app.$writeTitle.focus();
-        } else if(e.clientY > 213) {
+        } else if(e.clientY > 260) {
             this.app.$writeContent.focus();
+        }
+
+        if(document.activeElement === this.writeTitle)  {
+            this.writeHeadTool.style.display = "block";
+            this.writeContentTool.style.display = "none";
+
+            this.focus(this.writeTitle, e)
+        } else if(document.activeElement === this.writeContent) {
+            this.writeHeadTool.style.display = "none";
+            this.writeContentTool.style.display = "block";
+
+            this.focus(this.writeContent, e)
         }
     }
 
-    uploadImage = () => {
+    viewImageForm = () => {
+        if(this.imageForm.style.visibility === "visible") 
+            this.imageForm.style.visibility = "hidden";
+        else 
+            this.imageForm.style.visibility = "visible";
+    }
+ 
+    ImageCheck = () => {
         let filePath = this.imageInput.value;
         let fileKind = filePath.substr(filePath.length - 3, 3);
+        let file = this.imageInput.files.length > 0 ? this.imageInput.files[0] : null;
+
         if(fileKind !== "jpg" && fileKind !== "gif" && fileKind !== "png")
         {
             alert("jpg, gif, png 확장자를 가진 이미지 파일만 올려주세요.");
@@ -113,22 +184,42 @@ class Write {
             this.imageInput.clear();
             return;
         }
+        this.url = URL.createObjectURL(file);
+    }
 
-        this.app.$writeContent.focus();
-        document.execCommand('insertImage', false, `${this.$urlImage.val()}`);
+    uploadImg = () => {
+        let imageWidth = document.querySelector("#image-width-input").value;
+        let imageHeight = document.querySelector("#image-height-input").value;
+        
+        selection.collapse(this.nowNode, this.nowFocus);
+
+        let html = `<img src=${this.url} width="${imageWidth}" height="${imageHeight}">`;
+        document.execCommand("insertHTML", false, html)
     }
 
     viewLinkForm = () => {
-        if(this.linkViewBtn.style.color === '') 
+        if(this.linkForm.style.visibility === "visible") 
             this.linkForm.style.visibility = "hidden";
         else 
             this.linkForm.style.visibility = "visible";
     }
 
     createLink = () => {
-        this.app.$writeContent.focus();
+        selection.collapse(this.nowNode, this.nowFocus);
         document.execCommand('CreateLink', false, `${this.$urlLink.val()}`);
     }
+
+    focus(nowFocus, e) {
+        if(e.target.classList[0] === 'write-title' || e.target.classList[0] === 'write-content') return;
+        
+        if(nowFocus === this.writeTitle) {
+            selection.collapse(this.nowNode, this.nowFocus);
+        }
+
+        else if(nowFocus === this.writeContent) {
+            selection.collapse(this.nowNode, this.nowFocus);
+        }
+    } 
 
     saveWrite = () => {
         if(this.app.$writeTitle.text() === '') {
@@ -142,17 +233,5 @@ class Write {
         this.app.$writeContentInput.val(`${this.app.$writeContent.html()}`);
             
         let sandWrite = new SandWrite(this.app, this.menu, this);
-    }
-
-    hideTool() {
-        setInterval(() => {
-            if(document.activeElement === this.writeTitle)  {
-                this.writeHeadTool.style.display = "block";
-                this.writeContentTool.style.display = "none";
-            } else if(document.activeElement === this.writeContent) {
-                this.writeHeadTool.style.display = "none";
-                this.writeContentTool.style.display = "block";
-            }
-        }, 100);
     }
 }
