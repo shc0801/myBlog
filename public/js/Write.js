@@ -40,11 +40,6 @@ class Write {
 
         this.nowFocus;
         this.nowNode;
-
-        this.endFocus = {
-            title: null,
-            content: null
-        }
         
         this.endNode = {
             title: null,
@@ -91,20 +86,15 @@ class Write {
                 
                 if(anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle) {
                     this.endNode.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].firstChild;
-                    if(this.endNode.title === null) {
+                    if(this.endNode.title === null) 
                         this.endNode.title = this.nowNode;
-                        this.endFocus.title = this.endFocus
-                    } else 
-                        this.endFocus.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].anchorOffset;
                 }
                 else {
                     this.endNode.content = this.writeContent.childNodes[this.writeContent.childNodes.length - 1].firstChild;
-                    if(this.endNode.content === null) {
-                        this.endNode.content = this.nowNode;
-                        this.endFocus.content = this.endFocus
-                    } else 
-                        this.endFocus.content = this.writeContent.childNodes[this.writeContent.childNodes.length - 1].anchorOffset;
+                    if(this.endNode.content === null) 
+                        this.endNode.content = this.nowNode
                 }
+                console.log(this.endNode.content, this.endNode.content.length)
             }
         });
     }
@@ -210,14 +200,16 @@ class Write {
     }
 
     focus(nowFocus, e) {
+        console.log(e.target)
         if(e.target.classList[0] === 'write-title' || e.target.classList[0] === 'write-content') return;
+        if(e.target.parentNode.classList[0] === 'write-title' || e.target.parentNode.classList[0] === 'write-content') return;
         
         if(nowFocus === this.writeTitle) {
-            selection.collapse(this.nowNode, this.nowFocus);
+            selection.collapse(this.endNode.title, this.endNode.title.length);
         }
 
         else if(nowFocus === this.writeContent) {
-            selection.collapse(this.nowNode, this.nowFocus);
+            selection.collapse(this.endNode.content, this.endNode.content.length);
         }
     } 
 
