@@ -4,7 +4,7 @@ class Menu {
         this.app = app;
 
         this.initForm = document.querySelectorAll(".init-form > a");
-        this.initWrite = document.querySelector("#init-write");
+        this.initBoard = document.querySelector("#init-board");
         this.main = document.querySelectorAll(".main");
         
         this.addEvent();
@@ -12,9 +12,9 @@ class Menu {
 
     addEvent() {
         this.app.$menu.addEventListener("click", this.menu)
-
-        this.initWrite.addEventListener("click", ()=>{
-            let write = new Write(this.app, this);
+        
+        this.initBoard.addEventListener("click", ()=>{
+            let board = new Board(this.app, this);
         })
 
         // viewForm

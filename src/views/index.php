@@ -20,6 +20,7 @@
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/App.js"></script>
     <script src="/js/Menu.js"></script>
+    <script src="/js/Board.js"></script>
     <script src="/js/Write.js"></script>
     <script src="/js/Form.js"></script>
     <script src="/js/SandUser.js"></script>
@@ -54,7 +55,7 @@
                 </div>
                 <a id="home" class="nav-text line-1" href="/"> 홈페이지 </a>
                 <a id="" class="nav-text line-2" href="#"> 화원정보 </a>
-                <!-- <a id="init-write" class="nav-text line-3" href="#"> 계시판 </a> -->
+                <a id="init-board" class="nav-text line-3" href="#"> 계시판 </a>
                 <a class="nav-text line-4" href="#"> 지도 </a>
             </nav>
 
@@ -112,48 +113,50 @@
             <div class="background-main-text main-text">Vlogging changed <br> My life</div>
         </div>
 
-        <div id="blog">
-            <div id="blog-header" class="blog-logo-text logo-text">
+        <div id="board">
+            <div id="board-header" class="board-logo-text logo-text">
                 FE
             </div>
-            <nav id="blog-nav"> 
-                <div class="blog-nav-header">
-                    <div class="blog-nav-pic">
+            <nav id="board-nav"> 
+                <div class="board-nav-header">
+                    <div class="board-nav-pic">
                         <img src="/public/images/KakaoTalk_20191226_183116639.png" alt="">
                     </div>
-                    <div class="blog-nav-user">
+                    <div class="board-nav-user">
                         <span><?php echo $_SESSION['user']->user_id; ?>님의 블로그</span>
                         <p><?php echo $_SESSION['user']->email; ?></p>
                     </div>
                 </div>
-                <div id="init-write" class="blog-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
-                <div class="blog-nav-category">
-                    <a id="blog-nav-viewAll" href="#">전체보기</a>
-                    <a id="blog-nav-viewAll" href="#">글 관리</a>
-                    <a id="blog-nav-viewAll" href="#">페이지 관리</a>
-                    <a id="blog-nav-viewAll" href="#">설정</a>
+                <div id="init-write" class="board-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
+                <div class="board-nav-category">
+                    <a id="board-nav-viewAll" href="#">전체보기</a>
+                    <a id="board-nav-viewAll" href="#">글 관리</a>
+                    <a id="board-nav-viewAll" href="#">페이지 관리</a>
+                    <a id="board-nav-viewAll" href="#">설정</a>
                 </div>
             </nav>
-            <div id="blog-main">
-                <div class="blog-mian-viewAll">
-                    <div class="blog-main-header-text form-group">전체보기</div>
-                    <div class="buttom-line"></div>
-                        <div class="blog-main-write">
+            <div id="board-main">
+                <div class="board-mian-viewAll">
+                    <div class="board-main-header-text form-group">전체보기</div>
+                    <div class="header-buttom-line"></div>
+                    <div id="board-main-write-view">
+                        <div class="board-main-write">
                             <input type="checkbox" name="select" id="write-select">
                             <label for="write-select"></label>
-                            <p class="main-write-title">집가고싶다</p>
+                            <p class="main-write-title">*b집가고싶다*</p>
                             <p class="main-write-name">asd</p>
                             <p class="main-write-comments">1</p>
                             <p class="main-write-day">20.02.13</p>
                         </div>
+                    </div>
                 </div>
-                <div class="blog-main-writes">
+                <div class="board-main-writes">
 
                 </div>
-                <div class="blog-main-page">
+                <div class="board-main-page">
 
                 </div>
-                <div class="blog-main-setting">
+                <div class="board-main-setting">
 
                 </div>
             </div>
@@ -200,9 +203,11 @@
             <form id="write">
                 <div class="write-header">
                     <div class="write-title" contenteditable="true" placeholder="제목"></div>
+                    <input id="write-title-input" name="title" type="hidden">
                 </div>
                 <div class="write-bottom">
                     <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
+                    <input id="write-content-input" name="content" type="hidden">
                 </div>
                 <div class="write-image imageForm">
                     <input id="image-change-input" class="write-image" type="file">

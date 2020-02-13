@@ -1,9 +1,10 @@
 const selection = window.getSelection();
 
 class Write {
-    constructor(app, menu) {
+    constructor(app, menu, board) {
         this.app = app;
         this.menu = menu;
+        this.board = board;
 
         // dom
         this.writeTitle = document.querySelector(".write-title");

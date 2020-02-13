@@ -13,4 +13,12 @@ class BoardController {
 
         message("글이 업로드 되었습니다.");
     }
+
+    public function list()
+    {
+        $sql = "SELECT * FROM writes WHERE id = ?, writer = ?, title = ?, content = ?";
+        $list = DB::fetchAll($sql, [$id, $writer, $title, $content]);
+        var_dump($list);
+        exit;
+    }
 }

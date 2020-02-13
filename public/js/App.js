@@ -14,6 +14,8 @@ class App{
         this.$menuIcon = $("#menuicon");
         this.$initForm = $("#init-form");
 
+        this.$board = $("#board");
+
         this.$writeArea = $("#write-area"); 
         this.$writeTitle = $(".write-title");
         this.$writeTitleInput = $("#write-title-input");

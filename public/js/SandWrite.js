@@ -18,6 +18,7 @@ class SandWrite {
             method:'post',
             data:form,
             success:(data)=>{
+                console.log(data)
                 this.menu.toastMsg(data);
             }
         })
