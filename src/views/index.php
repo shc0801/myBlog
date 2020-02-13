@@ -117,13 +117,46 @@
                 FE
             </div>
             <nav id="blog-nav"> 
+                <div class="blog-nav-header">
+                    <div class="blog-nav-pic">
+                        <img src="/public/images/KakaoTalk_20191226_183116639.png" alt="">
+                    </div>
+                    <div class="blog-nav-user">
+                        <span><?php echo $_SESSION['user']->user_id; ?>님의 블로그</span>
+                        <p><?php echo $_SESSION['user']->email; ?></p>
+                    </div>
+                </div>
                 <div id="init-write" class="blog-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
-                <!-- <button id="init-write" class="form-group line-3 blog-nav-btn" href="#">글쓰기 </button>
-                <button id="write-view-notice" class="form-group line-3 blog-nav-btn" href="#">공지사항 </button>
-                <button id="write-view-all" class="form-group line-3 blog-nav-btn" href="#">전체글 </button>
-                <button id="init-write" class="form-group line-3 blog-nav-btn" href="#">글쓰기 </button> -->
+                <div class="blog-nav-category">
+                    <a id="blog-nav-viewAll" href="#">전체보기</a>
+                    <a id="blog-nav-viewAll" href="#">글 관리</a>
+                    <a id="blog-nav-viewAll" href="#">페이지 관리</a>
+                    <a id="blog-nav-viewAll" href="#">설정</a>
+                </div>
             </nav>
-            <div id="blog-main"></div>
+            <div id="blog-main">
+                <div class="blog-mian-viewAll">
+                    <div class="blog-main-header-text form-group">전체보기</div>
+                    <div class="buttom-line"></div>
+                        <div class="blog-main-write">
+                            <input type="checkbox" name="select" id="write-select">
+                            <label for="write-select"></label>
+                            <p class="main-write-title">집가고싶다</p>
+                            <p class="main-write-name">asd</p>
+                            <p class="main-write-comments">1</p>
+                            <p class="main-write-day">20.02.13</p>
+                        </div>
+                </div>
+                <div class="blog-main-writes">
+
+                </div>
+                <div class="blog-main-page">
+
+                </div>
+                <div class="blog-main-setting">
+
+                </div>
+            </div>
         </div>
         
         <div id="write-area">

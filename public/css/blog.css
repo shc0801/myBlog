@@ -37,22 +37,51 @@
     border-radius: 15px;
 }
 
+.blog-nav-header {
+    width: 80%;
+    height: 30%;
+    
+    margin: 20px 0 0 10%;
+    border: 1px solid rgb(224, 229, 238);
+}
+
+.blog-nav-pic {
+    height: 75%;
+
+    border-bottom: 1px solid rgb(224, 229, 238);
+}
+
+.blog-nav-user {
+    height: 20%;
+
+    padding: 5px 0 0 10px;
+}
+
+.blog-nav-user > span {
+    font-weight: bold;
+}
+
+.blog-nav-user > p {
+    font-size: 13px;
+    font-weight: 300;
+}
+
 .blog-nav-btn {
     width: 80%;
 
     font-size: 20px;
     font-weight: 400;
     text-align: center;
-    color: rgb(53, 53, 53);
+    color: rgb(129, 129, 129);
 
     position: absolute;
     left: 10%;
-    top: 10%;
+    top: 35%;
     padding: 10px 40px;
     margin: 0;
     float: right;
 
-    border: 1px solid rgba(139, 139, 139, 0.8);
+    border: 2px solid rgba(255, 216, 216, 0.8);
     border-radius: 5px;
     outline: none;
     cursor: pointer;
@@ -62,12 +91,25 @@
     margin-left: 10px;
 }
 
-#init-write {
+.blog-nav-btn:hover {
+    border: 2px solid rgba(255, 142, 142, 0.8);
 }
 
-#init-write:hover {
+.blog-nav-category {
+    width: 80%;
+    height: 50%;
+
+    margin: 30% 0 0 10%;
+}
+
+#blog-nav-viewAll {
+    width: 100%;
+
+    font-size: 20px;
     color: black;
-    background-color: rgb(233, 233, 233);
+    
+    float: left;
+    margin-top: 10%;
 }
 
 #blog-main {
@@ -77,7 +119,73 @@
 
     position: relative;
     left: 28%;
-    top: 7%;
+    top: 5%;
 
     border-radius: 10px;
+}
+
+.blog-mian-viewAll {
+    font-size: 20px;
+    color: black;
+}
+
+.blog-main-header-text {
+    font-weight: 500;
+
+    padding-top: 50px;
+}
+
+.buttom-line {
+    width: 3%;
+
+    margin: 5px 0 0 160px;
+    border-top: 1px solid rgb(175, 175, 175);
+}
+
+.blog-main-write {
+    width: 40vw;
+    height: 5vh;
+
+    position: relative;
+    
+    border: 1px solid rgb(175, 175, 175);
+
+    margin: 30px 0 0 10%;
+    padding: 10px 0 0 20px;
+}
+
+#write-select {
+    display: none;
+}
+
+input[id="write-select"] + label {
+    position: absolute;
+    left: 2.5%;
+    top: 25%;
+}
+
+input[id="write-select"] + label:before {content:"";display:block;width:20px;height:20px;background:#fff; border:1px solid rgba(77, 77, 77, .6); cursor: pointer;}
+input[id="write-select"]:checked + label:before {content:"\2714";text-align:center;font-weight:600; line-height: 20px; color:rgb(58, 58, 58)}
+
+
+.blog-main-write > p {
+    position: absolute;
+    top: 25%;
+
+    font-size: 15px;
+}
+.main-write-title {
+    left: 10%;
+}
+
+.main-write-name {
+    left: 70%;
+}
+
+.main-write-comments {
+    left: 80%;
+}
+
+.main-write-day {
+    left: 88%;
 }
