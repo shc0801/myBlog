@@ -72,6 +72,10 @@ class Menu {
     }
 
     //토스트 메시지
+    /**
+     * ㅂㅈㄷㅂㅈㄷㅂㅈㄷ
+     * @param {toast} msg 우와 너무 신기하다!
+     */
     toastMsg(msg){
         let toast = document.createElement("div");
         toast.id = 'toast';
