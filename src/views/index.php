@@ -117,8 +117,13 @@
                 FE
             </div>
             <nav id="blog-nav"> 
-                <button id="init-write" class="form-group line-3" href="#">글쓰기 </button>
+                <div id="init-write" class="blog-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
+                <!-- <button id="init-write" class="form-group line-3 blog-nav-btn" href="#">글쓰기 </button>
+                <button id="write-view-notice" class="form-group line-3 blog-nav-btn" href="#">공지사항 </button>
+                <button id="write-view-all" class="form-group line-3 blog-nav-btn" href="#">전체글 </button>
+                <button id="init-write" class="form-group line-3 blog-nav-btn" href="#">글쓰기 </button> -->
             </nav>
+            <div id="blog-main"></div>
         </div>
         
         <div id="write-area">

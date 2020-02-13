@@ -30,14 +30,6 @@ class Write {
         this.$urlImage= $("#file-url-link");
         this.$urlLink = $("#link-url-link");
 
-        // this.title = {
-        //     line: new Array()
-        // }
-
-        // this.content = {
-        //     line: new Array()
-        // }
-
         this.nowFocus;
         this.nowNode;
         
@@ -81,8 +73,8 @@ class Write {
             let {anchorNode} = document.getSelection();
             if((anchorNode) && ((anchorNode.parentNode === this.writeContent || anchorNode.parentNode.parentNode === this.writeContent) || (anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle))) {
                 
-                this.nowNode = document.getSelection().anchorNode;
-                this.nowFocus = document.getSelection().anchorOffset;
+                this.nowNode = anchorNode.anchorNode;
+                this.nowFocus = anchorNode.anchorOffset;
                 
                 if(anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle) {
                     this.endNode.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].firstChild;
@@ -94,7 +86,6 @@ class Write {
                     if(this.endNode.content === null) 
                         this.endNode.content = this.nowNode
                 }
-                console.log(this.endNode.content, this.endNode.content.length)
             }
         });
     }
@@ -121,13 +112,19 @@ class Write {
     }
 
     toolEvent(btn, e) {
+        if(document.getSelection().anchorOffset !== document.getSelection().focusOffset)
+            return;
+        
         if(btn.parentNode.id === 'content-tool') {
-            this.app.$writeContent.focus();
+            selection.collapse(this.nowNode, this.nowFocus);
         }
-        else if(btn.parentNode.id === 'title-tool')
-            this.app.$writeTitle.focus();
+        else if(btn.parentNode.id === 'title-tool'){
+            selection.collapse(this.nowNode, this.nowFocus);
+        }
 
-        document.execCommand(`${btn.id}`);
+        setTimeout(()=>{
+            document.execCommand(`${btn.id}`);
+        }, 100)
     }
 
     setFocus(e) {
@@ -200,15 +197,14 @@ class Write {
     }
 
     focus(nowFocus, e) {
-        console.log(e.target)
         if(e.target.classList[0] === 'write-title' || e.target.classList[0] === 'write-content') return;
         if(e.target.parentNode.classList[0] === 'write-title' || e.target.parentNode.classList[0] === 'write-content') return;
         
-        if(nowFocus === this.writeTitle) {
+        if(nowFocus === this.writeTitle && this.endNode.title !== null) {
             selection.collapse(this.endNode.title, this.endNode.title.length);
         }
 
-        else if(nowFocus === this.writeContent) {
+        else if(nowFocus === this.writeContent && this.endNode.content !== null) {
             selection.collapse(this.endNode.content, this.endNode.content.length);
         }
     } 
