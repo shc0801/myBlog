@@ -10,6 +10,6 @@ Router::post("/join", "UserController@registerProcess");
 Router::post("/logout", "UserController@logoutProcess");
 
 Router::post("/write", "BoardController@writeProcess");
-Router::post("/view", 'BoardController@list');
+Router::post("/board", 'BoardController@list');
 
 Router::Router();

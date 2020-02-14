@@ -21,6 +21,7 @@ class App{
         this.$writeTitleInput = $("#write-title-input");
         this.$writeContent = $(".write-content");
         this.$writeContentInput = $("#write-content-input");
+        this.$writeDateInput = $("#write-date-input");
         // 
 
         let menu = new Menu(this);

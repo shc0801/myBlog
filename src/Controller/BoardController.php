@@ -16,9 +16,13 @@ class BoardController {
 
     public function list()
     {
-        $sql = "SELECT * FROM writes WHERE id = ?, writer = ?, title = ?, content = ?";
-        $list = DB::fetchAll($sql, [$id, $writer, $title, $content]);
-        var_dump($list);
-        exit;
+        if(!User::checkLogin()) {
+            message("로그인 후 가능한 기능입니다");
+            return;
+        }
+        $sql = "SELECT * FROM `writes` WHERE ?";
+        $list = DB::fetchAll($sql, [1]);
+
+        Lib::json(['success'=>true, 'list'=>$list]);
     }
 }

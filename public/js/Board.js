@@ -19,7 +19,7 @@ class Board {
      * 
      */
     viewBoard() {
-        this.app.$board.clearQueue().animate({'top': '0'});
+        this.app.$board.clearQueue().animate({'top': '0'}, 'slow');
         this.menu.closeMenu();
     }
 }

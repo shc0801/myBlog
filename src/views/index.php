@@ -136,22 +136,12 @@
                 </div>
             </nav>
             <div id="board-main">
-                <div class="board-mian-viewAll">
+                <div class="board-main-writes">
                     <div class="board-main-header-text form-group">전체보기</div>
                     <div class="header-buttom-line"></div>
                     <div id="board-main-write-view">
-                        <div class="board-main-write">
-                            <input type="checkbox" name="select" id="write-select">
-                            <label for="write-select"></label>
-                            <p class="main-write-title">*b집가고싶다*</p>
-                            <p class="main-write-name">asd</p>
-                            <p class="main-write-comments">1</p>
-                            <p class="main-write-day">20.02.13</p>
-                        </div>
+                        <!-- 글 들어오는 부분 -->
                     </div>
-                </div>
-                <div class="board-main-writes">
-
                 </div>
                 <div class="board-main-page">
 
@@ -219,7 +209,7 @@
                     <input type="text" id="link-url-link" placeholder="url을 입력하세요">
                     <a class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon"></i></a>
                 </div>
-
+                <input id="write-date-input" type="hidden" name="date">
                 <a href="#" id="write-save-btn">저장</a>
                 <a href="#" id="write-back-btn">취소</a>
             </form>

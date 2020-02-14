@@ -14,7 +14,21 @@ class Menu {
         this.app.$menu.addEventListener("click", this.menu)
         
         this.initBoard.addEventListener("click", ()=>{
-            let board = new Board(this.app, this);
+            $.ajax({
+                url: '/board',
+                method: 'post',
+                success: (data)=>{
+                    console.log(data)
+                    if(data === '로그인 후 가능한 기능입니다') {
+                        this.toastMsg(data);
+                        return;
+                    }
+
+                    this.createWriteView(data.list);
+
+                    let board = new Board(this.app, this);
+                }
+            })
         })
 
         // viewForm
@@ -72,10 +86,7 @@ class Menu {
     }
 
     //토스트 메시지
-    /**
-     * ㅂㅈㄷㅂㅈㄷㅂㅈㄷ
-     * @param {toast} msg 우와 너무 신기하다!
-     */
+    
     toastMsg(msg){
         let toast = document.createElement("div");
         toast.id = 'toast';
@@ -98,5 +109,24 @@ class Menu {
                 $toast.remove();
             }, 300);
         }, 2000)
+    }
+
+    createWriteView(dataList) {
+        let mainWriteView = document.querySelector("#board-main-write-view");
+        dataList.forEach((data)=>{
+            let boardMainWrite = document.createElement("div");
+            boardMainWrite.id = `write-view-${data.id}`;
+            boardMainWrite.classList.add("board-main-write"); 
+
+            let write = `<input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
+                        <label for="write-select"></label>
+                        <p class="main-write-title">${data.title}</p>
+                        <p class="main-write-name">${data.writer}</p>
+                        <p class="main-write-comments">0</p>
+                        <p class="main-write-day">20.02.13</p>`;
+
+            boardMainWrite.innerHTML = write
+            mainWriteView.appendChild(boardMainWrite);
+        })
     }
 }

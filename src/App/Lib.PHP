@@ -11,10 +11,10 @@ class Lib
         exit;
     }
 
-    // public static function json($value)
-    // {
-    //     header('Content-Type: application/json');
-    //     echo json_encode($value);
-    //     exit;
-    // }
+    public static function json($value)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($value);
+        exit;
+    }
 }

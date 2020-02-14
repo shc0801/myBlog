@@ -220,6 +220,7 @@ class Write {
         }
         this.app.$writeTitleInput.val(`${this.app.$writeTitle.html()}`) ;
         this.app.$writeContentInput.val(`${this.app.$writeContent.html()}`);
+        this.app.$writeDateInput.val("asdasd");
             
         let sandWrite = new SandWrite(this.app, this.menu, this);
     }
