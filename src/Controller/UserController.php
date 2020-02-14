@@ -11,6 +11,9 @@ class UserController
     {
         extract($_POST);
 
+        var_dump($_FILES['Profile-picture']);
+        exit;
+
         //입력값 검증
         /*
          * 회원아이디 : 5글자 이상 10글자 이하로 하고 오직 영문과 숫자만 올 수 있다.
@@ -43,7 +46,7 @@ class UserController
             return;
         }
 
-        $sql = "INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `level`) VALUES (?, ?, ?, PASSWORD(?), 1)";
+        $sql = "INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `image`, `level`) VALUES (?, ?, ?, PASSWORD(?), 1)";
         $cnt = DB::execute($sql, [$userid, $useremail, $username, $password]);
         message("회원가입 되었습니다.");
     }

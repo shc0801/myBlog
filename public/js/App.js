@@ -15,6 +15,7 @@ class App{
         this.$initForm = $("#init-form");
 
         this.$board = $("#board");
+        this.$MainWriteView = $("#board-main-write-view");
 
         this.$writeArea = $("#write-area"); 
         this.$writeTitle = $(".write-title");

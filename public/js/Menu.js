@@ -25,6 +25,8 @@ class Menu {
                     }
 
                     this.createWriteView(data.list);
+                    this.changeMenuColor('#000');
+                    this.app.$menuIcon.prop("checked", false);
 
                     let board = new Board(this.app, this);
                 }
@@ -50,6 +52,7 @@ class Menu {
         } else {
             this.closeMenu();
         }
+        this.changeMenuColor("#fff");
     }
 
     viewMenu() {
@@ -81,7 +84,7 @@ class Menu {
             topDarkWrap.style.left = '45%';
             this.app.$leftDarkWrap.clearQueue().animate({'opacity':'0.4'},'slow');
             this.app.$main.clearQueue().animate({'opacity':'1'},'slow');
-        }, 300);
+        }, 500);
         // 
     }
 
@@ -123,10 +126,18 @@ class Menu {
                         <p class="main-write-title">${data.title}</p>
                         <p class="main-write-name">${data.writer}</p>
                         <p class="main-write-comments">0</p>
-                        <p class="main-write-day">20.02.13</p>`;
+                        <p class="main-write-day">${data.date}</p>`;
 
             boardMainWrite.innerHTML = write
             mainWriteView.appendChild(boardMainWrite);
+        })
+    }
+
+    changeMenuColor(color) {
+        let menuBar = document.querySelectorAll(".hamburger > label > span");
+                            
+        menuBar.forEach(bar=>{
+            bar.style.backgroundColor = color;
         })
     }
 }

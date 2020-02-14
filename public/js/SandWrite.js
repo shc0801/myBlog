@@ -19,7 +19,8 @@ class SandWrite {
             data:form,
             success:(data)=>{
                 console.log(data)
-                this.menu.toastMsg(data);
+                this.menu.toastMsg(data); 
+                this.app.$MainWriteView.load("/ #board-main-write-view");
             }
         })
     }

@@ -64,50 +64,54 @@
                     Blog_Login
                 </div>
                 <div class="form-group">
-                    <label for="userid">User Id</label>
+                    <label for="userid">아이디</label>
                     <input type="text" class="form-control is-invalid" id="userid" name="userid">
                 </div>
                 <div class="form-group">
-                    <label for="password">password</label>
+                    <label for="password">비밀번호</label>
                     <input type="password" class="form-control is-invalid" id="password" name="password">
                 </div>
                 <div class="form-group">
-                    <a href="#" id="login-form-btn" class="form-btn">LogIn</a>
+                    <a href="#" id="login-form-btn" class="form-btn">로그인</a>
                 </div>
                 <div class="init-dif-form"><a class="dif-login">or Sign Up</a></div>
             </form>
 
-            <form id="join">
+            <form id="join" enctype="multipart/form-data">
                 <div class="form-header-text">
                     Blog_Join
                 </div>
                 <div class="form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">이메일</label>
                     <input type="email" class="form-control is-invalid" id="email" name="email">
                 </div>
                 <div class="form-group">
-                    <label for="userid">User Id</label>
+                    <label for="userid">아이디</label>
                     <input type="text" class="form-control is-invalid" id="userid" name="userid">
                 </div>
                 <div class="form-group">
-                    <label for="username">username</label>
+                    <label for="username">이름</label>
                     <input type="text" class="form-control is-invalid" id="username" name="username">
                 </div>
                 <div class="form-group">
-                    <label for="password">password</label>
+                    <label for="password">비밀번호</label>
                     <input type="password" class="form-control is-invalid" id="password" name="password">
                 </div>
                 <div class="form-group">
-                    <label for="password-2">password-2</label>
+                    <label for="password-2">비밀번호 확인</label>
                     <input type="password" class="form-control is-invalid" id="password-2" name="password-2">
                 </div>
+                <div class="form-group Profile-picture">
+                    <label for="Profile-picture">프로필 사진(선택)</label>
+                    <input type="file" class="form-control is-invalid" id="Profile-picture" name="Profile-picture">
+                </div>
                 <div class="form-group">
-                    <a href="#" id="join-form-btn" class="form-btn">Join</a>
+                    <a href="#" id="join-form-btn" class="form-btn">회원가입</a>
                 </div>
                 <div class="init-dif-form"><a class="dif-join">or LogIn</a></div>
             </form>
         </div>
-        
+
         <div class="main">
             <div class="background-logo-text logo-text">ForEver</div>
             <div class="background-main-text main-text">Vlogging changed <br> My life</div>
@@ -120,7 +124,6 @@
             <nav id="board-nav"> 
                 <div class="board-nav-header">
                     <div class="board-nav-pic">
-                        <img src="/public/images/KakaoTalk_20191226_183116639.png" alt="">
                     </div>
                     <div class="board-nav-user">
                         <span><?php echo $_SESSION['user']->user_id; ?>님의 블로그</span>
@@ -139,6 +142,13 @@
                 <div class="board-main-writes">
                     <div class="board-main-header-text form-group">전체보기</div>
                     <div class="header-buttom-line"></div>
+                    <div class="main-list-name">
+                        <p>선택</p>
+                        <p>제목</p>
+                        <p>작성자</p>
+                        <p>댓글 수</p>
+                        <p>업로드 날짜</p>
+                    </div>
                     <div id="board-main-write-view">
                         <!-- 글 들어오는 부분 -->
                     </div>
