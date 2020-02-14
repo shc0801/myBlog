@@ -5,12 +5,14 @@
 
     position: absolute;
     left: 0;
-    top: 0%;
+    top: -100%;
 }
 
 #board-header {
     height: 10%;
     background-color: white;
+    
+    text-align: center;
 
     border-bottom: 1px solid rgba(239, 241, 243, 0.5);
 }
@@ -19,11 +21,12 @@
     color: rgb(255, 136, 156, .5);
     font-size: 50px;
     font-weight: bold;
-    text-align: center;
     text-shadow: -1px 0 rgb(255, 212, 212), 0 1px rgb(255, 225, 225), 5px 0 rgb(255, 225, 225), 0 -1px rgb(255, 225, 225);
 
     cursor: pointer;
 }
+
+
 
 #board-nav {
     width: 15vw;
@@ -39,7 +42,7 @@
 
 .board-nav-header {
     width: 80%;
-    height: 30%;
+    height: 35%;
     
     margin: 20px 0 0 10%;
     border: 1px solid rgb(224, 229, 238);
@@ -47,7 +50,7 @@
 
 .board-nav-pic {
     height: 75%;
-    background-image: url(./images/Profile-picture.PNG);
+    background-image: url(../css/images/KakaoTalk_20191226_183116639.png);
     background-size: cover;
 
     border-bottom: 1px solid rgb(224, 229, 238);
@@ -76,11 +79,8 @@
     text-align: center;
     color: rgb(129, 129, 129);
 
-    position: absolute;
-    left: 10%;
-    top: 35%;
     padding: 10px 40px;
-    margin: 0;
+    margin: 20px 10% 0 0;
     float: right;
 
     border: 2px solid rgba(255, 216, 216, 0.8);
@@ -95,6 +95,7 @@
 
 .board-nav-btn:hover {
     border: 2px solid rgba(255, 142, 142, 0.8);
+    color: rgba(255, 142, 142, 0.8);
 }
 
 .board-nav-category {
@@ -127,12 +128,12 @@
 }
 
 .board-main-writes {
-    font-size: 20px;
+    font-size: 25px;
     color: black;
 }
 
 .board-main-header-text {
-    font-weight: 500;
+    font-weight: 600;
 
     padding-top: 50px;
 }
@@ -146,7 +147,7 @@
 }
 
 .main-list-name {
-    width: 40vw;
+    width: 45vw;
     height: 4vh;
 
     font-size: 15px;
@@ -189,7 +190,7 @@
 }
 
 #board-main-write-view {
-    width: 40vw;
+    width: 45vw;
     height: auto;
     
     margin: 20px 0 0 10%;

@@ -118,8 +118,8 @@
         </div>
 
         <div id="board">
-            <div id="board-header" class="board-logo-text logo-text">
-                FE
+            <div id="board-header" class="logo-text">
+                <span class="board-logo-text">FE</span>
             </div>
             <nav id="board-nav"> 
                 <div class="board-nav-header">
@@ -162,7 +162,7 @@
             </div>
         </div>
 
-        <div id="write-view-area">
+        <!-- <div id="write-view-area">
             <div class="write-view-area-header">
                 <p class="write-view-title">asdasdasd</p>
                 <p class="write-view-name">by asd</p>
@@ -180,7 +180,7 @@
                 </form>
                 <a href="#" id="comment-save-btn">댓글 남기기</a>
             </div>
-        </div>
+        </div> -->
         
         <div id="write-area">
             <div class="write-sub-tool">

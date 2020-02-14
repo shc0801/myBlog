@@ -116,12 +116,15 @@ class Menu {
 
     createWriteView(dataList) {
         let mainWriteView = document.querySelector("#board-main-write-view");
+        this.app.$MainWriteView.empty();
+
         dataList.forEach((data)=>{
             let boardMainWrite = document.createElement("div");
             boardMainWrite.id = `write-view-${data.id}`;
             boardMainWrite.classList.add("board-main-write"); 
 
-            let write = `<input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
+            let write = `
+                        <input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
                         <label for="write-select"></label>
                         <p class="main-write-title">${data.title}</p>
                         <p class="main-write-name">${data.writer}</p>
