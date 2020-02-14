@@ -147,7 +147,7 @@
                         <p>제목</p>
                         <p>작성자</p>
                         <p>댓글 수</p>
-                        <p>업로드 날짜</p>
+                        <p>업로드 날짜</p> 
                     </div>
                     <div id="board-main-write-view">
                         <!-- 글 들어오는 부분 -->
@@ -159,6 +159,26 @@
                 <div class="board-main-setting">
 
                 </div>
+            </div>
+        </div>
+
+        <div id="write-view-area">
+            <div class="write-view-area-header">
+                <p class="write-view-title">asdasdasd</p>
+                <p class="write-view-name">by asd</p>
+                <p class="write-view-day">2020-02-14</p>
+            </div>
+            <div class="write-view-area-content">
+
+                ㅈㄱㄱㅅㄷ.
+                
+            </div>
+            <div class="write-view-area-comment">
+                댓글 0개
+                <form id="comment">
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                </form>
+                <a href="#" id="comment-save-btn">댓글 남기기</a>
             </div>
         </div>
         

@@ -5,7 +5,7 @@
 
     position: absolute;
     left: 0;
-    top: -100%;
+    top: 0%;
 }
 
 #board-header {
@@ -240,4 +240,71 @@ input[class="write-select-check"]:checked + label:before {content:"\2714";text-a
 
 .main-write-day {
     left: 88%;
+}
+
+#write-view-area {
+    width: 60vw;
+    height: 75vh;
+    background-color: rgb(255, 255, 255);
+
+    position: relative;
+    left: 28%;
+    top: 7%;
+
+    border-radius: 10px;
+    padding: 60px 0 0 100px;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.write-view-area-header {
+    width: 80%;
+    height: 15%;
+}
+
+.write-view-title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.write-view-name, .write-view-day {
+    margin: 15px 20px 0 0;
+    float: left;
+}
+
+.write-view-area-content {
+    width: 80%;
+    height: auto;
+
+    padding: 50px 0;
+    
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.write-view-area-comment {
+    width: 80%;
+    height: 30%;
+
+    margin: 40px 0;
+}
+
+#comment {
+    width: 100%;
+    height: 70%;
+
+    font-size: 18px;
+
+    margin-top: 10px;
+}
+
+#comment-save-btn {
+    background-color: rgb(255, 83, 83);
+
+    color: rgb(255, 255, 255);
+
+    float: right;
+    padding: 10px 20px;
+    border-radius: 10px;
 }

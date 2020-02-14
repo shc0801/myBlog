@@ -15,9 +15,7 @@ class Board {
             let write = new Write(this.app, this.menu, this);
         })
     }
-    /**
-     * 
-     */
+    
     viewBoard() {
         this.app.$board.clearQueue().animate({'top': '0'}, 'slow');
         this.menu.closeMenu();
