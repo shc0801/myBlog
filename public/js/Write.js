@@ -227,6 +227,6 @@ class Write {
         this.app.$writeContentInput.val(`${this.app.$writeContent.html()}`);
         this.app.$writeDateInput.val(`${year}-${month}-${day}`);
             
-        let sandWrite = new SandWrite(this.app, this.menu, this);
+        let sandWrite = new SandWrite(this.app, this.menu, this.board, this);
     }
 }

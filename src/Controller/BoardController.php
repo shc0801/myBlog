@@ -14,8 +14,7 @@ class BoardController {
         message("글이 업로드 되었습니다.");
     }
 
-    public function list()
-    {
+    public function list() {
         if(!User::checkLogin()) {
             message("로그인 후 가능한 기능입니다");
             return;
@@ -24,5 +23,14 @@ class BoardController {
         $list = DB::fetchAll($sql, [1]);
 
         Lib::json(['success'=>true, 'list'=>$list]);
+    }
+
+    public function load() {
+        extract($_POST);
+        
+        $sql = "SELECT * FROM `writes` WHERE id = ?";
+        $writeData = DB::fetch($sql, [$write]);
+        
+        Lib::json(['success'=>true, 'writeData'=>$writeData]);
     }
 }

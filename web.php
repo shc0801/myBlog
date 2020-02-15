@@ -11,5 +11,6 @@ Router::post("/logout", "UserController@logoutProcess");
 
 Router::post("/write", "BoardController@writeProcess");
 Router::post("/board", 'BoardController@list');
+Router::post("/load", 'BoardController@load');
 
 Router::Router();

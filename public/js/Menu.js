@@ -18,7 +18,6 @@ class Menu {
                 url: '/board',
                 method: 'post',
                 success: (data)=>{
-                    console.log(data)
                     if(data === '로그인 후 가능한 기능입니다') {
                         this.toastMsg(data);
                         return;
@@ -27,6 +26,7 @@ class Menu {
                     this.createWriteView(data.list);
                     this.changeMenuColor('#000');
                     this.app.$menuIcon.prop("checked", false);
+                    this.writes = document.querySelectorAll(".board-main-write");
 
                     let board = new Board(this.app, this);
                 }
@@ -119,12 +119,14 @@ class Menu {
         this.app.$MainWriteView.empty();
 
         dataList.forEach((data)=>{
-            let boardMainWrite = document.createElement("div");
+            let boardMainWrite = document.createElement("form");
             boardMainWrite.id = `write-view-${data.id}`;
             boardMainWrite.classList.add("board-main-write"); 
+            boardMainWrite.classList.add(`${data.id}`); 
 
             let write = `
                         <input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
+                        <input type="hidden" name="write" class="write-select-input-${data.id}">
                         <label for="write-select"></label>
                         <p class="main-write-title">${data.title}</p>
                         <p class="main-write-name">${data.writer}</p>
@@ -133,6 +135,8 @@ class Menu {
 
             boardMainWrite.innerHTML = write
             mainWriteView.appendChild(boardMainWrite);
+
+            $(`.write-select-input-${data.id}`).val(`${data.id}`);
         })
     }
 

@@ -21,7 +21,6 @@ class SandUser {
             method:'post',
             data:form,
             success:(data)=>{
-                console.log(data);
                 this.menu.toastMsg(data);
                 this.menu.closeMenu();
 

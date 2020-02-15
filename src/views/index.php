@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <a id="home" class="nav-text line-1" href="/"> 홈페이지 </a>
-                <a id="" class="nav-text line-2" href="#"> 화원정보 </a>
+                <a id="" class="nav-text line-2" href="#">  회원정보 </a>
                 <a id="init-board" class="nav-text line-3" href="#"> 계시판 </a>
                 <a class="nav-text line-4" href="#"> 지도 </a>
             </nav>
@@ -132,10 +132,10 @@
                 </div>
                 <div id="init-write" class="board-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
                 <div class="board-nav-category">
-                    <a id="board-nav-viewAll" href="#">전체보기</a>
-                    <a id="board-nav-viewAll" href="#">글 관리</a>
-                    <a id="board-nav-viewAll" href="#">페이지 관리</a>
-                    <a id="board-nav-viewAll" href="#">설정</a>
+                    <a class="board-nav-viewAll" href="#">전체보기</a>
+                    <a class="board-nav-viewAll" href="#">글 관리</a>
+                    <a class="board-nav-viewAll" href="#">페이지 관리</a>
+                    <a class="board-nav-viewAll" href="#">설정</a>
                 </div>
             </nav>
             <div id="board-main">
@@ -160,89 +160,82 @@
 
                 </div>
             </div>
-        </div>
 
-        <!-- <div id="write-view-area">
-            <div class="write-view-area-header">
-                <p class="write-view-title">asdasdasd</p>
-                <p class="write-view-name">by asd</p>
-                <p class="write-view-day">2020-02-14</p>
+            <div id="write-view-area">
+                <div class="write-view-write">
+                    <!-- 글 들어오는 부분 -->
+                </div>
+                <div class="write-view-area-comment">
+                    댓글 0개
+                    <form id="comment-form">
+                        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                    </form>
+                    <a href="#" id="comment-save-btn">댓글 남기기</a>
+                </div>
             </div>
-            <div class="write-view-area-content">
-
-                ㅈㄱㄱㅅㄷ.
-                
-            </div>
-            <div class="write-view-area-comment">
-                댓글 0개
-                <form id="comment">
-                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-                </form>
-                <a href="#" id="comment-save-btn">댓글 남기기</a>
-            </div>
-        </div> -->
         
-        <div id="write-area">
-            <div class="write-sub-tool">
-                <div id="title-tool" class="font-tool">
-                    <select name="font-family" id="font-family" class="write-select first-select">
-                        <option value="기본">폰트설정</option>
-                        <option value="집">집</option>
-                        <option value="가">가</option>
-                        <option value="고싶다">고싶다</option>
-                    </select>
-                    <select name="font-size" id="font-size" class="write-select">
-                        <option value="15px">20px</option>
-                    </select>
-                    <button id="justifyleft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
-                    <button id="justifyCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
-                    <button id="justifyRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
-                    <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
-                </div>
+            <div id="write-area">
+                <div class="write-sub-tool">
+                    <div id="title-tool" class="font-tool">
+                        <select name="font-family" id="font-family" class="write-select first-select">
+                            <option value="기본">폰트설정</option>
+                            <option value="집">집</option>
+                            <option value="가">가</option>
+                            <option value="고싶다">고싶다</option>
+                        </select>
+                        <select name="font-size" id="font-size" class="write-select">
+                            <option value="15px">20px</option>
+                        </select>
+                        <button id="justifyleft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
+                        <button id="justifyCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
+                        <button id="justifyRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
+                        <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
+                    </div>
 
-                <div id="content-tool" class="font-tool">  
-                    <select name="font-family" id="font-family" class="write-select first-select">
-                        <option value="기본">폰트설정</option>
-                        <option value="집">집</option>
-                        <option value="가">가</option>
-                        <option value="고싶다">고싶다</option>
-                    </select>
-                    <select name="font-size" id="font-size" class="write-select">
-                        <option value="15px">15px</option>
-                    </select>
-                    <button id="justifyLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
-                    <button id="justifyCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
-                    <button id="justifyRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
-                    <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
-                    <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
-                    <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
-                    <button id="CreateLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
-                    <button id="insertHTML" class="tool-btn image content-tool"><i class="far fa-image imageForm-icon"></i></button>
+                    <div id="content-tool" class="font-tool">  
+                        <select name="font-family" id="font-family" class="write-select first-select">
+                            <option value="기본">폰트설정</option>
+                            <option value="집">집</option>
+                            <option value="가">가</option>
+                            <option value="고싶다">고싶다</option>
+                        </select>
+                        <select name="font-size" id="font-size" class="write-select">
+                            <option value="15px">15px</option>
+                        </select>
+                        <button id="justifyLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
+                        <button id="justifyCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
+                        <button id="justifyRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
+                        <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
+                        <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
+                        <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
+                        <button id="CreateLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
+                        <button id="insertHTML" class="tool-btn image content-tool"><i class="far fa-image imageForm-icon"></i></button>
+                    </div>
                 </div>
+                <form id="write">
+                    <div class="write-header">
+                        <div class="write-title" contenteditable="true" placeholder="제목"></div>
+                        <input id="write-title-input" name="title" type="hidden">
+                    </div>
+                    <div class="write-bottom">
+                        <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
+                        <input id="write-content-input" name="content" type="hidden">
+                    </div>
+                    <div class="write-image imageForm">
+                        <input id="image-change-input" class="write-image" type="file">
+                        <input type="text" id="image-width-input" class="write-image" placeholder="이미지의 width값 ex)100">
+                        <input type="text" id="image-height-input" class="write-image" placeholder="이미지의 height값 ex)100">
+                        <a class="write-image file content-tool insertImage"><i id="image-icon" class="write-image far fa-image imageForm-icon"></i></a>
+                    </div>
+                    <div class="linkForm">
+                        <input type="text" id="link-url-link" placeholder="url을 입력하세요">
+                        <a class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon"></i></a>
+                    </div>
+                    <input id="write-date-input" type="hidden" name="date">
+                    <a href="#" id="write-save-btn">저장</a>
+                    <a href="#" id="write-back-btn">취소</a>
+                </form>
             </div>
-            <form id="write">
-                <div class="write-header">
-                    <div class="write-title" contenteditable="true" placeholder="제목"></div>
-                    <input id="write-title-input" name="title" type="hidden">
-                </div>
-                <div class="write-bottom">
-                    <div class="write-content" contenteditable="true" placeholder="본문을 이곳에 입력해주세요!"></div>
-                    <input id="write-content-input" name="content" type="hidden">
-                </div>
-                <div class="write-image imageForm">
-                    <input id="image-change-input" class="write-image" type="file">
-                    <input type="text" id="image-width-input" class="write-image" placeholder="이미지의 width값 ex)100">
-                    <input type="text" id="image-height-input" class="write-image" placeholder="이미지의 height값 ex)100">
-                    <a class="write-image file content-tool insertImage"><i id="image-icon" class="write-image far fa-image imageForm-icon"></i></a>
-                </div>
-                <div class="linkForm">
-                    <input type="text" id="link-url-link" placeholder="url을 입력하세요">
-                    <a class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon"></i></a>
-                </div>
-                <input id="write-date-input" type="hidden" name="date">
-                <a href="#" id="write-save-btn">저장</a>
-                <a href="#" id="write-back-btn">취소</a>
-            </form>
         </div>
     </div>
 </body>
