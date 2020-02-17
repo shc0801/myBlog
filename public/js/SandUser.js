@@ -15,11 +15,11 @@ class SandUser {
     }
 
     userProcess() {
-        let form = $(`#${this.id}`).serialize();
+        let $form = $(`#${this.id}`).serialize();
         $.ajax({
             url: `/${this.id}`,
             method:'post',
-            data:form,
+            data:$form,
             success:(data)=>{
                 this.menu.toastMsg(data);
                 this.menu.closeMenu();

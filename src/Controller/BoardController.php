@@ -25,12 +25,30 @@ class BoardController {
         Lib::json(['success'=>true, 'list'=>$list]);
     }
 
-    public function load() {
+    public function writeLoad() {
         extract($_POST);
         
         $sql = "SELECT * FROM `writes` WHERE id = ?";
         $writeData = DB::fetch($sql, [$write]);
         
         Lib::json(['success'=>true, 'writeData'=>$writeData]);
+    }
+
+    public function comment() {
+        extract($_POST);
+        $sql =  "INSERT INTO `comments` (`write_id`, `user_id`, `comment`) VALUES(?, ?, ?)";
+        $cnt = DB::execute($sql, [$id, $_SESSION['user']->user_id, $comment]);
+
+        message("댓글이 등록되었습니다.");
+    }
+    
+    public function commentLoad() {
+        extract($_POST);
+        $sql = "SELECT C.* FROM comments C WHERE C.write_id = ?";
+        $commentData = DB::fetchAll($sql, [$id]);
+
+        Lib::json(['success'=>true, 'commentData'=>$commentData]);
+
+        var_dump($commentData);
     }
 }

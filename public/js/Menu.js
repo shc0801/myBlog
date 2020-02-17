@@ -25,8 +25,10 @@ class Menu {
 
                     this.createWriteView(data.list);
                     this.changeMenuColor('#000');
+
                     this.app.$menuIcon.prop("checked", false);
                     this.writes = document.querySelectorAll(".board-main-write");
+                    this.app.$boardNavUser.load("/ .board-nav-user");
 
                     let board = new Board(this.app, this);
                 }
@@ -125,9 +127,9 @@ class Menu {
             boardMainWrite.classList.add(`${data.id}`); 
 
             let write = `
-                        <input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
                         <input type="hidden" name="write" class="write-select-input-${data.id}">
-                        <label for="write-select"></label>
+                        <input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
+                        <label for="write-select-${data.id}"></label>
                         <p class="main-write-title">${data.title}</p>
                         <p class="main-write-name">${data.writer}</p>
                         <p class="main-write-comments">0</p>

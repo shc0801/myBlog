@@ -9,8 +9,10 @@ Router::post("/login", "UserController@loginProcess");
 Router::post("/join", "UserController@registerProcess");
 Router::post("/logout", "UserController@logoutProcess");
 
-Router::post("/write", "BoardController@writeProcess");
 Router::post("/board", 'BoardController@list');
-Router::post("/load", 'BoardController@load');
+Router::post("/writeLoad", 'BoardController@writeLoad');
+Router::post("/write", "BoardController@writeProcess");
+Router::post("/commentLoad", 'BoardController@commentLoad');
+Router::post("/comment", 'BoardController@comment');
 
 Router::Router();

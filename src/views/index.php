@@ -25,6 +25,7 @@
     <script src="/js/Form.js"></script>
     <script src="/js/SandUser.js"></script>
     <script src="/js/SandWrite.js"></script>
+    <script src="/js/SandComment.js"></script>
 </head>
 <body>
     <div id="container">
@@ -166,11 +167,13 @@
                     <!-- 글 들어오는 부분 -->
                 </div>
                 <div class="write-view-area-comment">
-                    댓글 0개
+                    <div id="comment-area">
+                    </div>
                     <form id="comment-form">
                         <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                        <input type="hidden" name="id" id="comment-write-id">
+                        <a href="#" id="comment-save-btn">댓글 남기기</a>
                     </form>
-                    <a href="#" id="comment-save-btn">댓글 남기기</a>
                 </div>
             </div>
         

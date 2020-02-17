@@ -238,6 +238,11 @@ input[class="write-select-check"]:checked + label:before {content:"\2714";text-a
 }
 .main-write-title {
     left: 10%;
+    cursor: pointer;
+}
+
+.main-write-title:hover {
+    color: rgb(255, 87, 115);
 }
 
 .main-write-name {
@@ -305,6 +310,33 @@ input[class="write-select-check"]:checked + label:before {content:"\2714";text-a
     margin: 40px 0;
 }
 
+#comment-area {
+    margin-top: 20px;
+}
+
+.comment-area {
+    padding-bottom: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#comment-user-profilePic {
+    width: 40px;
+    height: 30px;
+
+    float: left;
+    margin: 5px 10px 0 0;
+    border-radius: 50%;
+}
+
+.comment-user-name {
+    font-weight: 600;
+}
+
+.comment-user-content {
+    padding-top: 10px;
+}
+
 #comment-form, #comment {
     max-width: 100%;
     height: 70%;
@@ -321,14 +353,14 @@ input[class="write-select-check"]:checked + label:before {content:"\2714";text-a
     font-size: 18px;
 
     margin-top: 10px;
+    margin-bottom: 15px;
     resize: none;
 }
 
 #comment-save-btn {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 83, 83);
 
-    font-weight: 600;
-    color: rgb(255, 83, 83);
+    color: rgb(255, 255, 255);
 
     float: right;
     padding: 10px 20px;
@@ -336,10 +368,4 @@ input[class="write-select-check"]:checked + label:before {content:"\2714";text-a
 
     border: 2px solid rgb(255, 83, 83);
     border-radius: 10px;
-}
-
-#comment-save-btn:hover {
-    background-color: rgb(255, 83, 83);
-
-    color: rgb(255, 255, 255);
 }

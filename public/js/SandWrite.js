@@ -13,11 +13,11 @@ class SandWrite {
     }
 
     writeProcess() {
-        let form = $(`#write`).serialize();
+        let $form = $(`#write`).serialize();
         $.ajax({
             url: '/write',
             method:'post',
-            data:form,
+            data:$form,
             success:(data)=>{
                 this.menu.toastMsg(data); 
                 this.app.$MainWriteView.load("/ #board-main-write-view");

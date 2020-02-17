@@ -15,9 +15,12 @@ class App{
         this.$initForm = $("#init-form");
 
         this.$board = $("#board");
+        this.$boardNavUser = $(".board-nav-user");
         this.$MainWriteView = $("#board-main-write-view");
         this.$writeViewArea = $("#write-view-area");
         this.$writeViewWrite = $(".write-view-write");
+        this.$commentWriteId = $("#comment-write-id");
+        this.$commentArea = $("#comment-area");
 
         this.$writeArea = $("#write-area"); 
         this.$writeTitle = $(".write-title");
