@@ -10,9 +10,7 @@ class UserController
     public function registerProcess()
     {
         extract($_POST);
-
-        var_dump($_FILES['Profile-picture']);
-        exit;
+        $uploadfile = $_SERVER['DOCUMENT_ROOT']."/upload/";
 
         //입력값 검증
         /*
@@ -41,18 +39,24 @@ class UserController
             else
                 message("비밀번호는 6글자 이상이여야 합니다.");
             return;
-        }else if($password !== $passwordc){
+        }else if($password !== $_POST["password-2"]){
             message("비밀번호와 확인이 일치하지 않습니다.");
             return;
         }
 
-        $sql = "INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `image`, `level`) VALUES (?, ?, ?, PASSWORD(?), 1)";
-        $cnt = DB::execute($sql, [$userid, $useremail, $username, $password]);
+        if($_FILES["Profile-picture"]["size"] > 1024*1024) {
+            message("이미지의 용량이 너무 큽니다.");
+            return;
+        }
+
+        move_uploaded_file($_FILES['Profile-picture']['tmp_name'], $uploadfile.$_FILES["Profile-picture"]["name"]);
+
+        $sql = "INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `image`, `level`) VALUES (?, ?, ?, PASSWORD(?), ?, 1)";
+        $cnt = DB::execute($sql, [$userid, $email, $username, $password, $_FILES["Profile-picture"]['name']]);
         message("회원가입 되었습니다.");
     }
 
-    public function loginProcess()
-    {
+    public function loginProcess() {
         extract($_POST);
 
         $errors = [];
@@ -69,8 +73,7 @@ class UserController
         message("로그인 되었습니다.");
     }
 
-    public function logoutProcess()
-    {
+    public function logoutProcess() {
         user()->logout();
         message("로그아웃 되었습니다.");
     }

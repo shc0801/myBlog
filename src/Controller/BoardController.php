@@ -36,8 +36,8 @@ class BoardController {
 
     public function comment() {
         extract($_POST);
-        $sql =  "INSERT INTO `comments` (`write_id`, `user_id`, `comment`) VALUES(?, ?, ?)";
-        $cnt = DB::execute($sql, [$id, $_SESSION['user']->user_id, $comment]);
+        $sql =  "INSERT INTO `comments` (`write_id`, `user_id`, `comment`, `image`) VALUES(?, ?, ?, ?)";
+        $cnt = DB::execute($sql, [$id, $_SESSION['user']->user_id, $comment, $_SESSION['user']->image]);
 
         message("댓글이 등록되었습니다.");
     }

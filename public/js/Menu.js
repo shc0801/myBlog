@@ -26,7 +26,7 @@ class Menu {
                     this.createWriteView(data.list);
                     this.changeMenuColor('#000');
 
-                    this.app.$menuIcon.prop("checked", false);
+                    this.app.$menuIcon.prop("che cked", false);
                     this.writes = document.querySelectorAll(".board-main-write");
                     this.app.$boardNavUser.load("/ .board-nav-user");
 
@@ -114,6 +114,21 @@ class Menu {
                 $toast.remove();
             }, 300);
         }, 2000)
+    }
+
+    ImageCheck(imageInput) {
+        let filePath = imageInput.value;
+        let fileKind = filePath.substr(filePath.length - 3, 3);
+        let file = imageInput.files.length > 0 ? imageInput.files[0] : null;
+
+        if(fileKind !== "jpg" && fileKind !== "gif" && fileKind !== "png")
+        {
+            alert("jpg, gif, png 확장자를 가진 이미지 파일만 올려주세요.");
+            imageInput.value = "";
+            imageInput.select();
+            return;
+        }
+        this.url = URL.createObjectURL(file);
     }
 
     createWriteView(dataList) {

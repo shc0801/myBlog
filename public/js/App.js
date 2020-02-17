@@ -15,6 +15,7 @@ class App{
         this.$initForm = $("#init-form");
 
         this.$board = $("#board");
+        this.$boardNavPic = $("#board-nav-pic");
         this.$boardNavUser = $(".board-nav-user");
         this.$MainWriteView = $("#board-main-write-view");
         this.$writeViewArea = $("#write-view-area");
@@ -29,8 +30,9 @@ class App{
         this.$writeContentInput = $("#write-content-input");
         this.$writeDateInput = $("#write-date-input");
         // 
-
         let menu = new Menu(this);
+
+        console.log(sessionStorage)
     }
 }
 

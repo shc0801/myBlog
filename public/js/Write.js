@@ -57,7 +57,9 @@ class Write {
 
         this.imageViewBtn.addEventListener("click", this.viewImageForm)
 
-        this.imageInput.addEventListener("change", this.ImageCheck)
+        this.imageInput.addEventListener("change", ()=>{
+            this.menu.ImageCheck(this.imageInput);
+        })
 
         this.imageIcon.addEventListener("click", this.uploadImg)
 
@@ -157,22 +159,6 @@ class Write {
             this.imageForm.style.visibility = "hidden";
         else 
             this.imageForm.style.visibility = "visible";
-    }
- 
-    ImageCheck = () => {
-        let filePath = this.imageInput.value;
-        let fileKind = filePath.substr(filePath.length - 3, 3);
-        let file = this.imageInput.files.length > 0 ? this.imageInput.files[0] : null;
-
-        if(fileKind !== "jpg" && fileKind !== "gif" && fileKind !== "png")
-        {
-            alert("jpg, gif, png 확장자를 가진 이미지 파일만 올려주세요.");
-            this.imageInput.value = "";
-            this.imageInput.select();
-            this.imageInput.clear();
-            return;
-        }
-        this.url = URL.createObjectURL(file);
     }
 
     uploadImg = () => {

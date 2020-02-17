@@ -12,6 +12,7 @@ class Form {
         this.formBtn = document.querySelectorAll(".form-btn");
 
         this.input = document.querySelectorAll("input");
+        this.imageInput = document.querySelector("#Profile-picture");
 
         this.addEvent();
     }
@@ -24,6 +25,10 @@ class Form {
             dif.addEventListener("click", e=>{
                 this.changeForm(e);
             })
+        })
+        
+        this.imageInput.addEventListener("change", ()=>{
+            this.menu.ImageCheck(this.imageInput)
         })
 
         //로그인, 회원가입 

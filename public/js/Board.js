@@ -145,7 +145,7 @@ class Board {
             comment.classList.add(`${data.id}`); 
 
             let commentData = `
-                               <img id="comment-user-profilePic" src="../css/images/KakaoTalk_20191226_183116639.png" alt="">
+                               <img id="comment-user-profilePic" src="../upload/${data.image}" alt="">
                                <div class="comment-user-name">${data.user_id}</div>
                                <div class="comment-user-date">2020-02-15 01:41</div>
                                <div class="comment-user-content">${data.comment}</div>`;

@@ -20,6 +20,7 @@ class SandComment {
             success: (data)=>{
                 this.menu.toastMsg(data);
                 
+                this.board.loadComment();
                 document.querySelector("#comment").value='';
             }
         })

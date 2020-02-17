@@ -56,7 +56,7 @@
                 </div>
                 <a id="home" class="nav-text line-1" href="/"> 홈페이지 </a>
                 <a id="" class="nav-text line-2" href="#">  회원정보 </a>
-                <a id="init-board" class="nav-text line-3" href="#"> 계시판 </a>
+                <a id="init-board" class="nav-text line-3" href="#"> 게시판 </a>
                 <a class="nav-text line-4" href="#"> 지도 </a>
             </nav>
 
@@ -124,11 +124,10 @@
             </div>
             <nav id="board-nav"> 
                 <div class="board-nav-header">
-                    <div class="board-nav-pic">
-                    </div>
+                    <img id="board-nav-pic" src="/upload/<?=$_SESSION['user']->image?>" alt="">
                     <div class="board-nav-user">
-                        <span><?php echo $_SESSION['user']->user_id; ?>님의 블로그</span>
-                        <p><?php echo $_SESSION['user']->email; ?></p>
+                        <span><?=$_SESSION['user']->user_id; ?>님의 블로그</span>
+                        <p><?=$_SESSION['user']->email; ?></p>
                     </div>
                 </div>
                 <div id="init-write" class="board-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
