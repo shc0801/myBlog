@@ -7,7 +7,8 @@ class Board {
         this.boardHomeBtn = document.querySelector(".board-logo-text");
         this.navBtn = document.querySelectorAll(".board-nav-viewAll");
         this.commentSaveBtn = document.querySelector("#comment-save-btn");
-
+        this.mainWriteModifi = document.querySelector(".main-write-modifi");
+        this.mainWriteDelete = document.querySelector(".main-write-delete");
         this.addEvent();
     }
 
@@ -45,6 +46,10 @@ class Board {
             }
             let sandComment =  new SandComment(this.app, this.menu, this);
         })
+
+        // this.mainWriteModifi.addEventListener("click", ()=>{
+            
+        // })
     }
     
     /**
@@ -52,7 +57,10 @@ class Board {
     */
     viewBoard() {
         this.app.$board.clearQueue().animate({'top': '0'}, 'slow');
-        this.menu.closeMenu();
+        setTimeout(()=>{
+            console.log(this.menu, this.menu.closeMenu);
+            this.menu.closeMenu();
+        }, 50)
     }
     
     /**
@@ -87,7 +95,7 @@ class Board {
         write.id = `write-${data.writeData.id}`;
         write.classList.add('write-view');
         write.classList.add(`${data.id}`); 
-
+        
         let writeData = `<div class="write-view-area-header">
                             <p class="write-view-title">${data.writeData.title}</p>
                             <p class="write-view-name">by ${data.writeData.writer}</p>
@@ -122,7 +130,6 @@ class Board {
             method: 'post',
             data: comment,
             success: (data)=>{
-                console.log(data);
                 this.createCommentForm(data);
             }
         })

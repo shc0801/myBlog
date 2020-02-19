@@ -22,15 +22,16 @@ class Menu {
                         this.toastMsg(data);
                         return;
                     }
-
                     this.createWriteView(data.list);
                     this.changeMenuColor('#000');
 
                     this.app.$menuIcon.prop("che cked", false);
-                    this.writes = document.querySelectorAll(".board-main-write");
                     this.app.$boardNavUser.load("/ .board-nav-user");
 
-                    let board = new Board(this.app, this);
+                    setTimeout(()=>{
+                        console.log(this);
+                        let board = new Board(this.app, this);
+                    }, 100)
                 }
             })
         })
@@ -136,24 +137,37 @@ class Menu {
         this.app.$MainWriteView.empty();
 
         dataList.forEach((data)=>{
-            let boardMainWrite = document.createElement("form");
-            boardMainWrite.id = `write-view-${data.id}`;
-            boardMainWrite.classList.add("board-main-write"); 
-            boardMainWrite.classList.add(`${data.id}`); 
 
-            let write = `
-                        <input type="hidden" name="write" class="write-select-input-${data.id}">
-                        <input type="checkbox" name="select" id="write-select-${data.id}" class="write-select-check">
-                        <label for="write-select-${data.id}"></label>
-                        <p class="main-write-title">${data.title}</p>
-                        <p class="main-write-name">${data.writer}</p>
-                        <p class="main-write-comments">0</p>
-                        <p class="main-write-day">${data.date}</p>`;
+            $.ajax({
+                url: '/commentLoad',
+                method: 'post',
+                data: data,
+                success: (num)=>{
+                    this.commentNum = num.commentData.length;
+                    if(this.commentNum === undefined) this.commentNum = 0;
 
-            boardMainWrite.innerHTML = write
-            mainWriteView.appendChild(boardMainWrite);
-
-            $(`.write-select-input-${data.id}`).val(`${data.id}`);
+                    let boardMainWrite = document.createElement("form");
+                    boardMainWrite.id = `write-view-${data.id}`;
+                    boardMainWrite.classList.add("board-main-write"); 
+                    boardMainWrite.classList.add(`${data.id}`); 
+        
+                    let write = `
+                                <input type="hidden" name="write" class="write-select-input-${data.id}">
+                                <p class="main-write-title">${data.title}</p>
+                                <p class="main-write-modifi">수정</p>
+                                <p class="main-write-delete">삭제</p>
+                                <p class="main-write-name">${data.writer}</p>
+                                <p class="main-write-comments">${this.commentNum}</p>
+                                <p class="main-write-day">${data.date}</p>`;
+        
+                    boardMainWrite.innerHTML = write
+                    mainWriteView.appendChild(boardMainWrite);
+        
+                    $(`.write-select-input-${data.id}`).val(`${data.id}`);
+                    
+                    this.writes = document.querySelectorAll(".board-main-write");
+                }
+            })
         })
     }
 

@@ -76,14 +76,14 @@ class Write {
             let {anchorNode} = document.getSelection();
             if((anchorNode) && ((anchorNode.parentNode === this.writeContent || anchorNode.parentNode.parentNode === this.writeContent) || (anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle))) {
                 
-                this.nowNode = anchorNode.anchorNode;
-                this.nowFocus = anchorNode.anchorOffset;
-                
+                this.nowNode = document.getSelection().anchorNode;
+                this.nowFocus = document.getSelection().anchorOffset;
                 if(anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle) {
                     this.endNode.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].firstChild;
                     if(this.endNode.title === null) 
                         this.endNode.title = this.nowNode;
                 }
+                
                 else {
                     this.endNode.content = this.writeContent.childNodes[this.writeContent.childNodes.length - 1].firstChild;
                     if(this.endNode.content === null) 
@@ -105,7 +105,6 @@ class Write {
     }
 
     closeWrite = () => {
-        this.menu.closeMenu();
         this.app.$menuIcon.prop("checked", false);
 
         this.app.$writeArea.clearQueue().animate({'opacity':'0'},'slow');
@@ -125,9 +124,7 @@ class Write {
             selection.collapse(this.nowNode, this.nowFocus);
         }
 
-        setTimeout(()=>{
-            document.execCommand(`${btn.id}`);
-        }, 100)
+        document.execCommand(`${btn.id}`);
     }
 
     setFocus(e) {
@@ -167,7 +164,7 @@ class Write {
         
         selection.collapse(this.nowNode, this.nowFocus);
 
-        let html = `<img src=${this.url} width="${imageWidth}" height="${imageHeight}">`;
+        let html = `<img src=${this.menu.url} width="${imageWidth}" height="${imageHeight}">`;
         document.execCommand("insertHTML", false, html)
     }
 
@@ -188,10 +185,12 @@ class Write {
         if(e.target.parentNode.classList[0] === 'write-title' || e.target.parentNode.classList[0] === 'write-content') return;
         
         if(nowFocus === this.writeTitle && this.endNode.title !== null) {
+            console.log(this.endNode.title)
             selection.collapse(this.endNode.title, this.endNode.title.length);
         }
 
         else if(nowFocus === this.writeContent && this.endNode.content !== null) {
+            console.log(this.endNode.content)
             selection.collapse(this.endNode.content, this.endNode.content.length);
         }
     } 

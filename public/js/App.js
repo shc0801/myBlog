@@ -15,7 +15,8 @@ class App{
         this.$initForm = $("#init-form");
 
         this.$board = $("#board");
-        this.$boardNavPic = $("#board-nav-pic");
+        this.$boardNavPic = $(".board-nav-pic");
+        this.$boardNavHeader = $(".board-nav-header");
         this.$boardNavUser = $(".board-nav-user");
         this.$MainWriteView = $("#board-main-write-view");
         this.$writeViewArea = $("#write-view-area");

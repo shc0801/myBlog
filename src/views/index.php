@@ -66,11 +66,11 @@
                 </div>
                 <div class="form-group">
                     <label for="userid">아이디</label>
-                    <input type="text" class="form-control is-invalid" id="userid" name="userid">
+                    <input type="text" class="form-control is-invalid" id="login-userid" name="userid">
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호</label>
-                    <input type="password" class="form-control is-invalid" id="password" name="password">
+                    <input type="password" class="form-control is-invalid" id="login-password" name="password">
                 </div>
                 <div class="form-group">
                     <a href="#" id="login-form-btn" class="form-btn">로그인</a>
@@ -84,23 +84,23 @@
                 </div>
                 <div class="form-group">
                     <label for="email">이메일</label>
-                    <input type="email" class="form-control is-invalid" id="email" name="email">
+                    <input type="email" class="form-control is-invalid" id="join-email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="userid">아이디</label>
-                    <input type="text" class="form-control is-invalid" id="userid" name="userid">
+                    <input type="text" class="form-control is-invalid" id="join-userid" name="userid">
                 </div>
                 <div class="form-group">
                     <label for="username">이름</label>
-                    <input type="text" class="form-control is-invalid" id="username" name="username">
+                    <input type="text" class="form-control is-invalid" id="join-username" name="username">
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호</label>
-                    <input type="password" class="form-control is-invalid" id="password" name="password">
+                    <input type="password" class="form-control is-invalid" id="join-password" name="password">
                 </div>
                 <div class="form-group">
                     <label for="password-2">비밀번호 확인</label>
-                    <input type="password" class="form-control is-invalid" id="password-2" name="password-2">
+                    <input type="password" class="form-control is-invalid" id="join-password-2" name="password-2">
                 </div>
                 <div class="form-group Profile-picture">
                     <label for="Profile-picture">프로필 사진(선택)</label>
@@ -124,6 +124,7 @@
             </div>
             <nav id="board-nav"> 
                 <div class="board-nav-header">
+                <div class="board-nav-pic"></div>
                     <img id="board-nav-pic" src="/upload/<?=$_SESSION['user']->image?>" alt="">
                     <div class="board-nav-user">
                         <span><?=$_SESSION['user']->user_id; ?>님의 블로그</span>
@@ -143,7 +144,6 @@
                     <div class="board-main-header-text form-group">전체보기</div>
                     <div class="header-buttom-line"></div>
                     <div class="main-list-name">
-                        <p>선택</p>
                         <p>제목</p>
                         <p>작성자</p>
                         <p>댓글 수</p>
@@ -188,10 +188,6 @@
                         <select name="font-size" id="font-size" class="write-select">
                             <option value="15px">20px</option>
                         </select>
-                        <button id="justifyleft" class="tool-btn font-align title-tool"><i class="fas fa-align-left aignLeft"></i></button>
-                        <button id="justifyCenter" class="tool-btn font-align title-tool"><i class="fas fa-align-center aignCenter"></i></button>
-                        <button id="justifyRight" class="tool-btn font-align title-tool"><i class="fas fa-align-right aignRight"></i></button>
-                        <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
                     </div>
 
                     <div id="content-tool" class="font-tool">  
@@ -207,9 +203,6 @@
                         <button id="justifyLeft" class="tool-btn font-align content-tool"><i class="fas fa-align-left aignLeft"></i></button>
                         <button id="justifyCenter" class="tool-btn font-align content-tool"><i class="fas fa-align-center aignCenter"></i></button>
                         <button id="justifyRight" class="tool-btn font-align content-tool"><i class="fas fa-align-right aignRight"></i></button>
-                        <button id="Bold" class="tool-btn font-style content-tool"><i class="fas fa-bold Bold"></i></button>
-                        <button id="underline" class="tool-btn font-style content-tool"><i class="fas fa-underline"></i></button>
-                        <button id="Italic" class="tool-btn font-style content-tool"><i class="fas fa-italic"></i></button>
                         <button id="CreateLink" class="tool-btn link content-tool"><i class="fas fa-paperclip"></i></button>
                         <button id="insertHTML" class="tool-btn image content-tool"><i class="far fa-image imageForm-icon"></i></button>
                     </div>

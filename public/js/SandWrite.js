@@ -20,10 +20,12 @@ class SandWrite {
             data:$form,
             success:(data)=>{
                 this.menu.toastMsg(data); 
-                this.app.$MainWriteView.load("/ #board-main-write-view");
-                this.boardLoad();
-                
-                this.write.closeWrite();
+                setTimeout(()=>{
+                    
+                    this.boardLoad();
+                    this.menu.writes = document.querySelectorAll(".board-main-write");
+                    this.write.closeWrite();
+                }, 500)
             }
         })
     }
@@ -39,9 +41,12 @@ class SandWrite {
                 }
 
                 this.menu.createWriteView(data.list);
-                this.writes = document.querySelectorAll(".board-main-write");
 
-                let board = new Board(this.app, this);
+                setTimeout(()=>{
+                    this.writes = document.querySelectorAll(".board-main-write");
+                }, 100)
+
+                let board = new Board(this.app, this.menu);
             }
         })
     }
