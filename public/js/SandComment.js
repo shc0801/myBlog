@@ -18,7 +18,6 @@ class SandComment {
             method: 'post',
             data: $comment,
             success: (data)=>{
-                console.log(data)
                 this.menu.toastMsg(data);
                 
                 this.board.loadComment();

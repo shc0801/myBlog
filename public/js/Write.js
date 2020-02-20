@@ -96,6 +96,7 @@ class Write {
                     if(this.endNode.content === null) 
                         this.endNode.content = this.nowNode
                 }
+                if(this.nowNode.length < this.nowFocus) this.nowFocus = this.nowNode.length;
             }
         });
     }
@@ -123,9 +124,7 @@ class Write {
             return;
         
         if(btn.parentNode.id === 'content-tool') {
-            selection.collapse(this.nowNode, this.nowFocus);
-        }
-        else if(btn.parentNode.id === 'title-tool'){
+            this.app.$writeContent.focus();
             selection.collapse(this.nowNode, this.nowFocus);
         }
 
@@ -183,10 +182,10 @@ class Write {
     uploadImg() {
         let imageWidth = document.querySelector("#image-width-input").value;
         let imageHeight = document.querySelector("#image-height-input").value;
-        
+
+        this.app.$writeContent.focus();
         selection.collapse(this.nowNode, this.nowFocus);
         console.log(this.imageURL)
-
         let html = `<img src=${this.imageURL} width="${imageWidth}" height="${imageHeight}">`;
         document.execCommand("insertHTML", false, html)
     }
@@ -199,6 +198,7 @@ class Write {
     }
 
     createLink = () => {
+        this.app.$writeContent.focus();
         selection.collapse(this.nowNode, this.nowFocus);
         document.execCommand('CreateLink', false, `${this.$urlLink.val()}`);
     }

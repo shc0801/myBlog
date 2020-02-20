@@ -33,7 +33,6 @@ class Menu {
                     this.app.$boardNavUser.load("/ .board-nav-user");
 
                     setTimeout(()=>{
-                        console.log(this);
                         let board = new Board(this.app, this);
                     }, 100)
                 }

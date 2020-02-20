@@ -52,9 +52,21 @@ class Board {
 
         window.addEventListener("click", (e)=>{
             if(e.target.classList[0] === 'main-write-modifi') {
-                this.menu.viewWrite();
-                this.menu.writeSaveBtn.className = 'update ';
-                this.menu.writeSaveBtn.className += `${e.target.parentNode.classList[1]}`;
+
+                let $update = $(`#${e.target.parentNode.id}`).serialize();
+                $.ajax({
+                    url: '/writeLoad',
+                    method: 'post',
+                    data: $update,
+                    success: (data)=>{
+                        this.menu.writeSaveBtn.className = 'update ';
+                        this.menu.writeSaveBtn.className += `${e.target.parentNode.classList[1]}`;
+
+                        this.app.$writeTitle.text(`${data.writeData.title}`);
+                        this.app.$writeContent[0].innerHTML = `${data.writeData.content}`;
+                        this.menu.viewWrite();
+                    }
+                })
             }
             
             else if(e.target.classList[0] === 'main-write-delete') {
@@ -79,7 +91,6 @@ class Board {
             method: 'post',
             data: $comment,
             success: (data)=>{
-                console.log(data)
                 this.menu.toastMsg(data);
                 
                 this.loadComment();

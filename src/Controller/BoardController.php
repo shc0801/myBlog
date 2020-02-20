@@ -59,6 +59,17 @@ class BoardController {
         message("글이 업데이트 되었습니다.");
     }
 
+    public function updateData() {
+        extract($_POST);
+        var_dump($_POST);
+        $sql = "SELECT * FROM `writes` WHERE id = ?";
+        $writeData = DB::fetch($sql, [$wirte]);
+
+        Lib::json(['success'=>true, 'writeData'=>$writeData]);
+        
+        var_dump($writeData);
+    }
+
     public function delete() {
         extract($_POST);
         $sql = "DELETE FROM `writes` WHERE id = ?";

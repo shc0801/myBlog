@@ -16,6 +16,7 @@ Router::post("/commentLoad", 'BoardController@commentLoad');
 Router::post("/comment", 'BoardController@comment');
 
 Router::post("/update", 'BoardController@update');
+Router::post("/updateData", 'BoardController@updateData');
 Router::post("/delete", 'BoardController@delete');
 
 Router::Router();
