@@ -31,6 +31,8 @@ class App{
         this.$writeContentInput = $("#write-content-input");
         this.$writeDateInput = $("#write-date-input");
         // 
+
+        this.menuColor = 'white';
         let menu = new Menu(this);
     }
 }

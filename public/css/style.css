@@ -415,6 +415,10 @@ input[id="menuicon"]:checked {
     margin: 10px 0 0 10px;
 }
 
+#image-icon {
+    cursor: pointer;
+}
+
 #title-tool {
     width: 1000px;
 }

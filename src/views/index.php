@@ -232,7 +232,7 @@
                     <input id="write-date-input" type="hidden" name="date">
                     <a href="#" id="write-save-btn" class="write">저장</a>
                     <a href="#" id="write-back-btn">취소</a>
-                    <input id="update-delete" type="hidden" name="number">
+                    <input id="update" type="hidden" name="number">
                 </form>
             </div>
         </div>

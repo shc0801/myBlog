@@ -25,7 +25,9 @@ class Menu {
                         return;
                     }
                     this.createWriteView(data.list);
-                    this.changeMenuColor('#000');
+
+                    this.app.menuColor = "black";
+                    this.changeMenuColor();
 
                     this.app.$menuIcon.prop("che cked", false);
                     this.app.$boardNavUser.load("/ .board-nav-user");
@@ -51,13 +53,20 @@ class Menu {
     }
     
     menu = () => {
+        let menuBar = document.querySelectorAll(".hamburger > label > span");
         this.menuIcon = document.querySelector("#menuicon");
+
         if(!this.menuIcon.checked){
             this.viewMenu();
+            menuBar.forEach(bar=>{
+                bar.style.backgroundColor = 'white';
+            })
         } else {
             this.closeMenu();
+            menuBar.forEach(bar=>{
+                bar.style.backgroundColor = this.app.menuColor;
+            })
         }
-        this.changeMenuColor("#fff");
     }
 
     viewMenu() {
@@ -137,47 +146,49 @@ class Menu {
     createWriteView(dataList) {
         let mainWriteView = document.querySelector("#board-main-write-view");
         this.app.$MainWriteView.empty();
-
-        dataList.forEach((data)=>{
-
+        dataList.forEach((item)=>{
             $.ajax({
                 url: '/commentLoad',
                 method: 'post',
-                data: data,
+                data: item,
                 success: (num)=>{
                     this.commentNum = num.commentData.length;
                     if(this.commentNum === undefined) this.commentNum = 0;
 
                     let boardMainWrite = document.createElement("form");
-                    boardMainWrite.id = `write-view-${data.id}`;
+                    boardMainWrite.id = `write-view-${item.id}`;
                     boardMainWrite.classList.add("board-main-write"); 
-                    boardMainWrite.classList.add(`${data.id}`); 
+                    boardMainWrite.classList.add(`${item.id}`); 
         
                     let write = `
-                                <input type="hidden" name="write" class="write-select-input-${data.id}">
-                                <p class="main-write-title">${data.title}</p>
+                                <input type="hidden" name="write" class="write-select-input-${item.id}">
+                                <input type="hidden" name="delete" class="write-delete-input-${item.id}">
+                                <p class="main-write-title">${item.title}</p>
                                 <p class="main-write-modifi">수정</p>
                                 <p class="main-write-delete">삭제</p>
-                                <p class="main-write-name">${data.writer}</p>
+                                <p class="main-write-name">${item.writer}</p>
                                 <p class="main-write-comments">${this.commentNum}</p>
-                                <p class="main-write-day">${data.date}</p>`;
+                                <p class="main-write-day">${item.date}</p>`;
         
-                    boardMainWrite.innerHTML = write
+                    boardMainWrite.innerHTML = write;
                     mainWriteView.appendChild(boardMainWrite);
         
-                    $(`.write-select-input-${data.id}`).val(`${data.id}`);
+                    $(`.write-select-input-${item.id}`).val(`${item.id}`);
+                    $(`.write-delete-input-${item.id}`).val(`${item.id}`);
                     
                     this.writes = document.querySelectorAll(".board-main-write");
                 }
             })
         })
+
+        return;
     }
 
-    changeMenuColor(color) {
+    changeMenuColor() {
         let menuBar = document.querySelectorAll(".hamburger > label > span");
                             
         menuBar.forEach(bar=>{
-            bar.style.backgroundColor = color;
+            bar.style.backgroundColor = this.app.menuColor;
         })
     }
 
@@ -192,5 +203,6 @@ class Menu {
     closeBoard() {
         this.app.$board.clearQueue().animate({'top': '-100%'}, 'slow');
         this.closeMenu();
+        this.app.menuColor = 'white';
     }
 }

@@ -29,8 +29,8 @@ class Write {
         this.$urlImage= $("#file-url-link");
         this.$urlLink = $("#link-url-link");
 
-        this.nowFocus;
         this.nowNode;
+        this.nowFocus = 0;
         
         this.endNode = {
             title: null,
@@ -41,7 +41,9 @@ class Write {
     }
 
     addEvent() {
-        this.init();
+        this.board.initWrite.addEventListener("click", ()=>{
+            this.init();
+        })
         
         this.writeToolBtn.forEach(btn=>{
             btn.addEventListener("click", e=>{
@@ -58,14 +60,12 @@ class Write {
         })
 
         this.imageInput.addEventListener("change", ()=>{
-            this.menu.ImageCheck(this.imageInput);
-            setTimeout(()=>{
-                this.url = this.menu.url
-            })
-            return;
+            this.ImageCheck(this.imageInput);
         })
 
-        this.imageIcon.addEventListener("click", this.uploadImg)
+        this.imageIcon.addEventListener("click", ()=>{
+            this.uploadImg()
+        })
 
         this.linkViewBtn.addEventListener("click", ()=>{
             this.viewLinkForm()
@@ -76,15 +76,15 @@ class Write {
         this.closeIcon.addEventListener("click", this.closeWrite);
 
         this.menu.writeSaveBtn.addEventListener("click", this.saveWrite);
-
         
         document.addEventListener('selectionchange', () => {
             let {anchorNode} = document.getSelection();
-            // console.log(document.getSelection())
+
             if((anchorNode) && ((anchorNode.parentNode === this.writeContent || anchorNode.parentNode.parentNode === this.writeContent) || (anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle))) {
                 
                 this.nowNode = document.getSelection().anchorNode;
                 this.nowFocus = document.getSelection().anchorOffset;
+
                 if(anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle) {
                     this.endNode.title = this.writeTitle.childNodes[this.writeTitle.childNodes.length - 1].firstChild;
                     if(this.endNode.title === null) 
@@ -146,8 +146,9 @@ class Write {
         if(document.activeElement === this.writeTitle)  {
             this.writeHeadTool.style.display = "block";
             this.writeContentTool.style.display = "none";
-
-            this.focus(this.writeTitle, e)
+            this.imageForm.style.visibility = "hidden";
+            this.linkForm.style.visibility = "hidden";
+            this.focus(this.writeTitle, e);
         } else if(document.activeElement === this.writeContent) {
             this.writeHeadTool.style.display = "none";
             this.writeContentTool.style.display = "block";
@@ -162,19 +163,35 @@ class Write {
         else 
             this.imageForm.style.visibility = "visible";
     }
+    
+    ImageCheck(imageInput) {
+        let filePath = imageInput.value;
+        let fileKind = filePath.substr(filePath.length - 3, 3);
+        let file = imageInput.files.length > 0 ? imageInput.files[0] : null;
+
+        if(fileKind !== "jpg" && fileKind !== "gif" && fileKind !== "png")
+        {
+            alert("jpg, gif, png 확장자를 가진 이미지 파일만 올려주세요.");
+            imageInput.value = "";
+            imageInput.select();
+            return;
+        }
+        this.imageURL = URL.createObjectURL(file);
+        return;
+    }
 
     uploadImg() {
         let imageWidth = document.querySelector("#image-width-input").value;
         let imageHeight = document.querySelector("#image-height-input").value;
         
         selection.collapse(this.nowNode, this.nowFocus);
+        console.log(this.imageURL)
 
-        console.log(this.url)
-        let html = `<img src=${this.url} width="${imageWidth}" height="${imageHeight}">`;
+        let html = `<img src=${this.imageURL} width="${imageWidth}" height="${imageHeight}">`;
         document.execCommand("insertHTML", false, html)
     }
 
-    viewLinkForm = () => {
+    viewLinkForm() {
         if(this.linkForm.style.visibility === "visible") 
             this.linkForm.style.visibility = "hidden";
         else 

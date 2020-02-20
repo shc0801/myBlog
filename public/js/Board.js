@@ -11,18 +11,18 @@ class Board {
         this.mainWriteModifi = document.querySelector(".main-write-modifi");
         this.mainWriteDelete = document.querySelector(".main-write-delete");
 
+        let write = new Write(this.app, this.menu, this);
+
         this.addEvent();
     }
 
     addEvent() {
         this.viewBoard();
 
-        this.initWrite.addEventListener("click", ()=>{
-            let write = new Write(this.app, this.menu, this);
-        })
-
         this.boardHomeBtn.addEventListener("click", ()=>{
             this.closeBoard();
+            this.app.menuColor = 'white';
+            this.menu.changeMenuColor();
         })
 
         window.addEventListener("click", (e)=>{
@@ -37,6 +37,7 @@ class Board {
         this.navBtn.forEach(btn=>{
             btn.addEventListener("click", ()=>{
                 this.closeViewArea();
+                this.boardLoad();
             })
         })
 
@@ -51,19 +52,22 @@ class Board {
 
         window.addEventListener("click", (e)=>{
             if(e.target.classList[0] === 'main-write-modifi') {
-                let write = new Write(this.app, this.menu, this);
-                
                 this.menu.viewWrite();
                 this.menu.writeSaveBtn.className = 'update ';
                 this.menu.writeSaveBtn.className += `${e.target.parentNode.classList[1]}`;
             }
             
             else if(e.target.classList[0] === 'main-write-delete') {
-                let write = new Write(this.app, this.menu, this);
-
-                this.menu.viewWrite();
-                this.menu.writeSaveBtn.className = 'delete ';
-                this.menu.writeSaveBtn.className += `${e.target.parentNode.classList[1]}`;
+                let $del = $(`.write-delete-input-${e.target.parentNode.classList[1]}`).serialize();
+                $.ajax({
+                    url: '/delete',
+                    method: 'post',
+                    data: $del,
+                    success: (data)=>{
+                        this.menu.toastMsg(data);
+                        this.boardLoad();
+                    }
+                })
             }
         })
     }
@@ -191,5 +195,24 @@ class Board {
 
             commentArea.appendChild(comment);
         })   
+    }
+
+    boardLoad() {
+        $.ajax({
+            url: '/board',
+            method: 'post',
+            success: (data)=>{
+                if(data === '로그인 후 가능한 기능입니다') {
+                    this.toastMsg(data);
+                    return;
+                }
+
+                this.menu.createWriteView(data.list);
+
+                setTimeout(()=>{
+                    this.writes = document.querySelectorAll(".board-main-write");
+                }, 100)
+            }
+        })
     }
 }

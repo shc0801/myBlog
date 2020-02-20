@@ -7,8 +7,7 @@ use App\{DB, Lib, User};
 class BoardController {
     public function writeProcess() {
         extract($_POST);
-        var_dump($_POST);
-        exit;
+        
         $sql = "INSERT INTO `writes` (`writer`, `title`, `content`, `date`) VALUES (?, ?, ?, ?)";
         $cnt = DB::execute($sql, [$_SESSION['user']->user_id, $title, $content, $date]);
 
@@ -20,7 +19,7 @@ class BoardController {
             message("로그인 후 가능한 기능입니다");
             return;
         }
-        $sql = "SELECT * FROM `writes` WHERE ? ";
+        $sql = "SELECT * FROM `writes` WHERE ? ORDER BY 1 DESC ";
         $list = DB::fetchAll($sql, [1]);
         Lib::json(['success'=>true, 'list'=>$list]);
     }
@@ -54,11 +53,17 @@ class BoardController {
 
     public function update() {
         extract($_POST);
-        var_dump($_POST);
+        $sql = "UPDATE writes SET title = ?, content = ? WHERE id = ?";
+        $cnt = DB::execute($sql, [$title, $content, $number]);
+        
+        message("글이 업데이트 되었습니다.");
     }
 
     public function delete() {
         extract($_POST);
-        var_dump($_POST);
+        $sql = "DELETE FROM `writes` WHERE id = ?";
+        $cnt = DB::execute($sql, [$delete]);
+        
+        message("글이 삭제 되었습니다.");
     }
 }
