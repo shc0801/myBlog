@@ -154,6 +154,7 @@ class Board {
         writeViewWrite.appendChild(write);
 
         this.app.$commentWriteId.val(`${data.writeData.id}`);
+        console.log(data.writeData.content)
     }
 
     viewWriteForm() {

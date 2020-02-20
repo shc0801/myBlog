@@ -19,7 +19,7 @@ class BoardController {
             message("로그인 후 가능한 기능입니다");
             return;
         }
-        $sql = "SELECT * FROM `writes` WHERE ? ORDER BY 1 DESC ";
+        $sql = "SELECT * FROM `writes` WHERE ? ORDER BY 1 DESC";
         $list = DB::fetchAll($sql, [1]);
         Lib::json(['success'=>true, 'list'=>$list]);
     }

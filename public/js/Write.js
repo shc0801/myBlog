@@ -166,7 +166,7 @@ class Write {
     ImageCheck(imageInput) {
         let filePath = imageInput.value;
         let fileKind = filePath.substr(filePath.length - 3, 3);
-        let file = imageInput.files.length > 0 ? imageInput.files[0] : null;
+        this.file = imageInput.files.length > 0 ? imageInput.files[0] : null;
 
         if(fileKind !== "jpg" && fileKind !== "gif" && fileKind !== "png")
         {
@@ -175,19 +175,28 @@ class Write {
             imageInput.select();
             return;
         }
-        this.imageURL = URL.createObjectURL(file);
         return;
     }
 
     uploadImg() {
         let imageWidth = document.querySelector("#image-width-input").value;
         let imageHeight = document.querySelector("#image-height-input").value;
-
+        
         this.app.$writeContent.focus();
         selection.collapse(this.nowNode, this.nowFocus);
-        console.log(this.imageURL)
-        let html = `<img src=${this.imageURL} width="${imageWidth}" height="${imageHeight}">`;
+
+        let html = `<img id="write-img" src="" width="${imageWidth}" height="${imageHeight}">`;
         document.execCommand("insertHTML", false, html)
+
+
+        var reader  = new FileReader();
+
+        reader.onload = function(e) {
+            document.getElementById('write-img').src = reader.result;
+        }
+
+        reader.readAsDataURL(this.file);
+
     }
 
     viewLinkForm() {
