@@ -32,8 +32,6 @@ class App{
         this.$writeDateInput = $("#write-date-input");
         // 
         let menu = new Menu(this);
-
-        console.log(sessionStorage)
     }
 }
 

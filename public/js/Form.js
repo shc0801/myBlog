@@ -63,7 +63,7 @@ class Form {
                     this.menu.closeMenu();
 
                     this.app.$menuIcon.prop("checked", false);
-                    
+                    this.menu.closeBoard();
                     setTimeout(() => {
                         this.app.$initForm.load("/ .init-form");
                     }, 300);

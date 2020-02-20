@@ -7,7 +7,8 @@ use App\{DB, Lib, User};
 class BoardController {
     public function writeProcess() {
         extract($_POST);
-        
+        var_dump($_POST);
+        exit;
         $sql = "INSERT INTO `writes` (`writer`, `title`, `content`, `date`) VALUES (?, ?, ?, ?)";
         $cnt = DB::execute($sql, [$_SESSION['user']->user_id, $title, $content, $date]);
 
@@ -49,5 +50,15 @@ class BoardController {
         Lib::json(['success'=>true, 'commentData'=>$commentData]);
 
         var_dump($commentData);
+    }
+
+    public function update() {
+        extract($_POST);
+        var_dump($_POST);
+    }
+
+    public function delete() {
+        extract($_POST);
+        var_dump($_POST);
     }
 }

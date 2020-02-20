@@ -47,7 +47,7 @@
                 <div id="init-form" >
                     <div class="init-form">
                         <?php if(isset($_SESSION['user'])):?>
-                        <a href="#" class="logoutBtn init-form-btn nav-text">로그아웃</a>
+                        <a href="/" class="logoutBtn init-form-btn nav-text">로그아웃</a>
                         <?php else:?>
                         <a href="#" class="loginBtn init-form-btn nav-text">로그인</a>
                         <a href="#" class="joinBtn init-form-btn nav-text">회원가입</a>
@@ -124,11 +124,14 @@
             </div>
             <nav id="board-nav"> 
                 <div class="board-nav-header">
-                <div class="board-nav-pic"></div>
+                <div class="board-nav-pic">
                     <img id="board-nav-pic" src="/upload/<?=$_SESSION['user']->image?>" alt="">
+                </div>
                     <div class="board-nav-user">
+                        <?php if(isset($_SESSION['user'])):?>
                         <span><?=$_SESSION['user']->user_id; ?>님의 블로그</span>
                         <p><?=$_SESSION['user']->email; ?></p>
+                        <?php endif;?>
                     </div>
                 </div>
                 <div id="init-write" class="board-nav-btn">글쓰기<i class="fas fa-edit init-write-icon"></i></div>
@@ -227,8 +230,9 @@
                         <a class="link content-tool CreateLink"><i class="fas fa-paperclip linkForm-icon"></i></a>
                     </div>
                     <input id="write-date-input" type="hidden" name="date">
-                    <a href="#" id="write-save-btn">저장</a>
+                    <a href="#" id="write-save-btn" class="write">저장</a>
                     <a href="#" id="write-back-btn">취소</a>
+                    <input id="update-delete" type="hidden" name="number">
                 </form>
             </div>
         </div>

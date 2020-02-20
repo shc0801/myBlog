@@ -7,8 +7,10 @@ class Board {
         this.boardHomeBtn = document.querySelector(".board-logo-text");
         this.navBtn = document.querySelectorAll(".board-nav-viewAll");
         this.commentSaveBtn = document.querySelector("#comment-save-btn");
+
         this.mainWriteModifi = document.querySelector(".main-write-modifi");
         this.mainWriteDelete = document.querySelector(".main-write-delete");
+
         this.addEvent();
     }
 
@@ -23,15 +25,14 @@ class Board {
             this.closeBoard();
         })
 
-        this.menu.writes.forEach(write=>{
-            write.addEventListener("click", e=>{
-                if(e.target.classList[0] !== 'main-write-title') return;
-                this.loadWrite(write);
+        window.addEventListener("click", (e)=>{
+            if(e.target.classList[0] === 'main-write-title') {
+                this.loadWrite(e.target.parentNode);
                 setTimeout(()=>{
                     this.loadComment();
                 }, 100)
-            });
-        });
+            }
+        })
 
         this.navBtn.forEach(btn=>{
             btn.addEventListener("click", ()=>{
@@ -44,12 +45,44 @@ class Board {
                 this.menu.toastMsg("입력칸이 공백이여서는 안됩니다");
                 return;
             }
-            let sandComment =  new SandComment(this.app, this.menu, this);
+            this.sandComment()
+            return;
         })
 
-        // this.mainWriteModifi.addEventListener("click", ()=>{
+        window.addEventListener("click", (e)=>{
+            if(e.target.classList[0] === 'main-write-modifi') {
+                let write = new Write(this.app, this.menu, this);
+                
+                this.menu.viewWrite();
+                this.menu.writeSaveBtn.className = 'update ';
+                this.menu.writeSaveBtn.className += `${e.target.parentNode.classList[1]}`;
+            }
             
-        // })
+            else if(e.target.classList[0] === 'main-write-delete') {
+                let write = new Write(this.app, this.menu, this);
+
+                this.menu.viewWrite();
+                this.menu.writeSaveBtn.className = 'delete ';
+                this.menu.writeSaveBtn.className += `${e.target.parentNode.classList[1]}`;
+            }
+        })
+    }
+
+    sandComment() {
+        let $comment = $("#comment-form").serialize();
+        $.ajax({
+            url: '/comment',
+            method: 'post',
+            data: $comment,
+            success: (data)=>{
+                console.log(data)
+                this.menu.toastMsg(data);
+                
+                this.loadComment();
+                document.querySelector("#comment").value='';
+                return;
+            }
+        })
     }
     
     /**
@@ -57,12 +90,10 @@ class Board {
     */
     viewBoard() {
         this.app.$board.clearQueue().animate({'top': '0'}, 'slow');
-        setTimeout(()=>{
-            console.log(this.menu, this.menu.closeMenu);
-            this.menu.closeMenu();
-        }, 50)
+        this.menu.closeMenu();
+        this.app.$menuIcon.prop("checked", false);
     }
-    
+
     /**
      * 계시판 닫기
      */

@@ -24,8 +24,6 @@ class Write {
         this.linkForm = document.querySelector(".linkForm");
         this.linkViewBtn = document.querySelector("#CreateLink");
         this.linkBtn = document.querySelector(".CreateLink");
-
-        this.writeSaveBtn = document.querySelector("#write-save-btn");
         
         // jqurey
         this.$urlImage= $("#file-url-link");
@@ -55,25 +53,34 @@ class Write {
             this.setFocus(e);
         });
 
-        this.imageViewBtn.addEventListener("click", this.viewImageForm)
+        this.imageViewBtn.addEventListener("click", ()=>{
+            this.viewImageForm();
+        })
 
         this.imageInput.addEventListener("change", ()=>{
             this.menu.ImageCheck(this.imageInput);
+            setTimeout(()=>{
+                this.url = this.menu.url
+            })
+            return;
         })
 
         this.imageIcon.addEventListener("click", this.uploadImg)
 
-        this.linkViewBtn.addEventListener("click", this.viewLinkForm);
+        this.linkViewBtn.addEventListener("click", ()=>{
+            this.viewLinkForm()
+        });
 
         this.linkBtn.addEventListener("click", this.createLink);
 
         this.closeIcon.addEventListener("click", this.closeWrite);
 
-        this.writeSaveBtn.addEventListener("click", this.saveWrite);
+        this.menu.writeSaveBtn.addEventListener("click", this.saveWrite);
 
         
         document.addEventListener('selectionchange', () => {
             let {anchorNode} = document.getSelection();
+            // console.log(document.getSelection())
             if((anchorNode) && ((anchorNode.parentNode === this.writeContent || anchorNode.parentNode.parentNode === this.writeContent) || (anchorNode.parentNode === this.writeTitle || anchorNode.parentNode.parentNode === this.writeTitle))) {
                 
                 this.nowNode = document.getSelection().anchorNode;
@@ -95,17 +102,15 @@ class Write {
 
     init() {
         this.menu.closeMenu();
-        this.viewWrite();
+        this.menu.viewWrite();
         this.app.$menuIcon.prop("checked", false);
-    }
 
-    viewWrite() {
-        document.querySelector("#write-area").style.visibility = "visible";
-        this.app.$writeArea.clearQueue().animate({'opacity':'1'},'slow');
+        this.menu.writeSaveBtn.className = 'write';
     }
 
     closeWrite = () => {
         this.app.$menuIcon.prop("checked", false);
+        this.clearWrite();
 
         this.app.$writeArea.clearQueue().animate({'opacity':'0'},'slow');
         setTimeout(() => {
@@ -151,20 +156,21 @@ class Write {
         }
     }
 
-    viewImageForm = () => {
+    viewImageForm() {
         if(this.imageForm.style.visibility === "visible") 
             this.imageForm.style.visibility = "hidden";
         else 
             this.imageForm.style.visibility = "visible";
     }
 
-    uploadImg = () => {
+    uploadImg() {
         let imageWidth = document.querySelector("#image-width-input").value;
         let imageHeight = document.querySelector("#image-height-input").value;
         
         selection.collapse(this.nowNode, this.nowFocus);
 
-        let html = `<img src=${this.menu.url} width="${imageWidth}" height="${imageHeight}">`;
+        console.log(this.url)
+        let html = `<img src=${this.url} width="${imageWidth}" height="${imageHeight}">`;
         document.execCommand("insertHTML", false, html)
     }
 
@@ -185,12 +191,10 @@ class Write {
         if(e.target.parentNode.classList[0] === 'write-title' || e.target.parentNode.classList[0] === 'write-content') return;
         
         if(nowFocus === this.writeTitle && this.endNode.title !== null) {
-            console.log(this.endNode.title)
             selection.collapse(this.endNode.title, this.endNode.title.length);
         }
 
         else if(nowFocus === this.writeContent && this.endNode.content !== null) {
-            console.log(this.endNode.content)
             selection.collapse(this.endNode.content, this.endNode.content.length);
         }
     } 
@@ -211,7 +215,22 @@ class Write {
         this.app.$writeTitleInput.val(`${this.app.$writeTitle.html()}`) ;
         this.app.$writeContentInput.val(`${this.app.$writeContent.html()}`);
         this.app.$writeDateInput.val(`${year}-${month}-${day}`);
-            
+
         let sandWrite = new SandWrite(this.app, this.menu, this.board, this);
+    }
+
+    
+    clearWrite() {
+        this.viewImageForm();
+        this.viewLinkForm();
+
+        this.app.$writeTitle.text('')
+        this.app.$writeContent.text('')
+
+        this.app.$writeTitleInput.val('');
+        this.app.$writeContentInput.val('');
+        this.app.$writeDateInput.val('');
+
+        return;
     }
 }

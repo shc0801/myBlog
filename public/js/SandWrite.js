@@ -13,21 +13,70 @@ class SandWrite {
     }
 
     writeProcess() {
-        let $form = $(`#write`).serialize();
-        $.ajax({
-            url: '/write',
-            method:'post',
-            data:$form,
-            success:(data)=>{
-                this.menu.toastMsg(data); 
-                setTimeout(()=>{
-                    
-                    this.boardLoad();
-                    this.menu.writes = document.querySelectorAll(".board-main-write");
-                    this.write.closeWrite();
-                }, 500)
-            }
-        })
+
+        if(this.menu.writeSaveBtn.classList[0] === 'write') {
+            let $form = $(`#write`).serialize();
+            $.ajax({
+                url: '/write',
+                method:'post',
+                data:$form,
+                success:(data)=>{
+                    console.log(data)
+                    this.menu.toastMsg(data); 
+                    setTimeout(()=>{
+                        this.boardLoad();
+                        this.menu.writes = document.querySelectorAll(".board-main-write");
+                        this.write.closeWrite();
+                        this.write.clearWrite();
+                    }, 500)
+                }
+            })
+        } 
+        
+        else if(this.menu.writeSaveBtn.classList[0] === 'update') {
+            let update_delete = document.querySelector("#update-delete");
+            console.log(update_delete)
+            update_delete.value = (`${this.menu.writeSaveBtn.classList[1]}`);
+
+            let $form = $(`#write`).serialize();
+            $.ajax({
+                url: '/update',
+                method:'post',
+                data:$form,
+                success:(data)=>{
+                    console.log(data)
+                    this.menu.toastMsg(data); 
+                    setTimeout(()=>{
+                        this.boardLoad();
+                        this.menu.writes = document.querySelectorAll(".board-main-write");
+                        this.write.closeWrite();
+                        this.write.clearWrite();
+                    }, 500)
+                }
+            })
+        } 
+        
+        else if(this.menu.writeSaveBtn.classList[0] === 'delete') {
+            let update_delete = document.querySelector("#update-delete");
+            update_delete.value = `${this.menu.writeSaveBtn.classList[1]}`;
+
+            let $form = $(`#write`).serialize();
+            $.ajax({
+                url: '/delete',
+                method:'post',
+                data:$form,
+                success:(data)=>{
+                    console.log(data)
+                    this.menu.toastMsg(data); 
+                    setTimeout(()=>{
+                        this.boardLoad();
+                        this.menu.writes = document.querySelectorAll(".board-main-write");
+                        this.write.closeWrite();
+                        this.write.clearWrite();
+                    }, 500)
+                }
+            })
+        }
     }
 
     boardLoad() {
@@ -45,8 +94,6 @@ class SandWrite {
                 setTimeout(()=>{
                     this.writes = document.querySelectorAll(".board-main-write");
                 }, 100)
-
-                let board = new Board(this.app, this.menu);
             }
         })
     }

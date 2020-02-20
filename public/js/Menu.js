@@ -7,6 +7,8 @@ class Menu {
         this.initBoard = document.querySelector("#init-board");
         this.main = document.querySelectorAll(".main");
         
+        this.writeSaveBtn = document.querySelector("#write-save-btn");
+        
         this.addEvent();
     }
 
@@ -177,5 +179,18 @@ class Menu {
         menuBar.forEach(bar=>{
             bar.style.backgroundColor = color;
         })
+    }
+
+    viewWrite() {
+        document.querySelector("#write-area").style.visibility = "visible";
+        this.app.$writeArea.clearQueue().animate({'opacity':'1'},'slow');
+    }
+
+    /**
+     * 계시판 닫기
+     */
+    closeBoard() {
+        this.app.$board.clearQueue().animate({'top': '-100%'}, 'slow');
+        this.closeMenu();
     }
 }

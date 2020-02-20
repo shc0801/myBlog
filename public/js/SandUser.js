@@ -30,8 +30,8 @@ class SandUser {
                     
                     setTimeout(() => {
                         this.app.$initForm.load("/ .init-form");
-                        this.app.$boardNavPic.load("/ .board-nav-pic");
-                    }, 200);
+                        this.app.$boardNavPic.load("/ #board-nav-pic");
+                    }, 500);
                 }
             });
         }
