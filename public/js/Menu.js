@@ -146,38 +146,39 @@ class Menu {
         let mainWriteView = document.querySelector("#board-main-write-view");
         this.app.$MainWriteView.empty();
         dataList.forEach((item)=>{
-            $.ajax({
-                url: '/commentLoad',
-                method: 'post',
-                data: item,
-                success: (num)=>{
-                    this.commentNum = num.commentData.length;
-                    if(this.commentNum === undefined) this.commentNum = 0;
+            // $.ajax({
+            //     url: '/commentLoad',
+            //     method: 'post',
+            //     data: item,
+            //     success: (num)=>{
+                        
+                        // this.commentNum = num.commentData.length;
+                        // if(this.commentNum === undefined) this.commentNum = 0;
 
-                    let boardMainWrite = document.createElement("form");
-                    boardMainWrite.id = `write-view-${item.id}`;
-                    boardMainWrite.classList.add("board-main-write"); 
-                    boardMainWrite.classList.add(`${item.id}`); 
-        
-                    let write = `
-                                <input type="hidden" name="write" class="write-select-input-${item.id}">
-                                <input type="hidden" name="delete" class="write-delete-input-${item.id}">
-                                <p class="main-write-title">${item.title}</p>
-                                <p class="main-write-modifi">수정</p>
-                                <p class="main-write-delete">삭제</p>
-                                <p class="main-write-name">${item.writer}</p>
-                                <p class="main-write-comments">${this.commentNum}</p>
-                                <p class="main-write-day">${item.date}</p>`;
-        
-                    boardMainWrite.innerHTML = write;
-                    mainWriteView.appendChild(boardMainWrite);
-        
-                    $(`.write-select-input-${item.id}`).val(`${item.id}`);
-                    $(`.write-delete-input-${item.id}`).val(`${item.id}`);
-                    
-                    this.writes = document.querySelectorAll(".board-main-write");
-                }
-            })
+                        let boardMainWrite = document.createElement("form");
+                        boardMainWrite.id = `write-view-${item.id}`;
+                        boardMainWrite.classList.add("board-main-write"); 
+                        boardMainWrite.classList.add(`${item.id}`); 
+            
+                        let write = `
+                                    <input type="hidden" name="write" class="write-select-input-${item.id}">
+                                    <input type="hidden" name="delete" class="write-delete-input-${item.id}">
+                                    <p class="main-write-title">${item.title}</p>
+                                    <p class="main-write-modifi">수정</p>
+                                    <p class="main-write-delete">삭제</p>
+                                    <p class="main-write-name">${item.writer}</p>
+                                    <p class="main-write-comments"></p>
+                                    <p class="main-write-day">${item.date}</p>`;
+            
+                        boardMainWrite.innerHTML = write;
+                        mainWriteView.appendChild(boardMainWrite);
+            
+                        $(`.write-select-input-${item.id}`).val(`${item.id}`);
+                        $(`.write-delete-input-${item.id}`).val(`${item.id}`);
+                        
+                        this.writes = document.querySelectorAll(".board-main-write");
+            //     }
+            // }) 
         })
 
         return;
