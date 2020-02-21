@@ -233,14 +233,9 @@ class Write {
             this.menu.toastMsg("본문을 입력해주세요");
             return;
         }
-
-        let year = new Date().getFullYear();
-        let month = new Date().getMonth() + 1;
-        let day = new Date().getDate();
         
         this.app.$writeTitleInput.val(`${this.app.$writeTitle.html()}`) ;
         this.app.$writeContentInput.val(`${this.app.$writeContent.html()}`);
-        this.app.$writeDateInput.val(`${year}-${month}-${day}`);
 
         let sandWrite = new SandWrite(this.app, this.menu, this.board, this);
     }

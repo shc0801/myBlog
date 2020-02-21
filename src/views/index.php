@@ -149,7 +149,6 @@
                     <div class="main-list-name">
                         <p>제목</p>
                         <p>작성자</p>
-                        <p>댓글 수</p>
                         <p>업로드 날짜</p> 
                     </div>
                     <div id="board-main-write-view">
