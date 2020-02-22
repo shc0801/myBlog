@@ -10,3 +10,5 @@ function view($view_path, $data = []){
 function message($message = ""){
     if($message) echo $message;
 }
+
+//test

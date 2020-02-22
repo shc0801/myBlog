@@ -25,7 +25,7 @@ class SandUser {
                 success:(data)=>{
                     this.menu.toastMsg(data);
                     this.menu.closeMenu();
-    
+                    
                     this.app.$menuIcon.prop("checked", false);
                     
                     setTimeout(() => {
@@ -47,7 +47,15 @@ class SandUser {
                 method: 'post',
                 data: formData,
                 success:(data)=>{
+                    console.log(data);
+
                     this.menu.toastMsg(data);
+                    this.menu.closeMenu();
+    
+                    this.app.$menuIcon.prop("checked", false);
+                },
+                error: err => {
+                    console.log(err);
                 }
             })
         }

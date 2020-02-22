@@ -1,8 +1,10 @@
 <?php
 
 function classLoader($className){
-    $classPath = ROOT."./src/$className.php";
     
+    $classPath = ROOT."/src/$className.php";
+    
+    $classPath = str_replace("\\", "/", $classPath);
     if(is_file($classPath))
         include $classPath;
 }

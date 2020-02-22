@@ -50,9 +50,10 @@ class UserController
         }
 
         move_uploaded_file($_FILES['Profile-picture']['tmp_name'], $uploadfile.$_FILES["Profile-picture"]["name"]);
-
         $sql = "INSERT INTO `users` (`user_id`, `email`, `username`, `password`, `image`, `level`) VALUES (?, ?, ?, PASSWORD(?), ?, 1)";
+
         $cnt = DB::execute($sql, [$userid, $email, $username, $password, $_FILES["Profile-picture"]['name']]);
+
         message("회원가입 되었습니다.");
     }
 

@@ -6,8 +6,9 @@ class DB{
 
     private static function getDB()
     {
+        $option = [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
         if(is_null(self::$db)) {
-            self::$db = new \PDO("mysql:host=localhost; dbname=myblog; charset=utf8mb4", "root", "");
+            self::$db = new \PDO("mysql:host=gondr.asuscomm.com; dbname=hsc; charset=utf8mb4", "hsc", "1234", $option);
         }
         return self::$db;
     }
