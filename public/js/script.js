@@ -36,6 +36,7 @@ class App {
 		this.page = document.querySelectorAll(".page");
 
 		// dom
+		this.formBtn = document.querySelector(".form-btn");
 		this.contextmenu = document.querySelector("#contextmenu");
 		this.playListMenu = document.querySelector("#playListMenu");
 		this.newPlayList = document.querySelector(".newPlayList");
@@ -59,8 +60,23 @@ class App {
 				data.forEach(music => {
 					this.musicList.push(music);
 				});
-				res();
 			})
+			$.getJSON('js/members.json', async (member) =>{
+				member.members.forEach(members=>{
+					$.ajax({
+						url: '/users',
+						method: 'post',
+						data: members,
+						success: (data)=>{
+							console.log(data)
+						},
+						error: (err)=>{
+							console.log(err)
+						}
+					})
+				})
+			})
+			res();
 		}).then(()=>{
 			// this.loading();
 			this.addEvent();
@@ -77,7 +93,7 @@ class App {
 	// getDuration(dataUrl) {
 	// 	return new Promise((res, rej)=>{
 	// 		let audio = new Audio();
-	// 		audio.src = `/B/m/${dataUrl}`;
+	// 		audio.src = `/m/${dataUrl}`;
 	// 		audio.addEventListener("loadeddata", ()=>{
 	// 			res(audio.duration);
 	// 		})
@@ -87,6 +103,19 @@ class App {
 	addEvent(){ 
 
 		// mouseEvent
+
+		this.formBtn.addEventListener("click", ()=>{
+			let $loginForm = $("#login-form").serialize();
+
+			$.ajax({
+				url: '/login',
+				method: 'post',
+				data: $loginForm,
+				success: (data)=>{
+					console.log(data)
+				}
+			})
+		})
 
 		this.page.forEach(page=>{
 			page.addEventListener("click", ()=>{
@@ -122,7 +151,7 @@ class App {
 				this.queueList = new Array;
 				this.queueList.push(this.nowMusic)
 				this.beMusicList = true;
-				this.Audio.src = `/B/m/${this.queueList[0].url}`;
+				this.Audio.src = `/m/${this.queueList[0].url}`;
 			})
 		})
 
@@ -136,8 +165,8 @@ class App {
 				if(this.queueList.indexOf(this.nowMusic) != -1) return;
 				if(!this.beMusicList) {
 					this.queueList.push(this.nowMusic)
+					this.Audio.src = `/m/${this.queueList[0].url}`;
 					this.beMusicList = true;
-					this.Audio.src = `/B/m/${this.queueList[0].url}`;
 				} else {
 					this.queueList.push(this.nowMusic)
 				}
@@ -244,7 +273,7 @@ class App {
 			if(!this.beMusicList) {
 				this.queueList.push(this.nowMusic)
 				this.beMusicList = true;
-				this.Audio.src = `/B/m/${this.queueList[0].url}`;
+				this.Audio.src = `/m/${this.queueList[0].url}`;
 			} else {
 				this.queueList.push(this.nowMusic)
 			}
@@ -305,7 +334,7 @@ class Player {
 
 	player() {
 		if(this.app.beMusicList) {
-			this.coverImg.innerHTML = `<img src="/B/covers/${this.app.queueList[this.app.playNum].albumImage}"></img>`
+			this.coverImg.innerHTML = `<img src="/covers/${this.app.queueList[this.app.playNum].albumImage}"></img>`
 			this.musicText.innerHTML = `<p><span>${this.app.queueList[this.app.playNum].name}</span><br>${this.app.queueList[this.app.playNum].artist}</p>`
 			this.nowTime.innerHTML = this.app.Audio.currentTime.time();
 			this.allTime.innerHTML = this.app.Audio.duration.time();
@@ -319,13 +348,13 @@ class Player {
 				}
 				else if(this.app.playNum != this.app.queueList.length - 1) {
 					this.app.playNum++;
-					this.app.Audio.src = `/B/m/${this.app.queueList[this.app.playNum].url}`;
+					this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
 					this.app.Audio.currentTime = 0;
 					this.viewLyrics();
 					this.play();
 				} else if(this.repeatType == 'queue-repeat') {
 					this.app.playNum = 0;
-					this.app.Audio.src = `/B/m/${this.app.queueList[this.app.playNum].url}`;
+					this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
 					this.app.Audio.currentTime = 0;
 					this.viewLyrics();
 					this.play();
@@ -372,7 +401,7 @@ class Player {
 				this.app.playNum = this.app.queueList.length - 1;
 				return;
 			} 
-			this.app.Audio.src = `/B/m/${this.app.queueList[this.app.playNum].url}`;
+			this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
 			this.pause();
 			this.viewLyrics();
 		})
@@ -385,7 +414,7 @@ class Player {
 					this.app.playNum = 0;
 					return;
 				}
-				this.app.Audio.src = `/B/m/${this.app.queueList[this.app.playNum].url}`;
+				this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
 				this.pause();
 				this.viewLyrics();
 			} else {
@@ -752,7 +781,7 @@ class Library {
 							playList[1].forEach(music=>{
 								this.app.queueList.push(music);
 								this.app.beMusicList = true;
-								this.app.Audio.src = `/B/m/${this.app.queueList[0].url}`;
+								this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 							})
 						}
 					})
@@ -787,7 +816,7 @@ class Library {
 								console.log(music)
 								this.app.queueList.push(music);
 								this.app.beMusicList = true;
-								this.app.Audio.src = `/B/m/${this.app.queueList[0].url}`;
+								this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 							})
 						}
 					}
@@ -805,7 +834,7 @@ class Library {
 						playList[1].forEach(music=>{
 							this.app.queueList.push(music);
 							this.app.beMusicList = true;
-							this.app.Audio.src = `/B/m/${this.app.queueList[0].url}`;
+							this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 						})
 					}
 				})
@@ -921,7 +950,7 @@ class PlayList {
 					playList[1].forEach(music=>{
 						this.app.queueList.push(music);
 						this.app.beMusicList = true;
-						this.app.Audio.src = `/B/m/${this.app.queueList[0].url}`;
+						this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 					})
 				}
 			})
@@ -940,7 +969,7 @@ class PlayList {
 					playList[1].forEach(music=>{
 						this.app.queueList.push(music);
 						this.app.beMusicList = true;
-						this.app.Audio.src = `/B/m/${this.app.queueList[0].url}`;
+						this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 					})
 				}
 			})
@@ -975,7 +1004,7 @@ class PlayList {
 				if(!this.app.beMusicList) {
 					this.app.queueList.push(this.app.nowMusic)
 					this.app.beMusicList = true;
-					this.app.Audio.src = `/B/m/${this.app.queueList[0].url}`;
+					this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 				} else {
 					this.app.queueList.push(this.app.nowMusic)
 				}
