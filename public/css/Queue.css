@@ -1,0 +1,51 @@
+.music-queue-list-header-text { 
+    width: 100%;
+    height: 30px; 
+    
+    text-align: center;
+
+    margin-top: 10px;
+    float: left;
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.music-queue-list-header-text > div:nth-child(1) { flex-basis: 60px; }
+
+.music-queue-list-header-text > div:nth-child(2) { flex-basis: 250px; }
+
+.music-queue-list-header-text > div:nth-child(3) { flex-basis: 250px; }
+
+.music-queue-list-header-text > div:nth-child(4) { flex-basis: 250px; }
+
+.music-queue-list-header-text > div:nth-child(5) { flex-basis: 250px; }
+
+.music-queue-list-header-text > div { font-size: 0.8em; font-weight: 500; }
+
+.music-queue-list { width: 90%; height: 10px; font-size: 1.3em; font-weight: bold; margin-top: 50px; }
+.music-queue-list-main { margin-top: 10px; width: 100%; height: auto; float: left; cursor: pointer; padding-top: 20px; border-top: 1px solid #8b8b8b; }
+.music-queue-list-main > div {
+    width: 100%; 
+    height: 80px; 
+
+    font-size: .8em;
+    font-weight: 500;
+    text-align: center;
+    line-height: 50px;
+    
+    margin-top: 20px;
+    padding: 10px 0 0 10px;
+    overflow: hidden;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.music-queue-list-main > div > img:nth-child(1) { height: 60px; flex-basis: 60px; }
+
+.music-queue-list-main > div > div:nth-child(2) { flex-basis: 250px; }
+
+.music-queue-list-main > div > div:nth-child(3) { flex-basis: 250px; }
+
+.music-queue-list-main > div > div:nth-child(4) { flex-basis: 250px; }
+
+.music-queue-list-main > div > div:nth-child(5) { flex-basis: 250px; }
