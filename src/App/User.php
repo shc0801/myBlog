@@ -26,6 +26,6 @@ class User{
     }
     
     public function logout(){
-        return session()->remove('user');
+        return Session::remove('user');
     }
 }

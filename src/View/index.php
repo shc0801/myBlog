@@ -51,7 +51,7 @@
         <div class="menu">
             <div class="menu-logIn">
                 <input type="checkbox" id="login-key">
-                <label for="login-key">logIn</label>
+                <label id="login-label" for="login-key">logIn</label>
                 <form id="login-form" method='post' action="/login">
                     <div class="login-form-title">
                         LogIn
@@ -82,36 +82,7 @@
         <div class="music-recommendation music">
             <p>추천음악</p>
             <div>
-                <div class="1">
-                    <img src="./covers/Fun to The World.jpg" alt="">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                    <p><span>BAAM</span><br>
-                    모모랜드 (Momoland)</p>
-                </div>
-                <div class="2">
-                    <img src="./covers/GREAT!.jpg" alt="">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                    <p><span>"뿜뿜"</span><br>
-                    모모랜드 (Momoland)</p>
-                </div>
-                <div class="0">
-                    <img src="./covers/Show me.jpg" alt="">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                    <p><span>I'm So Hot</span><br>
-                    모모랜드 (Momoland)</p>
-                </div>
-                <div class="21">
-                    <img src="./covers/FANCY YOU.jpg" alt="">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                    <p><span>FANCY YOU</span><br>
-                    트와이스 (twice)</p>
-                </div>
-                <div class="22">
-                    <img src="./covers/YES or YES.jpg" alt="">
-                    <div class="play-btn"><i class="fa fa-play"></i></div>
-                    <p><span>YES or YES</span><br>
-                    트와이스 (twice)</p>
-                </div>
+                
             </div>
         </div>
         <div class="music-genre">

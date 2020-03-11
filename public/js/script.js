@@ -27,6 +27,9 @@ class App {
 		let player= new Player(this);
 		this.Audio = new Audio;
 
+		this.loginForm = document.querySelector("#login-form");
+		this.login = false;
+
 		this.declaration();
         
         this.init();
@@ -47,6 +50,7 @@ class App {
 		this.addPlayList = document.querySelector(".addPlayList");
 		this.addPlayListBtn = document.querySelector("#addPlayListBtn")
 		this.addPlayListButton = null;
+		this.musicRecommendation = document.querySelector(".music-recommendation > div");
 		this.musicCard = document.querySelectorAll(".music > div > div");
 	}
 
@@ -67,11 +71,17 @@ class App {
 						url: '/users',
 						method: 'post',
 						data: members,
+					})
+				})
+			})
+			$.getJSON('js/playlists.json', async (playlist) =>{
+				playlist.list.forEach(listData=>{
+					$.ajax({
+						url: '/playList',
+						method: 'post',
+						data: listData,
 						success: (data)=>{
 							console.log(data)
-						},
-						error: (err)=>{
-							console.log(err)
 						}
 					})
 				})
@@ -79,7 +89,9 @@ class App {
 			res();
 		}).then(()=>{
 			// this.loading();
-			this.addEvent();
+			setTimeout(()=>{
+				this.resetMusic();
+			}, 200)
 		});
 	}
 
@@ -99,6 +111,23 @@ class App {
 	// 		})
 	// 	})
 	// }
+
+	resetMusic() {
+		let musicNum = Math.floor(Math.random() * 25);
+		for(let i = 0; i < 5; i++) {
+			let div = document.createElement("div");
+			div.classList.add(`${this.musicList[musicNum + i].idx}`);
+			let data = `
+					<img src="./covers/${this.musicList[musicNum + i].albumImage}" alt="">
+                    <div class="play-btn"><i class="fa fa-play"></i></div>
+                    <p><span>${this.musicList[musicNum + i].name}</span><br>
+					${this.musicList[musicNum + i].artist}</p>`
+			div.innerHTML = data
+			this.musicRecommendation.appendChild(div);
+		}
+		this.declaration();
+		this.addEvent();
+	}
 	
 	addEvent(){ 
 
@@ -107,14 +136,44 @@ class App {
 		this.formBtn.addEventListener("click", ()=>{
 			let $loginForm = $("#login-form").serialize();
 
-			$.ajax({
-				url: '/login',
-				method: 'post',
-				data: $loginForm,
-				success: (data)=>{
-					console.log(data)
-				}
-			})
+			if(!this.login) {
+				$.ajax({
+					url: '/login',
+					method: 'post',
+					data: $loginForm,
+					success: (data)=>{
+						alert(data);
+						if(data === '로그인 되었습니다.') {
+							this.login = true;
+							this.loginForm.style.display = "none";
+							document.querySelector("#login-key").id = 'logout-key';
+							this.loginLabel = document.querySelector("#login-label");
+							this.loginLabel.innerText = 'logout';
+							this.historyList = new Array;
+						}
+					}
+				})
+			} 
+			setTimeout(()=>{
+				this.loginLabel.addEventListener("click", ()=>{
+					if(this.login) {
+						$.ajax({
+							url: '/logout',
+							method: 'post',
+							success: (data)=>{
+								alert(data);
+								if(data === '로그아웃 되었습니다.') {
+									this.login = false;
+									document.querySelector("#logout-key").id = 'login-key';
+									this.loginLabel.innerText = 'logIn';
+								}
+							}
+						})
+					} else {
+						this.loginForm.style.display = "block";
+					}
+				})
+			}, 100)
 		})
 
 		this.page.forEach(page=>{
@@ -156,7 +215,11 @@ class App {
 		})
 
 		this.contextmenu.addEventListener("click", (e)=>{
-			if(e.target.classList[0] === "add-play-list") {				
+			if(e.target.classList[0] === "add-play-list") {
+				if(!this.login) {
+					alert("회원만 이용 가능한 서비스입니다.");
+					return;
+				}				
 				this.playListInput.value = '';
 				this.viewPlayListMenu(e);
 			} else if(e.target.classList[0] === "next-music-play") {
@@ -203,16 +266,22 @@ class App {
 			url: `${page.classList[2]}.html`,
 			method: 'get',
 			success: (data)=>{
-				let section = document.querySelector("section");
-				section.innerHTML = data;
 				if(page.classList[2] === 'Queue') {
 					let queue = new Queue(this);
 				} else if(page.classList[2] === 'Library') {
+					if(!this.login) {
+						alert("회원만 이용 가능한 패이지입니다.");
+						return;
+					}
 					let library = new Library(this);
 				} else if(page.classList[2] === 'Home') {
 					this.declaration();
+					// document.querySelector("#login-key").id = 'logout-key';
+					this.loginLabel = document.querySelector("#login-label");
 					this.addEvent()
 				}
+				let section = document.querySelector("section");
+				section.innerHTML = data;
 			}
 		})
 	}
@@ -362,6 +431,19 @@ class Player {
 				this.lyricsNum = 0; 
 			}
 
+			// if(!this.app.login && this.app.Audio.currentTime > 60) {
+			// 	this.pause();
+			// 	alert("비회원은 1분 미리듣기만 가능합니다!");
+			// 	this.app.playNum++;
+			// 	if(this.app.playNum == this.app.queueList.length) {
+			// 		this.app.playNum = this.app.queueList.length - 1;
+			// 	} 
+			// 	this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
+			// 	this.app.Audio.currentTime = 0;
+			// 	this.viewLyrics();
+			// 	this.play();
+			// }
+
 			this.lyricsScroll();
 			this.lyricsHigh();
 
@@ -382,7 +464,6 @@ class Player {
 		// 재생
 		this.playCircleBtn.addEventListener("click", ()=>{
 			if(!this.app.beMusicList) return;
-			console.log("Asd")
 			this.play();
 		})
 		// 일시정지
@@ -437,10 +518,6 @@ class Player {
 			}
 		})
 
-		// 재생기록 저장
-		this.app.Audio.addEventListener("loadeddata", ()=>{
-			this.app.historyList.push(this.app.queueList[this.app.playNum]);
-		})
 		
 		// 가사보기
 		this.viewLyricsBtn.addEventListener("click", ()=>{
@@ -479,6 +556,7 @@ class Player {
 		this.playCircleBtn.style.display = "none";
 		this.stopCircleBtn.style.display = "block";
 		this.lyrics.bool = true;
+		this.app.historyList.push(this.app.queueList[this.app.playNum]);
 	}
 
 	// 일시정지
@@ -813,7 +891,6 @@ class Library {
 						})
 						if(!isMusic) {
 							playList[1].forEach(music=>{
-								console.log(music)
 								this.app.queueList.push(music);
 								this.app.beMusicList = true;
 								this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
@@ -945,7 +1022,6 @@ class PlayList {
 		this.allPlay.addEventListener("click", ()=>{
 			this.app.queueList = new Array;
 			this.app.playList.forEach(playList=>{
-				console.log(playList[0], this.app.playList[this.playListNum][0])
 				if(playList[0] == this.app.playList[this.playListNum][0]) {
 					playList[1].forEach(music=>{
 						this.app.queueList.push(music);

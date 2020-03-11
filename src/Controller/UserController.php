@@ -19,15 +19,6 @@ class UserController {
 
     public function login() {
         extract($_POST);
-        if(trim($userid) === "") {
-            message("비밀번호는 공백일 수 없습니다.");
-            return;
-        };
-        
-        if(trim($password) === "") {
-            message("비밀번호는 공백일 수 없습니다.");
-            return;
-        };
 
         $user = User::login($userid, $password);
 
@@ -35,7 +26,12 @@ class UserController {
             message("아이디 또는 비밀번호가 올바르지 않습니다.");
             return;
         }
-        message("로그인 되었습니다.");
 
+        message("로그인 되었습니다.");
+    }
+
+    public function logout() {
+        User::logout();
+        message("로그아웃 되었습니다.");
     }
 }
