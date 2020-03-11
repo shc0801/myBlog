@@ -77,7 +77,7 @@ class App {
 			$.getJSON('js/playlists.json', async (playlist) =>{
 				playlist.list.forEach(listData=>{
 					$.ajax({
-						url: '/playList',
+						url: '/innerPlayList',
 						method: 'post',
 						data: listData,
 						success: (data)=>{
@@ -267,21 +267,24 @@ class App {
 			method: 'get',
 			success: (data)=>{
 				if(page.classList[2] === 'Queue') {
+					let section = document.querySelector("section");
+					section.innerHTML = data;
 					let queue = new Queue(this);
 				} else if(page.classList[2] === 'Library') {
 					if(!this.login) {
 						alert("회원만 이용 가능한 패이지입니다.");
 						return;
 					}
+					let section = document.querySelector("section");
+					section.innerHTML = data;
 					let library = new Library(this);
 				} else if(page.classList[2] === 'Home') {
+					let section = document.querySelector("section");
+					section.innerHTML = data;
 					this.declaration();
-					// document.querySelector("#login-key").id = 'logout-key';
 					this.loginLabel = document.querySelector("#login-label");
 					this.addEvent()
 				}
-				let section = document.querySelector("section");
-				section.innerHTML = data;
 			}
 		})
 	}
@@ -461,16 +464,19 @@ class Player {
 	}
 	
 	addEvent() {
+
 		// 재생
 		this.playCircleBtn.addEventListener("click", ()=>{
 			if(!this.app.beMusicList) return;
 			this.play();
 		})
+
 		// 일시정지
 		this.stopCircleBtn.addEventListener("click", ()=>{
 			if(!this.app.beMusicList) return;
 			this.pause();
 		})
+
 		// 다음 음악 재생
 		this.forwardBtn.addEventListener("click", ()=>{
 			if(!this.app.beMusicList) return;
@@ -752,8 +758,7 @@ class Library {
 		if(this.app.historyList.length != 0) {
 			this.innerSectionHistoryData();
 		}
-		if(this.app.playList.length != 0)
-			this.innerSectionPlayListData();
+		this.innerSectionPlayListData();
 	}
 
 	innerSectionHistoryData() {
@@ -793,52 +798,61 @@ class Library {
 	}
 
 	innerSectionPlayListData() {
-		this.musicPlayListMain.innerHTML = '';
-		this.app.playList.forEach((playList, i)=>{
-			let list = document.createElement("div");
-			list.id = i;
-			list.classList.add("playList-card");
-			let playListData = `
-				<img id="music-play-list-cover" src="./covers/${playList[1][0].albumImage}" alt="">
-				<div class="music-play-list-title"><a id="${i}" class="playListPageBtn ${playList[0]} playlist" href="#"> - ${playList[0]} <span class="playlist">(${playList[1].length})</span></a></div>`;
-			list.innerHTML = playListData;
-			this.musicPlayListMain.appendChild(list); 
-			this.playListPageBtn = document.querySelectorAll(".playListPageBtn");
+		$.ajax({
+			url: '/fetchPlayList',
+			method: 'post',
+			success: (data)=>{
+				data = data.dataNum;
+				this.playList = data;
+				this.musicPlayListMain.innerHTML = '';
+				data.forEach((listData, i)=>{
+					let list = document.createElement("div");
+					list.id = listData.id;
+					list.classList.add("playList-card");
+					let playListData = `
+						<img id="music-play-list-cover" src="./covers/${this.app.musicList[listData.list[0]].albumImage}" alt="">
+						<div class="music-play-list-title"><a id="${i}" class="playListPageBtn playlist"> - ${listData.name} <span class="playlist">(${listData.list.length})</span></a></div>`;
+					list.innerHTML = playListData;
+					this.musicPlayListMain.appendChild(list); 
+					this.playListPageBtn = document.querySelectorAll(".playListPageBtn");
 
-			this.playListCard = document.querySelectorAll(".playList-card");
-		})
+					this.playListCard = document.querySelectorAll(".playList-card");
 
-		this.playListPageBtn.forEach(btn=>{
-			btn.addEventListener("click", (e)=>{
-				this.movePage(e.target);
-			})
-		})
+					this.playListCard.forEach(music=>{
+						music.addEventListener("contextmenu", (e)=>{
+							this.app.contextmenu.innerHTML = `<div class="play-playList contextmenu">플레이리스트 재생</div>
+															  <div class="add-play-lists contextmenu">플레이리스트에 추가</div>
+															  <div class="next-musics-play contextmenu">다음 음악으로 재생</div>
+															  <div class="add-queues contextmenu">대기열에 추가</div>
+															  <div class="delete-playList contextmenu">플레이리스트 삭제</div>`;
+							event.preventDefault();
+							this.app.contextmenu.style.height = '300px';
+							this.app.contextmenu.style.top = e.pageY - 300 + "px";
+							this.app.contextmenu.style.left = e.pageX + "px";
+							this.app.contextmenu.style.display = 'block';
+							
+							this.app.musicList.forEach(list=>{
+								if(list.idx === e.currentTarget.id) this.app.nowMusic = list;
+							}) 
+							this.playListNum = e.currentTarget.id;
+						})
+					})
+				})
 
-		this.playListCard.forEach(music=>{
-			music.addEventListener("contextmenu", (e)=>{
-				this.app.contextmenu.innerHTML = `<div class="play-playList contextmenu">플레이리스트 재생</div>
-												  <div class="add-play-lists contextmenu">플레이리스트에 추가</div>
-												  <div class="next-musics-play contextmenu">다음 음악으로 재생</div>
-												  <div class="add-queues contextmenu">대기열에 추가</div>
-												  <div class="delete-playList contextmenu">플레이리스트 삭제</div>`;
-				event.preventDefault();
-				this.app.contextmenu.style.height = '300px';
-				this.app.contextmenu.style.top = e.pageY - 300 + "px";
-				this.app.contextmenu.style.left = e.pageX + "px";
-				this.app.contextmenu.style.display = 'block';
-				
-				this.app.musicList.forEach(list=>{
-					if(list.idx === e.currentTarget.id) this.app.nowMusic = list;
-				}) 
-				this.playListNum = e.currentTarget.id;
-			})
+				this.playListPageBtn.forEach(btn=>{
+					btn.addEventListener("click", (e)=>{
+						this.movePage(e.currentTarget);
+					})
+				})
+			}
 		})
 	}
 
 	movePage(e) {
+		console.log(e)
 		$.ajax({
-			url: `${e.classList[2]}.html`,
-			method: 'get',
+			url: `${e.classList[1]}.html`,
+			method: 'post',
 			success: (data)=>{
 				let section = document.querySelector("section");
 				section.innerHTML = data;
@@ -996,21 +1010,22 @@ class PlayList {
 		this.musicRecommendationP = document.querySelector(".music-recommendation > p");
 		this.allPlay = document.querySelector(".all-play");
 		this.addPlay = document.querySelector(".add-play");
-
+		
 		this.innerList();
 		this.addEvent();
 	}
 
 	innerList() {
+		console.log(this.playListNum)
 		this.musicRecommendation.innerHTML = ``;
-		this.musicRecommendationP.innerHTML = `${this.app.playList[this.playListNum][0]} (노래 - <span>${this.app.playList[this.playListNum][1].length}</span>)`
-		this.app.playList[this.playListNum][1].forEach(data=>{
+		this.musicRecommendationP.innerHTML = `${this.library.playList[this.playListNum].name} (노래 - <span>${this.library.playList[this.playListNum].list.length}</span>)`
+		this.library.playList[this.playListNum].list.forEach(musicIdx=>{
 			let music = document.createElement("div");
-			music.id = data.idx;
+			music.id = this.app.musicList[musicIdx].idx;
 			music.classList.add("playList-card")
-			let musicData = `<img src="./covers/${data.albumImage}" alt="">
-							<p><span>${data.name}</span><br>
-							${data.artist}</p>`;
+			let musicData = `<img src="./covers/${this.app.musicList[musicIdx].albumImage}" alt="">
+							<p><span>${this.app.musicList[musicIdx].name}</span><br>
+							${this.app.musicList[musicIdx].artist}</p>`;
 			music.innerHTML =  musicData;
 			this.musicRecommendation.appendChild(music);
 		})
@@ -1021,33 +1036,26 @@ class PlayList {
 	addEvent() {
 		this.allPlay.addEventListener("click", ()=>{
 			this.app.queueList = new Array;
-			this.app.playList.forEach(playList=>{
-				if(playList[0] == this.app.playList[this.playListNum][0]) {
-					playList[1].forEach(music=>{
-						this.app.queueList.push(music);
-						this.app.beMusicList = true;
-						this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
-					})
-				}
+			this.library.playList[this.playListNum].list.forEach(musicIdx=>{
+				this.app.queueList.push(this.app.musicList[musicIdx]);
+				this.app.beMusicList = true;
+				this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 			})
 		})
 
 		this.addPlay.addEventListener("click", ()=>{
 			let isMusic = false;
-			this.app.playList.forEach(playList=>{
-				playList[1].forEach(music=>{
-					this.app.queueList.forEach(queue=>{
-						if(music == queue) isMusic = true;
-					})
+			this.library.playList[this.playListNum].list.forEach(musicIdx=>{
+				this.app.queueList.forEach(queue=>{
+					if(musicIdx == queue.idx) isMusic = true;
 				})
 
 				if(!isMusic) {
-					playList[1].forEach(music=>{
-						this.app.queueList.push(music);
-						this.app.beMusicList = true;
-						this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
-					})
+					this.app.queueList.push(this.app.musicList[musicIdx]);
+					this.app.beMusicList = true;
+					this.app.Audio.src = `/m/${this.app.queueList[0].url}`;
 				}
+				isMusic = false;
 			})
 		})
 
@@ -1085,10 +1093,15 @@ class PlayList {
 					this.app.queueList.push(this.app.nowMusic)
 				}
 			} else if(e.target.classList[0] === 'delete-playList') {
-				this.app.playList.forEach(playList=>{
-					playList[1].splice(playList[1].indexOf(this.app.nowMusic),1);
+				$.ajax({
+					url: '/deletePlayList',
+					method: 'post',
+					data: this.app.nowMusic,
+					success: (data)=>{
+						console.log(data)
+					} 
 				})
-				this.innerList();
+				// this.innerList();
 			}
 		})
 	}

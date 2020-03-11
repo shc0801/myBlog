@@ -7,5 +7,7 @@ Router::post('/users', 'UserController@members');
 Router::post('/login', 'UserController@login');
 Router::post('/logout', 'UserController@logout');
 
-Router::post('/playList', 'PlayListController@playList');
+Router::post('/innerPlayList', 'PlayListController@innerPlayList');
+Router::post('/fetchPlayList', 'PlayListController@fetchPlayList');
+Router::post('/deletePlayList', 'PlayListController@deletePlayList');
 Router::Router();
