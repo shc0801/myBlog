@@ -1,4 +1,4 @@
-section { height: 500px; }
+section { height: auto }
 .music-recommendation > p { width: 28%; float: left;}
 .all-play, .add-play { 
     width: 150px; 

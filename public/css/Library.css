@@ -1,4 +1,4 @@
-section { height: auto; }
+section { height: auto; margin-bottom: 1000px;}
 
 .music-history { width: 90%; height: 350px; font-size: 1.3em; font-weight: bold; }
 .music-history-header { width: 100%; height: 10%;}

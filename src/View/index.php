@@ -6,6 +6,7 @@
     <title>부산뮤직페스티벌</title>
     <link rel="stylesheet" href="./css/fontAwesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/Search.css">
     <link rel="stylesheet" href="./css/Library.css">
     <link rel="stylesheet" href="./css/playlist.css">
     <link rel="stylesheet" href="./css/Queue.css">
@@ -38,10 +39,10 @@
     </div> -->
     <header>
         <a href="#"><img id="logo" src="./images/logo.png" alt=""></a>
-        <div class="search-bar">
+        <form class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="text" id="search" placeholder="search for songs">
-        </div>
+            <input type="text" id="search" name="search" placeholder="search for songs">
+        </form>
     </header>
     <nav>
         <div class="line"></div>

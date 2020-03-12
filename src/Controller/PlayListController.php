@@ -32,15 +32,20 @@ class PlayListController {
     }
 
     public function deletePlayList() {
+        var_dump($_POST);
         extract($_POST);
+
         $user_id = $_SESSION['user']->user_id;
-        $lists = "SELECT * FROM `playlists` WHERE user_id = ?";
-        $dataNum = DB::fetchAll($lists, [$user_id]);
-        
-        foreach($dataNum as $data) {
-            $data->list = \explode('/', $data->list);
-        }
-        var_dump($dataNum);
-        // array_splice($target, array_search('Orange', $fruits), 1);
+        $lists = "SELECT list FROM `playlists` WHERE user_id = ?";
+        $dataList = DB::fetchAll($lists, [$user_id]);
+
+        $data = $dataList[$playListNum]->list;
+
+        $data = \explode('/', $data);
+        array_splice($data, array_search($idx, $data), 1);
+        $data = \implode('/', $data);
+
+        $sql = "UPDATE `playlists` SET list = ? WHERE id = ?";
+        $cnt = DB::execute($sql, [$data, $id]);
     }
 }
