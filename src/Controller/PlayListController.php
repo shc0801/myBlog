@@ -48,4 +48,27 @@ class PlayListController {
         $sql = "UPDATE `playlists` SET list = ? WHERE id = ?";
         $cnt = DB::execute($sql, [$data, $id]);
     }
+
+    public function recommend() {
+        extract($_POST);
+        $playList = "SELECT `list` FROM `playlists` WHERE 1";
+        $lists = DB::fetchAll($playList, []);
+
+        foreach($lists as $data) {
+            $data->list = \explode('/', $data->list);
+        }
+
+        $reliability = 0; $support = 0;
+
+        foreach($lists as $list) {
+            foreach($list as $data) {
+                foreach($data as $dataIdx) {
+                    var_dump($idx);
+                    if($dataIdx == $idx) {
+                        
+                    }
+                }
+            }
+        }
+    }
 }

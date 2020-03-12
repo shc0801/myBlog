@@ -230,7 +230,8 @@ class App {
 			} else if(e.target.classList[0] === "add-queue") {				
 				if(this.queueList.indexOf(this.nowMusic) != -1) return;
 				if(!this.beMusicList) {
-					this.queueList.push(this.nowMusic)
+					if(this.nowMusic != null)
+						this.queueList.push(this.nowMusic)
 					this.Audio.src = `/m/${this.queueList[0].url}`;
 					this.beMusicList = true;
 				} else {
@@ -385,7 +386,8 @@ class App {
 		if(this.queueList.length == 0) {				
 			if(this.queueList.indexOf(this.nowMusic) != -1) return;
 			if(!this.beMusicList) {
-				this.queueList.push(this.nowMusic)
+				if(this.nowMusic != null)
+					this.queueList.push(this.nowMusic)
 				this.beMusicList = true;
 				this.Audio.src = `/m/${this.queueList[0].url}`;
 			} else {
@@ -472,6 +474,8 @@ class Player {
 					this.app.Audio.currentTime = 0;
 					this.viewLyrics();
 					this.play();
+				} else {
+					this.autoAdd();
 				}
 				this.lyricsNum = 0; 
 			}
@@ -700,6 +704,17 @@ class Player {
 		$(`#lyric-${this.lyrics.lyricsNum[this.lyricsNum]}`).contents().unwrap().wrap( `<p id="lyric-${this.lyrics.lyricsNum[this.lyricsNum]}"></p>` );
 		this.lyricsNum = 0;
 	}
+
+	autoAdd() {
+		$.ajax({
+			url: '/recommend',
+			method: 'post',
+			data: this.app.queueList[this.app.queueList.length - 1],
+			success: (data)=>{
+				console.log(data)
+			}
+		})
+	}
 }
 
 class Search {
@@ -754,20 +769,39 @@ class Search {
 	innerplayList() {
 		this.playListData.forEach((data, i)=>{
 			let div = document.createElement("div");
-			div.classList.add("playList");
+			div.classList.add("playListCard");
 			let playListData = `<img id="music-play-list-cover" src="./covers/${this.app.musicList[data.list[0]].albumImage}" alt="">
 								<div class="music-play-list-title"><a id="${i}" class="playListPageBtn playlist"> - ${data.name} <span class="playlist">(${data.list.length})</span></a></div>`;
 			div.innerHTML = playListData;
 			this.searchPlayList.appendChild(div);
 		})
 
-		this.playList = document.querySelectorAll(".playList");
+		this.playList = document.querySelectorAll(".playListCard");
 	}
 
 	addEvent() {
 		this.searchMusic.forEach(music=>{
 			this.app.viewContextmenu(music);
 		})
+
+		this.playList.forEach(list=>{
+			this.setData();
+			this.app.viewContextmenu(list);
+		})
+	}
+
+	setData() {
+		this.app.nowMusic = null;
+		let arr = new Array;
+		this.app.musicList.forEach(list=>{
+			this.playListData.forEach(data=>{
+				console.log(data)
+				data.list.forEach(music=>{
+					if(list.idx === music) this.app.queueList.push(list);
+				})
+			})
+		})
+		this.app.nowMusic = arr;
 	}
 } 
 

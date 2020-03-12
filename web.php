@@ -13,6 +13,7 @@ Router::post('/logout', 'UserController@logout');
 Router::post('/innerPlayList', 'PlayListController@innerPlayList');
 Router::post('/fetchPlayList', 'PlayListController@fetchPlayList');
 Router::post('/deletePlayList', 'PlayListController@deletePlayList');
+Router::post('/recommend', 'PlayListController@recommend');
 
 Router::post('/search', 'SearchController@searchData');
 Router::Router();
