@@ -59,31 +59,29 @@ class PlayListController {
         }
 
         $support = [];
+        $reliability = [];
         $listLength = count($lists);
-        $bool = false;
-        for($i = 0; $i < $listLength; $i++) {
-            $support[$i] = 0;
-        }
-
+        $appearNum = 0;
+        
         foreach($lists as $list) {
             foreach($list as $data) {
                 foreach($data as $dataIdx) {
-                    if($dataIdx == $idx) 
-                        $bool = true;
-                }
-                foreach($data as $dataIdx) {
-                    if($bool && $dataIdx != $idx) {
+                    if(\in_array($idx, $data) && $dataIdx != $idx) {
                         if(!isset($support[$dataIdx])) {
                             $support[$dataIdx] = 0;
                         }
                         $support[$dataIdx]++;
                     }
+
+                    if($dataIdx == $idx)
+                        $appearNum++;
                 }
-                $bool = false;
             }
         }
-        // var_dump($support[$dataIdx]);
-        echo (array_search(max($support), $support));
+        $support = max($support) / $listLength;
+        // $reliability 
+        // var_dump();
+        // echo (array_search(max($support), $support));
         // Lib::json(['dataNum'=>$dataNum, 'dataNum'=>$dataNum]);
     }
 }

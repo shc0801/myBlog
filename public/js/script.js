@@ -748,14 +748,14 @@ class Player {
 			method: 'post',
 			data: this.app.queueList[this.app.queueList.length - 1],
 			success: (data)=>{
-				// console.log(data);
+				console.log(data);
 				// if(this.queueList.indexOf(this.nowMusic) != -1)
-				this.app.queueList.push(this.app.musicList[data]);
-				this.app.playNum++;
-				this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
-				this.app.Audio.currentTime = 0;
-				this.viewLyrics();
-				this.play();
+				// this.app.queueList.push(this.app.musicList[data]);
+				// this.app.playNum++;
+				// this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
+				// this.app.Audio.currentTime = 0;
+				// this.viewLyrics();
+				// this.play();
 			}
 		})
 	}
