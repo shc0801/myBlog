@@ -58,17 +58,31 @@ class PlayListController {
             $data->list = \explode('/', $data->list);
         }
 
-        $reliability = 0; $support = 0;
+        $support = [];
+        $listLength = count($lists);
+        $bool = false;
+        for($i = 0; $i < $listLength; $i++) {
+            $support[$i] = 0;
+        }
 
         foreach($lists as $list) {
             foreach($list as $data) {
                 foreach($data as $dataIdx) {
-                    var_dump($idx);
-                    if($dataIdx == $idx) {
-                        
+                    if($dataIdx == $idx) 
+                        $bool = true;
+                }
+                foreach($data as $dataIdx) {
+                    if($bool && $dataIdx != $idx) {
+                        if(!isset($support[$dataIdx])) {
+                            $support[$dataIdx] = 0;
+                        }
+                        $support[$dataIdx]++;
                     }
                 }
+                $bool = false;
             }
         }
+        echo (array_search(max($support), $support));
+        
     }
 }

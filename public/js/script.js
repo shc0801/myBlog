@@ -476,6 +476,7 @@ class Player {
 					this.play();
 				} else {
 					this.autoAdd();
+					console.log("asd");
 				}
 				this.lyricsNum = 0; 
 			}
@@ -491,7 +492,7 @@ class Player {
 			// 	this.app.Audio.currentTime = 0;
 			// 	this.viewLyrics();
 			// 	this.play();
-			// }
+			//  }
 
 			this.lyricsScroll();
 			this.lyricsHigh();
@@ -711,7 +712,13 @@ class Player {
 			method: 'post',
 			data: this.app.queueList[this.app.queueList.length - 1],
 			success: (data)=>{
-				console.log(data)
+				this.app.queueList.push(this.app.musicList[data]);
+				console.log(data, this.app.queueList)
+				this.app.playNum++;
+				this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
+				this.app.Audio.currentTime = 0;
+				this.viewLyrics();
+				this.play();
 			}
 		})
 	}

@@ -187,7 +187,7 @@
                     <div class="0">
                         <img src="./covers/Show me.jpg" alt="">
                         <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>Show me</span><br>
+                        <p><span>I'm So Hot</span><br>
                         모모랜드 (Momoland)</p>
                     </div>
                 </div>
