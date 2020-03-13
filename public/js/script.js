@@ -227,15 +227,32 @@ class App {
 				this.viewPlayListMenu(e);
 			} else if(e.target.classList[0] === "next-music-play") {
 				this.nextPlay();
-			} else if(e.target.classList[0] === "add-queue") {				
+			} else if(e.target.classList[0] === "add-queue") {		
+				console.log(this.nowMusic)		
 				if(this.queueList.indexOf(this.nowMusic) != -1) return;
 				if(!this.beMusicList) {
-					if(this.nowMusic != null)
-						this.queueList.push(this.nowMusic)
+					if(this.nowMusic != null) {
+						console.log(Array.isArray(this.nowMusic))
+						if(Array.isArray(this.nowMusic)) {
+							this.nowMusic.forEach(music=>{
+								this.queueList.push(music)
+							}) 
+						} else 
+							this.queueList.push(this.nowMusic)
+					}
 					this.Audio.src = `/m/${this.queueList[0].url}`;
 					this.beMusicList = true;
 				} else {
-					this.queueList.push(this.nowMusic)
+					if(this.nowMusic != null) {
+						console.log(Array.isArray(this.nowMusic))
+						if(Array.isArray(this.nowMusic)) {
+							this.nowMusic.forEach(music=>{
+								if(this.queueList.indexOf(music) === -1) 
+									this.queueList.push(music)
+							}) 
+						} else 
+							this.queueList.push(this.nowMusic)
+					}
 				}
 			}
 		})
@@ -383,24 +400,44 @@ class App {
 	}
 	
 	nextPlay() {
-		if(this.queueList.length == 0) {				
+		if(this.queueList.length == 0) {			
 			if(this.queueList.indexOf(this.nowMusic) != -1) return;
 			if(!this.beMusicList) {
-				if(this.nowMusic != null)
-					this.queueList.push(this.nowMusic)
+				if(this.nowMusic != null) {
+					if(Array.isArray(this.nowMusic)) {
+						this.nowMusic.forEach(music=>{
+							this.queueList.push(music)
+						}) 
+					} else 
+						this.queueList.push(this.nowMusic)
+				}
 				this.beMusicList = true;
 				this.Audio.src = `/m/${this.queueList[0].url}`;
 			} else {
-				this.queueList.push(this.nowMusic)
+				if(Array.isArray(this.nowMusic)) {
+					this.nowMusic.forEach(music=>{
+						this.queueList.push(music)
+					}) 
+				} else 
+					this.queueList.push(this.nowMusic)
 			}
 		} else {
-			let isMusic = true;
-			this.queueList.forEach(list=>{
-				if(list == this.nowMusic)  isMusic = false;
-			})
-			if(isMusic)
-				this.queueList.splice(this.playNum + 1, 0, this.nowMusic);
-			isMusic = true;
+			if(Array.isArray(this.nowMusic)) {
+				let i = 1;
+				this.nowMusic.forEach((music)=>{
+					console.log(this.queueList.indexOf(music))
+					if(this.queueList.indexOf(music) === -1) {
+						console.log(this.queueList, music, i)
+						this.queueList.splice(this.playNum + i, 0, music);
+						i++;
+					}
+				}) 
+			} else {
+				if(!this.queueList.indexOf(this.nowMusic)) {
+					this.queueList.splice(this.playNum + 1, 0, this.nowMusic);
+				}
+			}
+				
 		}
 	}
 }
@@ -476,7 +513,6 @@ class Player {
 					this.play();
 				} else {
 					this.autoAdd();
-					console.log("asd");
 				}
 				this.lyricsNum = 0; 
 			}
@@ -712,8 +748,9 @@ class Player {
 			method: 'post',
 			data: this.app.queueList[this.app.queueList.length - 1],
 			success: (data)=>{
+				// console.log(data);
+				// if(this.queueList.indexOf(this.nowMusic) != -1)
 				this.app.queueList.push(this.app.musicList[data]);
-				console.log(data, this.app.queueList)
 				this.app.playNum++;
 				this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
 				this.app.Audio.currentTime = 0;
@@ -745,10 +782,8 @@ class Search {
 			method: "post",
 			data: search,
 			success: (data)=>{
-				console.log(data)
 				this.musicListData = data.musicListData;
 				this.playListData = data.playListData;
-				console.log(data.playListData, this.playListData)
 				this.innerMusic();
 				this.innerplayList();
 				this.addEvent();
@@ -777,6 +812,7 @@ class Search {
 		this.playListData.forEach((data, i)=>{
 			let div = document.createElement("div");
 			div.classList.add("playListCard");
+			div.classList.add(data.id);
 			let playListData = `<img id="music-play-list-cover" src="./covers/${this.app.musicList[data.list[0]].albumImage}" alt="">
 								<div class="music-play-list-title"><a id="${i}" class="playListPageBtn playlist"> - ${data.name} <span class="playlist">(${data.list.length})</span></a></div>`;
 			div.innerHTML = playListData;
@@ -788,29 +824,53 @@ class Search {
 
 	addEvent() {
 		this.searchMusic.forEach(music=>{
-			this.app.viewContextmenu(music);
+			this.viewContextmenu(music);
 		})
 
 		this.playList.forEach(list=>{
-			this.setData();
-			this.app.viewContextmenu(list);
+			this.viewContextmenu(list);
 		})
 	}
 
 	setData() {
+		// let bool = false;
 		this.app.nowMusic = null;
-		let arr = new Array;
+		this.list = new Array;
+
 		this.app.musicList.forEach(list=>{
 			this.playListData.forEach(data=>{
-				console.log(data)
-				data.list.forEach(music=>{
-					if(list.idx === music) this.app.queueList.push(list);
-				})
+				if(data.id == this.nowPlayListNum) {
+					data.list.forEach(music=>{
+						if(list.idx === music) {
+							if(!this.app.queueList.includes(list)) {
+								this.list.push(list);
+							}
+						}
+					})
+				}
 			})
 		})
-		this.app.nowMusic = arr;
+		this.app.nowMusic = this.list;
+		// console.log(this.app.queueList, this.app.queueList.indexOf(null))
+		// this.app.queueList.splice(, 1);
+		// bool = false;
 	}
-} 
+
+	viewContextmenu(music) {
+		music.addEventListener("contextmenu", (e)=>{
+			this.app.contextmenu.innerHTML = `<div class="add-play-list contextmenu">플레이리스트 추가</div>
+										  <div class="next-music-play contextmenu">다음 음악으로 재생</div>
+										  <div class="add-queue contextmenu">대기열 추가</div>`;
+			event.preventDefault();
+			this.app.contextmenu.style.height = '180px';
+			this.app.contextmenu.style.top = e.pageY + "px";
+			this.app.contextmenu.style.left = e.pageX + "px";
+			this.app.contextmenu.style.display = 'block';
+			this.nowPlayListNum = e.currentTarget.classList[1];
+			this.setData();
+		})
+	}
+}
 
 class Queue {
 	constructor(app) {
@@ -829,6 +889,7 @@ class Queue {
 	}
  
 	innerList() {
+		console.log(this.app.queueList)
 		this.queueMain.innerHTML = '';
 		this.app.queueList.forEach(queue=>{
 			let list = document.createElement("div");

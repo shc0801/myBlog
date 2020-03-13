@@ -82,7 +82,8 @@ class PlayListController {
                 $bool = false;
             }
         }
+        // var_dump($support[$dataIdx]);
         echo (array_search(max($support), $support));
-        
+        // Lib::json(['dataNum'=>$dataNum, 'dataNum'=>$dataNum]);
     }
 }

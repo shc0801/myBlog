@@ -25,4 +25,4 @@ class SearchController {
         }
         Lib::json(['musicListData'=>$musicListData, 'playListData'=>$playListData]);
     }
-} 
+}  
