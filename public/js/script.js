@@ -38,7 +38,11 @@ class App {
 	declaration() {
 		this.page = document.querySelectorAll(".page");
 
+		this.$initForm = $("#init-form");
 		// dom
+		this.loginLabel = document.querySelector("#login-label");
+		this.logoutLabel = document.querySelector("#logout-label");
+		if(this.logoutLabel !== null) this.login = true;
 		this.formBtn = document.querySelector(".form-btn");
 		this.contextmenu = document.querySelector("#contextmenu");
 		this.playListMenu = document.querySelector("#playListMenu");
@@ -161,34 +165,19 @@ class App {
 						if(data === '로그인 되었습니다.') {
 							this.login = true;
 							this.loginForm.style.display = "none";
-							document.querySelector("#login-key").id = 'logout-key';
-							this.loginLabel = document.querySelector("#login-label");
-							this.loginLabel.innerText = 'logout';
+							this.$initForm.load("/ #init-form");
 							this.historyList = new Array;
+							document.querySelectorAll(".form-group > input").forEach(input=>{
+								input.value = '';
+							})
+
+							setTimeout(()=>{
+								this.loginProccess();
+							}, 200)
 						}
 					}
 				})
 			} 
-			setTimeout(()=>{
-				this.loginLabel.addEventListener("click", ()=>{
-					if(this.login) {
-						$.ajax({
-							url: '/logout',
-							method: 'post',
-							success: (data)=>{
-								alert(data);
-								if(data === '로그아웃 되었습니다.') {
-									this.login = false;
-									document.querySelector("#logout-key").id = 'login-key';
-									this.loginLabel.innerText = 'logIn';
-								}
-							}
-						})
-					} else {
-						this.loginForm.style.display = "block";
-					}
-				})
-			}, 100)
 		})
 
 		this.page.forEach(page=>{
@@ -291,6 +280,34 @@ class App {
 		this.searchBtn.addEventListener("click", ()=>{
 			this.search();
 		})
+
+		this.loginProccess();
+	}
+
+	loginProccess() {
+		this.logoutLabel.addEventListener("click", ()=>{
+			$.ajax({
+				url: '/logout',
+				method: 'post',
+				success: (data)=>{
+					alert(data);
+					if(data === '로그아웃 되었습니다.') 
+						this.login = false;
+					this.$initForm.load("/ #init-form");
+
+					setTimeout(()=>{
+						this.loginLabel = document.querySelector("#login-label");
+						
+						this.loginLabel.addEventListener("click", ()=>{
+							if(this.loginForm.style.display === 'none')
+								this.loginForm.style.display = 'block';
+							else 
+								this.loginForm.style.display = 'none';
+						})
+					}, 200)
+				}
+			})
+		})
 	}
 
 	viewContextmenu(music) {
@@ -342,7 +359,6 @@ class App {
 					let section = document.querySelector("section");
 					section.innerHTML = data;
 					this.declaration();
-					this.loginLabel = document.querySelector("#login-label");
 					this.addEvent()
 				}
 			}
@@ -394,7 +410,6 @@ class App {
 							this.playList[i][1].splice(idx, 1)
 					})
 				}
-				
 			})
 		})
 	}
@@ -780,12 +795,17 @@ class Search {
 			method: "post",
 			data: search,
 			success: (data)=>{
+				console.log(data)
 				this.musicListData = data.musicListData;
 				this.playListData = data.playListData;
 				this.innerMusic();
 				this.innerplayList();
 				this.addEvent();
+			}, 
+			error:(err)=>{
+				console.log(err)
 			}
+			
 		})
 	}
 

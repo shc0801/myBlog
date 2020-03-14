@@ -232,10 +232,11 @@ nav {
 .menu > div:hover { background-color: rgb(245, 179, 231); }
 .menu > div > a { width: 100%; height: 100%; }
 .menu > div > a > p { width: 100%; height: 100%; }
-
-#login-key, #logout-key { display: none; }
-#login-key + label, #logout-key + label { width: 100%; height: 100%; cursor: pointer;}
+#init-form { width: 100%; height: 100%; }
+#login-key{ display: none; }
+#login-key + label { width: 100%; height: 100%; cursor: pointer;}
 #login-key:checked ~ #login-form { display: block; }
+#login-label, #logout-label { width: 100%; height: 100%; cursor: pointer;}
 
 #login-form {
     width: 20%;

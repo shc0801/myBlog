@@ -41,7 +41,8 @@
         <a href="#"><img id="logo" src="./images/logo.png" alt=""></a>
         <form class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="text" id="search" name="search" placeholder="search for songs">
+            <input type="hidden">
+            <input type="text" id="search" autocomplete="search" name="search" placeholder="search for songs">
         </form>
     </header>
     <nav>
@@ -51,8 +52,14 @@
         </div>
         <div class="menu">
             <div class="menu-logIn">
+                <div id="init-form">
+                    <?php if(isset($_SESSION['user'])):?>
+                        <label id="logout-label">logout</label>
+                    <?php else:?>
+                        <label id="login-label" for="login-key">logIn</label>
+                    <?php endif;?>
+                </div>
                 <input type="checkbox" id="login-key">
-                <label id="login-label" for="login-key">logIn</label>
                 <form id="login-form" method='post' action="/login">
                     <div class="login-form-title">
                         LogIn
