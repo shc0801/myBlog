@@ -16,4 +16,7 @@ Router::post('/deletePlayList', 'PlayListController@deletePlayList');
 Router::post('/recommend', 'PlayListController@recommend');
 
 Router::post('/search', 'SearchController@searchData');
+Router::post('/selectData', 'SearchController@selectData');
+Router::post('/autocomplete', 'SearchController@autocomplete');
+
 Router::Router();

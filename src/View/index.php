@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>부산뮤직페스티벌</title>
     <link rel="stylesheet" href="./css/fontAwesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/Search.css">
     <link rel="stylesheet" href="./css/Library.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="./css/Queue.css">
     
     <script src="./js/jquery-3.3.1.js"></script>
+    <script src="./js/jquery-ui-1.12.1/jquery-ui.js"></script>
     <script src="./js/script.js"></script>
 </head>
 <body>
@@ -41,8 +43,7 @@
         <a href="#"><img id="logo" src="./images/logo.png" alt=""></a>
         <form class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="hidden">
-            <input type="text" id="search" autocomplete="search" name="search" placeholder="search for songs">
+            <input type="text" id="search" name="search" placeholder="search for songs">
         </form>
     </header>
     <nav>

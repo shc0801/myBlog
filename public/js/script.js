@@ -281,6 +281,25 @@ class App {
 			this.search();
 		})
 
+		
+					
+		this.searchInput.addEventListener("focus", ()=>{
+			$.ajax({
+				url: '/autocomplete',
+				method: 'post',
+				success: (data)=>{
+					
+				}
+			})
+			// autoList
+		})
+		let text = ["김치 볶음밥", "신라면", "진라면", "라볶이", "팥빙수","너구리","삼양라면","안성탕면","불닭볶음면","짜왕","라면사리" ];
+	
+		console.log(text);
+		$("#search").autocomplete({	
+			source: text
+		});
+		
 		this.loginProccess();
 	}
 
@@ -806,6 +825,15 @@ class Search {
 				console.log(err)
 			}
 			
+		})
+
+		$.ajax({
+			url: "/selectData",
+			method: "post",
+			data: search,
+			success: (data)=>{
+				console.log(data)
+			}, 
 		})
 	}
 
