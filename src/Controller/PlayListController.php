@@ -60,8 +60,10 @@ class PlayListController {
 
         $support = [];
         $reliability = [];
+        $music = [];
         $listLength = count($lists);
         $appearNum = 0;
+        $bool = false;
         
         foreach($lists as $list) {
             foreach($list as $data) {
@@ -75,13 +77,30 @@ class PlayListController {
 
                     if($dataIdx == $idx)
                         $appearNum++;
+                    
+                    if($dataIdx == $idx) 
+                        $bool = true;
+
+                    if($bool && $dataIdx != $idx) {
+                        if(!isset($reliability[$dataIdx])) {
+                            $reliability[$dataIdx] = 0;
+                        }
+                        $reliability[$dataIdx]++;
+                    }
+
                 }
+                $bool = false;
             }
         }
-        $support = max($support) / $listLength;
-        // $reliability 
-        // var_dump();
-        // echo (array_search(max($support), $support));
-        // Lib::json(['dataNum'=>$dataNum, 'dataNum'=>$dataNum]);
+        
+        ksort($support);
+        ksort($reliability);
+
+        $idx = array_search(max($reliability), $reliability);
+        $support = $support[array_search(max($reliability), $reliability)] / $listLength;
+        $reliability = $reliability[array_search(max($reliability), $reliability)] / $appearNum;
+        
+        Lib::json(['support'=>$support, 'reliability'=>$reliability, 'idx'=>$idx]);
+        var_dump($support, $reliability, $idx);
     }
-}
+} 
