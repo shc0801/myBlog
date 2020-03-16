@@ -43,7 +43,10 @@
         <a href="#"><img id="logo" src="./images/logo.png" alt=""></a>
         <form class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="text" id="search" name="search" placeholder="search for songs">
+            <input type="text" id="search" name="search" placeholder="search for songs" autocomplete="off" list="search-history">
+            
+            <datalist id="search-history">
+            </datalist>
         </form>
     </header>
     <nav>

@@ -75,6 +75,10 @@ class SearchController {
         $lists = "SELECT `dataText` FROM `autocompletes` WHERE `user_id` = ?";
         $text = DB::fetchAll($lists, [$user_id]);
 
+        for($i = 0; $i < count($text); $i++) {
+            $text[$i] = $text[$i]->dataText;
+        }
+
         Lib::json(['text'=>$text]);
     }
 }  

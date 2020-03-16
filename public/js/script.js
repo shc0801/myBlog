@@ -59,6 +59,7 @@ class App {
 		this.addPlayListButton = null;
 		this.musicRecommendation = document.querySelector(".music-recommendation > div");
 		this.musicCard = document.querySelectorAll(".music > div > div");
+		this.searchHistory = document.querySelector("#search-history");
 	}
 
     init() {
@@ -281,26 +282,24 @@ class App {
 			this.search();
 		})
 
-		
-					
-		this.searchInput.addEventListener("focus", ()=>{
-			$.ajax({
-				url: '/autocomplete',
-				method: 'post',
-				success: (data)=>{
-					
-				}
-			})
-			// autoList
-		})
-		let text = ["김치 볶음밥", "신라면", "진라면", "라볶이", "팥빙수","너구리","삼양라면","안성탕면","불닭볶음면","짜왕","라면사리" ];
-	
-		console.log(text);
-		$("#search").autocomplete({	
-			source: text
-		});
-		
+		this.searchData();
+
 		this.loginProccess();
+	}
+
+	searchData() {
+		$.ajax({
+			url: '/autocomplete',
+			method: 'post',
+			success: (data)=>{
+				this.searchHistory.innerHTML = '';
+				data.text.forEach(text=>{
+					let option = document.createElement("option");
+					option.value = text;
+					this.searchHistory.appendChild(option);
+				})
+			}
+		})
 	}
 
 	loginProccess() {
@@ -786,6 +785,8 @@ class Player {
 				this.app.playNum++;
 				this.app.Audio.src = `/m/${this.app.queueList[this.app.playNum].url}`;
 				this.app.Audio.currentTime = 0;
+				this.app.queueList[this.app.playNum].support = data.support;
+				this.app.queueList[this.app.playNum].reliability = data.reliability;
 				this.viewLyrics();
 				this.play();
 			}
@@ -820,9 +821,6 @@ class Search {
 				this.innerMusic();
 				this.innerplayList();
 				this.addEvent();
-			}, 
-			error:(err)=>{
-				console.log(err)
 			}
 			
 		})
@@ -832,7 +830,7 @@ class Search {
 			method: "post",
 			data: search,
 			success: (data)=>{
-				console.log(data)
+				this.app.searchData();
 			}, 
 		})
 	}
@@ -940,6 +938,8 @@ class Queue {
 		this.app.queueList.forEach(queue=>{
 			let list = document.createElement("div");
 			list.id = queue.idx;
+			if(queue.support != undefined)
+				list.title = `지지도: ${queue.support}, 신뢰도: ${queue.reliability}`;
 			list.classList.add("queue-music");
 			let listData = `<img id="music-queue-list-cover" src="./covers/${queue.albumImage}" alt="">
 							<div class="music-queue-list-title">${queue.name}</div>
