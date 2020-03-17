@@ -217,12 +217,10 @@ class App {
 				this.viewPlayListMenu(e);
 			} else if(e.target.classList[0] === "next-music-play") {
 				this.nextPlay();
-			} else if(e.target.classList[0] === "add-queue") {		
-				console.log(this.nowMusic)		
+			} else if(e.target.classList[0] === "add-queue") {			
 				if(this.queueList.indexOf(this.nowMusic) != -1) return;
 				if(!this.beMusicList) {
 					if(this.nowMusic != null) {
-						console.log(Array.isArray(this.nowMusic))
 						if(Array.isArray(this.nowMusic)) {
 							this.nowMusic.forEach(music=>{
 								this.queueList.push(music)
@@ -234,7 +232,6 @@ class App {
 					this.beMusicList = true;
 				} else {
 					if(this.nowMusic != null) {
-						console.log(Array.isArray(this.nowMusic))
 						if(Array.isArray(this.nowMusic)) {
 							this.nowMusic.forEach(music=>{
 								if(this.queueList.indexOf(music) === -1) 
@@ -458,9 +455,7 @@ class App {
 			if(Array.isArray(this.nowMusic)) {
 				let i = 1;
 				this.nowMusic.forEach((music)=>{
-					console.log(this.queueList.indexOf(music))
 					if(this.queueList.indexOf(music) === -1) {
-						console.log(this.queueList, music, i)
 						this.queueList.splice(this.playNum + i, 0, music);
 						i++;
 					}
@@ -546,6 +541,7 @@ class Player {
 					this.play();
 				} else {
 					this.autoAdd();
+					this.app.beMusicList = false;
 				}
 				this.lyricsNum = 0; 
 			}
@@ -789,6 +785,7 @@ class Player {
 				this.app.queueList[this.app.playNum].reliability = data.reliability;
 				this.viewLyrics();
 				this.play();
+				this.app.beMusicList = true;
 			}
 		})
 	}
@@ -815,7 +812,6 @@ class Search {
 			method: "post",
 			data: search,
 			success: (data)=>{
-				console.log(data)
 				this.musicListData = data.musicListData;
 				this.playListData = data.playListData;
 				this.innerMusic();
@@ -933,7 +929,6 @@ class Queue {
 	}
  
 	innerList() {
-		console.log(this.app.queueList)
 		this.queueMain.innerHTML = '';
 		this.app.queueList.forEach(queue=>{
 			let list = document.createElement("div");
