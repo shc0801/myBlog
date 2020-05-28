@@ -2,9 +2,9 @@
 
 session_start();
 
-define("ROOT", dirname(__DIR__));
-define("SRC", ROOT . "/src");
+define("ROOT", dirname(__DIR__));  
+define("VIEW", ROOT."/src/View");
 
-include_once ROOT . "/autoload.php";
-include_once ROOT . "/helper.php";
-include_once ROOT . "/web.php";
+include ROOT."/autoload.php";
+include ROOT."/helper.php";
+include ROOT."/web.php";

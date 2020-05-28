@@ -1,12 +1,9 @@
-<?php 
+<?php
 
-function classLoader($className) {
-    
-    $classPath = ROOT . "/src/$className.php";
-
-    $classPath = str_replace("\\", "/", "$classPath");
+function classLoader($className){
+    $classPath = ROOT."./src/$className.php";
     if(is_file($classPath))
-        include_once $classPath;
+        include $classPath;
 }
 
 spl_autoload_register("classLoader");

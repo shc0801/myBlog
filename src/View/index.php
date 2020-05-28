@@ -1,287 +1,148 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>부산뮤직페스티벌</title>
-    <link rel="stylesheet" href="./css/fontAwesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/Search.css">
-    <link rel="stylesheet" href="./css/Library.css">
-    <link rel="stylesheet" href="./css/playlist.css">
-    <link rel="stylesheet" href="./css/Queue.css">
-    
-    <script src="./js/jquery-3.3.1.js"></script>
-    <script src="./js/jquery-ui-1.12.1/jquery-ui.js"></script>
-    <script src="./js/script.js"></script>
-</head>
-<body>
-    <div id="contextmenu">
-        
-    </div>
-    <div id="playListMenu">
-        <div class="addPlayList">
-        </div>
-        <div class="newPlayList">
-            새 재생목록
-        </div>
-        <div class="newplayListForm" style="display: none;">
-            이름
-            <input id="playListInput" type="text" placeholder="재생목록 이름 입력">
-            <button id="addPlayListBtn">확인</button>
-        </div>
-        <div class="closePlayList">
-            <i class="fa fa-close"></i>
-        </div>
-    </div>
-    <div id="lyric-form"></div>
-    <!-- <div class="loading-form">
-        <div class="loading"></div>
-    </div> -->
-    <header>
-        <a href="#"><img id="logo" src="./images/logo.png" alt=""></a>
-        <form class="search-bar">
-            <i class="fa fa-search"></i>
-            <input type="text" id="search" name="search" placeholder="search for songs" autocomplete="off" list="search-history">
-            
-            <datalist id="search-history">
-            </datalist>
-        </form>
-    </header>
-    <nav>
-        <div class="line"></div>
-        <div class="menu-top-text">
-            <p>menu</p>
-        </div>
-        <div class="menu">
-            <div class="menu-logIn">
-                <div id="init-form">
-                    <?php if(isset($_SESSION['user'])):?>
-                        <label id="logout-label">logout</label>
-                    <?php else:?>
-                        <label id="login-label" for="login-key">logIn</label>
-                    <?php endif;?>
-                </div>
-                <input type="checkbox" id="login-key">
-                <form id="login-form" method='post' action="/login">
-                    <div class="login-form-title">
-                        LogIn
-                    </div>
-                    <div class="form-group">
-                        <label for="userid">아이디</label>
-                        <input type="text" class="form-control is-invalid" id="login-userid" name="userid">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">비밀번호</label>
-                        <input type="password" class="form-control is-invalid" id="login-password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <a href="#" id="login-form-btn" class="form-btn">로그인</a>
-                    </div>
-                </form>
+ <!-- 온라인 집들이 영역 -->
+ <section id="housewarming-party">
+        <div class="housewarming-party-bar w-30"></div>
+        <div id="housewarming-party-container" class="container h-100 pt-4">
+            <div class="section-title pt-5 pl-5 mt-5 ml-5">
+                <p>H O U S E W A R M I N G<br>
+                    P A R T Y</p>
             </div>
-            <div class="menu-HOME page Home"><a href="#"><p>HOME</p></a></div>
-            <div class="menu-Library page Library"><a href="#"><p>Library</p></a></div>
-            <div class="menu-Queue page Queue"><a href="#"><p>Queue</p></a></div>
-        </div>
-        <div class="thank-you">
-            <p>Thank you for useing this web</p>
-        </div>
-        <div class="thank-you-line"></div>
-    </nav>
-    <section style="display: block;">
-        <div class="music-recommendation music">
-            <p>추천음악</p>
-            <div>
+            <div class="housewarming-party-main w-90 pt-5 mt-5">
+                <div class="housewarming-party-list overflow-hidden ">
+                    <div class="list-img">
+                        <img class="w-100" src="./images/housewarming_party/1_before.jpg" alt="1_before" title="1_before">
+                        <img class="w-100" src="./images/housewarming_party/1_after.jpg" alt="1_after" title="1_after">
+                    </div>
+                    <div class="pt-2 pl-3">
+                        <p>작성자 : <span>user1</span></p>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i> <span>4</span>
+                    </div>
+                </div>
+
+                <div class="housewarming-party-list overflow-hidden">
+                    <div class="list-img">
+                        <img class="w-100" src="./images/housewarming_party/2_before.jpg" alt="2_before" title="2_before">
+                        <img class="w-100" src="./images/housewarming_party/2_after.jpg" alt="2_after" title="2_after">
+                    </div>
+                    <div class="pt-2 pl-3">
+                        <p>작성자 : <span>user2</span></p>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> <span>3</span>
+                    </div>
+                </div>
+
+                <div class="housewarming-party-list overflow-hidden">
+                    <div class="list-img">
+                        <img class="w-100" src="./images/housewarming_party/3_before.jpg" alt="3_before" title="3_before">
+                        <img class="w-100" src="./images/housewarming_party/3_after.jpg" alt="3_after" title="3_after">
+                    </div>
+                    <div class="pt-2 pl-3">
+                        <p>작성자 : <span>user3</span></p>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span>5</span>
+                    </div>
+                </div>
                 
-            </div>
-        </div>
-        <div class="music-genre">
-            <div class="music-genre-ballad music">
-                <p>발라드</p>
-                <div>
-                    <div class="12">
-                        <img src="./covers/pathos.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>어디에도</span><br>
-                        [MV] M.C THE MAX(엠씨더맥스)</p>
+                <div class="housewarming-party-list overflow-hidden">
+                    <div class="list-img">
+                        <img class="w-100" src="./images/housewarming_party/4_before.jpg" alt="4_before" title="4_before">
+                        <img class="w-100" src="./images/housewarming_party/4_after.jpg" alt="4_after" title="4_after">
                     </div>
-                    <div class="6">
-                        <img src="./covers/180˚.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>180도</span><br>
-                        벤</p>
-                    </div>
-                    <div class="5">
-                        <img src="./covers/헤어져줘서 고마워.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>헤어져줘서 고마워</span><br>
-                        벤</p>
-                    </div>
-                    <div class="7">
-                        <img src="./covers/RECIPE.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>열애중</span><br>
-                        벤</p>
-                    </div>
-                    <div class="11">
-                        <img src="./covers/너를 만나.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>너를 만나</span><br>
-                            폴킴</p>
-                    </div>
-                </div>
-            </div>
-            <div class="music-genre-rap music">
-                <p>힙합/랩</p>
-                <div>
-                    <div class="10">
-                        <img src="./covers/Dingo X Indigo Music.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>띵</span><br>
-                            (Prod. By 기리보이)</p>
-                    </div>
-                    <div class="17">
-                        <img src="./covers/XX.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>아낙네</span><br>
-                            MINO (송민호)</p>
-                    </div>
-                    <div class="18">
-                        <img src="./covers/제니 (JENNIE).jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>"SOLO"</span><br>
-                            제니 (JENNIE)</p>
-                    </div>
-                    <div class="19">
-                        <img src="./covers/LOVE YOURSELF ̿ `Answer`.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>IDOL</span><br>
-                            방탄소년단</p>
-                    </div>
-                    <div class="20">
-                        <img src="./covers/LOVE YOURSELF 承 `Her`.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>DNA</span><br>
-                            방탄소년단</p>
-                    </div>
-                </div>
-            </div>
-            <div class="music-genre-dence music">
-                <p>댄스</p>
-                <div>
-                    <div class="8">
-                        <img src="./covers/Perfect Velvet - The 2nd Album.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>피카부 (Peek-A-Boo)</span><br>
-                        Red Velvet (레드벨벳)</p>
-                    </div>
-                    <div class="22">
-                        <img src="./covers/YES or YES.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>YES or YES</span><br>
-                        트와이스 (twice)</p>
-                    </div>
-                    <div class="1">
-                        <img src="./covers/Fun to The World.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>BAAM</span><br>
-                        모모랜드 (Momoland)</p>
-                    </div>
-                    <div class="2">
-                        <img src="./covers/GREAT!.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>뿜뿜</span><br>
-                        모모랜드 (Momoland)</p>
-                    </div>
-                    <div class="0">
-                        <img src="./covers/Show me.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>I'm So Hot</span><br>
-                        모모랜드 (Momoland)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="music-genre-Rock music">
-                <p>록/메탈</p>
-                <div>
-                    <div class="16">
-                        <img src="./covers/장범준 3집.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>당신과는 천천히</span><br>
-                        장범준</p>
-                    </div>
-                    <div class="26">
-                        <img src="./covers/Red Diary Page.2.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>여행</span><br>
-                        볼빨간사춘기</p>
-                    </div>
-                    <div class="27">
-                        <img src="./covers/2012.02.14.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>We Are Young (Feat. Janelle Monae)</span><br>
-                        Fun.</p>
-                    </div>
-                    <div class="30">
-                        <img src="./covers/전설.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>주저하는 연인들을 위해</span><br>
-                        잔나비</p>
-                    </div>
-                </div>
-            </div>
-            <div class="music-genre-POP music">
-                <p>POP</p>
-                <div>
-                    <div class="15">
-                        <img src="./covers/Evolve.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>Believer</span><br>
-                        Imagine Dragons</p>
-                    </div>
-                    <div class="28">
-                        <img src="./covers/Nine Track Mind (Deluxe).jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>We Don`t Talk Anymore (Feat. Selena Gomez)</span><br>
-                        Charlie Puth</p>
-                    </div>
-                    <div class="29">
-                        <img src="./covers/Despacito.jpg" alt="">
-                        <div class="play-btn"><i class="fa fa-play"></i></div>
-                        <p><span>Despacito (Feat. Daddy Yankee)</span><br>
-                        Luis Fonsi</p>
+                    <div class="pt-2 pl-3">
+                        <p>작성자 : <span>user4</span></p>
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><span>2</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <footer>
-        <div class="cover-img">
-            <img src="" alt="">
-        </div>
-        <div class="music-text">
 
-        </div>
-        <div class="music-player">
-            <div class="music-player-top">
-                <i class="fa fa-step-backward"></i>
-                <i class="fa fa-play"></i>
-                <i class="fa fa-pause"></i>
-                <i class="fa fa-step-forward"></i>
-                <input id="repeat-btn" type="button" value="반복안함">
+    <!-- 전문가 영역 -->
+    <section id="special-list">
+        <div class="special-list-bar w-35"></div>
+        <div id="special-list-container" class="container pt-4">
+            <div class="section-title pt-5 pl-5 ml-5 mt-5">
+                <p>B E S T <br>
+                    S P E C I A L I S T</p>
             </div>
-            <div class="music-player-bottom">
-                <div class="view-lyrics-btn">가사보기</div>
-                <div class="now-time">0:00</div>
-                <input id="time-bar" type="range" value="0" max="100" min="0">
-                <div class="all-time">0:00</div>
-                <i class="fa fa-volume-off sound-btn"></i>
-                <input type="range" id="sound-set" value="5" max="10" min="0">
-                <div class="sound-percent">50%</div>
+            <div class="special-list-main w-90 h-50 mt-5 pt-5">
+                <div class="special-list">
+                    <div class="rotate">
+                        <img class="circle front" src="./images/specialist/specialist1.jpg">
+                        <div class="circle back">
+                            <img src="./images/circle.png" alt="">
+                            <p>전문가1<br><span>( specialist1 )</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-list">
+                    <div class="rotate">
+                        <img class="circle front" src="./images/specialist/specialist2.jpg">
+                        <div class="circle back">
+                            <img src="./images/circle.png" alt="">
+                            <p>전문가2<br><span>( specialist2 )</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-list">
+                    <div class="rotate">
+                        <img class="circle front" src="./images/specialist/specialist3.jpg">
+                        <div class="circle back">
+                            <img src="./images/circle.png" alt="">
+                            <p>전문가3<br><span>( specialist3 )</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="special-list">
+                    <div class="rotate">
+                        <img class="circle front" src="./images/specialist/specialist4.jpg">
+                        <div class="circle back">
+                            <img src="./images/circle.png" alt="">
+                            <p>전문가4<br><span>( specialist4 )</span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
-</body>
-</html>
+    </section>
+    
+    <!-- 전문가 시공 후기 영역 -->
+    <section id="review">
+        <div class="review-bar w-31"></div>
+        <div id="review-container" class="container pt-4">
+            <div class="section-title pt-5 pl-5 ml-5 mt-5">
+                <p>R E A L <br>
+                    R E V I E W</p>
+            </div>
+            <div class="review-main w-70 mt-5 ml-5 pt-5 pl-5">
+                <div class="review">
+                    <div class="review-left w-50 pt-5 pl-5 float-left">
+                        <span>전문가2 ( specialist2 )</span><br><br>
+                        <p>작성자 : 박재현 ( park )<br>
+
+                            비용    : 3,200,000<br><br>
+                            
+                            원하던 아이언맨 컨셉으로<br>
+                            너무 잘 꾸며주셨습니다!</p>
+                    </div>
+                    <div class="review-right w-50 pt-4 pl-4 float-left">
+                        <img src="./images/specialist/specialist2.jpg" alt="specialist2" title="specialist2"><br>
+                        <p class="pl-3">평점 : <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span>5</span></p>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="review-left w-50 pt-5 pl-5 float-left">
+                        <span>전문가4 ( specialist4 )</span><br><br>
+                        <p>작성자 : 김정수 ( kim )<br>
+
+                            비용    : 5,500,000<br><br>
+                            
+                            요구사항대로 부드러운<br>
+                            느낌을 잘 살려주셨습니다.</p>
+                    </div>
+                    <div class="review-right w-50 pt-4 pl-4 float-left">
+                        <img src="./images/specialist/specialist4.jpg" alt="specialist4" title="specialist4"><br>
+                        <p class="pl-3">평점 : <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i> <span>4</span></p>
+                    </div>
+                </div>
+                <img id="review-more" src="./images/circle.png" alt="">
+            </div>
+        </div>
+    </section>

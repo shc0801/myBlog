@@ -1,36 +1,31 @@
 <?php
-
 namespace App;
 
 class Router {
-    public static $actions = [];
-    public static function router() {
-        $path = \explode("?", $_SERVER["REQUEST_URI"])[0];
-
-        foreach(self::$actions as $actions) {
-            $url = preg_replace('/\//', '\/', $actions[0]);
-            $url = preg_replace('/\{([^{}]+)\}/', '([^\/]+)', $url);
-
-            if(\preg_match("/^{$url}$/", $path, $result)) {
-                unset($result[0]);
-
-                $urlAction = \explode("@", $actions[1]);
-                $controllerClass = "Controller\\{$urlAction[0]}";
-                $controller = new $controllerClass();
-                $controller->{$urlAction[1]}(...$result);
-
-                return;
-            }
-        }
-
-        echo "404 NotFound";
+    static $get = [];
+    static $post = [];
+    
+    static function get($url, $controller){
+        array_push(self::$get, (object)["url" => $url, "controller" => $controller]);
     }
 
-    public static function __callStatic($url, $controller) {
-        $req = \strtolower($_SERVER["REQUEST_METHOD"]);
+    static function post($url, $controller){
+        array_push(self::$post, (object)["url" => $url, "controller" => $controller]);
+    }
 
-        if($req === $url) {
-            self::$actions[] = $controller;
+    static function redirect(){
+        $url = isset($_GET['url']) ? "/" .$_GET['url'] : "/";
+        $method = strtolower($_SERVER['REQUEST_METHOD']);
+
+        foreach(self::${$method} as $page){
+            if($page->url === $url){
+                $split = explode("@", $page->controller);  
+                $conName = "Controller\\".$split[0];        
+                $controller = new $conName();               
+                $controller->{$split[1]}(); 
+                exit;            
+            }
         }
+        echo "이 페이지는 존재하지 않는 패이지 입니다.";
     }
 }
