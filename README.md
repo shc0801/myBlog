@@ -1,1 +1,1 @@
-# Gyeongnam-C
+# local-convention-c
