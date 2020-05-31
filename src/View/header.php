@@ -60,7 +60,7 @@
                         <input type="password" class="form-control float-left" id="password" name="password" placeholder="비밀번호" >
                     </div>
                     <div class="form-group">
-                        <button id="login-form-btn">로그인</button>
+                        <button id="login-form-btn" class="modal-btn">로그인</button>
                         <a href="#" id="forget-password" class="pt-3">비밀번호를 잊으셨나요?</a>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                         <input id="capt-input" type="text" class="w-100" name="captcha" placeholder="자동가입방지글자">
                     </div>
                     <div class="form-group">
-                        <button id="join-form-btn">회원가입</button>
+                        <button id="join-form-btn" class="modal-btn">회원가입</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                         <input type="file" name="after" id="after">
                     </div>
                     <div class="form-group">
-                        <a id="write-form-btn">글쓰기</a>
+                        <a id="write-form-btn" class="modal-btn">글쓰기</a>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <a id="rating-form-btn">평점주기</a>
+                        <a id="rating-form-btn" class="modal-btn">평점주기</a>
                     </div>
                     <input type="hidden" id="w_id" name="w_id">
                 </div>
@@ -175,9 +175,50 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <a id="review-form-btn">작성완료</a>
+                        <a id="review-form-btn" class="modal-btn">작성완료</a>
                     </div>
                     <input type="hidden" id="specialist_id" name="specialist_id">
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <form id="request" method="post" class="modal fade" name="request">
+        <div class="modal-dialog">
+            <div class="modal-content h-100">
+                <div class="modal-body d-flex flex-column">
+                    <div class="form-header-text pt-4">
+                        젼적 요청
+                    </div>
+                    <div class="form-group">
+                        <i id="calendar-icon" class="fa fa-calendar float-left pl-3"></i>
+                        <input type="date" class="form-control float-left" id="date" name="date">
+                    </div>
+                    <div class="form-group mt-4 textarea-form">
+                        <textarea id="content" name="content" cols="30" rows="10" placeholder="내용를 입력하세요"></textarea>
+                    </div>
+                    <div class="form-group">    
+                        <a id="request-form-btn" class="modal-btn">작성완료</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form id="build-form" method="post" class="modal fade" name="build">
+        <div class="modal-dialog">
+            <div class="modal-content h-100">
+                <div class="modal-body d-flex flex-column">
+                    <div class="form-header-text pt-4">
+                        견적 작성
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control float-left" id="price" name="price" placeholder="가격을 입력하세요">
+                    </div>
+                    <div class="form-group">    
+                        <a id="build-form-btn" class="modal-btn">작성완료</a>
+                    </div>
+                    <input name="num" type="text" hidden>
                 </div>
             </div>
         </div>

@@ -44,7 +44,7 @@
 
 /* 시공견적 */
 
-#build { height: 700px; position: relative; background-color: #f0f1f5; }
+#build { position: relative; background-color: #f0f1f5; }
 .build-bar { 
     height: 5px;
     
@@ -53,3 +53,20 @@
     position: absolute;
     left: -10%; top: 13em;
 }
+.build-request-btn { 
+    text-align: center; 
+    font-weight: bold; 
+    
+    border: 2px solid #383838; 
+    margin-left: 90%;
+    padding: 5px;
+    cursor: pointer;
+}
+.build-request-btn:active { background-color: #383838; color: #ffffff !important; }
+
+.request-list { text-align: center; border-top: 5px solid #ff9445; }
+.request-list thead { background-color: #ffffff; }
+.request-list td { padding: 10px 0; border: 1px solid #d6d6d6;}
+
+td button { background-color: none; padding: 3px 15px; outline: none; border: 2px solid #5c5c5c; }
+td button:active { background-color: #5c5c5c; color: #ffffff !important; }

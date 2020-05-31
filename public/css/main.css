@@ -61,9 +61,7 @@ nav { height: 85px; }
 
 /* 모달 영역 */
 
-#login .modal-dialog, #join .modal-dialog, #user-form .modal-dialog,
-#result .modal-dialog, #write .modal-dialog, #rating .modal-dialog
-,#review-form .modal-dialog{ 
+.modal .modal-dialog { 
     width: 400px; 
     height: 450px; 
 
@@ -78,6 +76,7 @@ nav { height: 85px; }
 #write .modal-dialog { width: 800px; height: 500px; }
 #rating .modal-dialog { height: 300px; }
 #review-form .modal-dialog { height: 500px; }
+#build-form .modal-dialog { height: 300px; }
 
 #result .modal-body { height: 500px; display: flex; flex-direction: column; justify-content: center; }
 
@@ -123,14 +122,14 @@ nav { height: 85px; }
     line-height: 45px;
 }
 
-#login-form-btn, #join-form-btn, #user-form-btn, #write-form-btn, #rating-form-btn, #review-form-btn { 
+.modal-btn { 
     height: 50px; 
     
     background-color: #ff9445; 
 
     font-size: 1.2em;
     font-weight: bold;
-    color: #ffffff;
+    color: #ffffff !important;
     line-height: 50px;
     text-align: center;
 

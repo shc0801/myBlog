@@ -14,5 +14,7 @@ Router::get("/logout", "UserController@logoutProccess");
 Router::post("/write", "PartyController@writeProccess");
 Router::post("/rating", "PartyController@ratingProccess");
 Router::post("/review", "SpecialistController@reviewProccess");
+Router::post("/request", "BuildController@requestProccess");
+Router::post("/build", "BuildController@buildProccess");
 
 Router::redirect();
