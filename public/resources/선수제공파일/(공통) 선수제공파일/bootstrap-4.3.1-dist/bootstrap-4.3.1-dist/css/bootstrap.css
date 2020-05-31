@@ -4,7 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -7877,6 +7877,10 @@ button.bg-dark:focus {
   width: 50% !important;
 }
 
+.w-60 {
+  width: 60% !important;
+}
+
 .w-70 {
   width: 70% !important;
 }
@@ -7921,8 +7925,20 @@ button.bg-dark:focus {
   height: 50% !important;
 }
 
+.h-60 {
+  height: 60% !important;
+}
+
 .h-75 {
   height: 75% !important;
+}
+
+.h-80 {
+  height: 80% !important;
+}
+
+.h-90 {
+  height: 90% !important;
 }
 
 .h-100 {

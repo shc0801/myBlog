@@ -1,31 +1,32 @@
 <?php
+
 namespace App;
 
-class DB{
-    static $connection = null;
-    static function takeDB(){
-        $options = [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ
-        ];
-        if(self::$connection === null){
-            self::$connection = new \PDO("mysql:host=localhost; dbname=catdog200116; charset=utf8mb4", "root", "", $options);
+class DB {
+    private static $db = null;
+
+    private static function getDB() {
+        $option = [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
+        if(is_null(self::$db)) {
+            self::$db = new \PDO("mysql:host=localhost; dbname=local-convention-c; charset=utf8mb4", "root", "", $option);
         }
-        return self::$connection;
+        return self::$db;
     }
 
-    static function query($sql, $data = []){
-        // SELECT * FROM students WHERE id = ?
-        $q = self::takeDB()->prepare($sql); //SQL 인젝션
-        $q->execute($data);
-        return $q;
+    public static function execute(string $sql, array $datas = []) : int {
+        $q = self::getDB()->prepare($sql);
+        return $q->execute($datas);
     }
 
-    static function fetch($sql, $data = []){
-        return self::query($sql, $data)->fetch();
+    public static function fetch($sql, $datas = [], $mode = \PDO::FETCH_OBJ) {
+        $q = self::getDB()->prepare($sql);
+        $q->execute($datas);
+        return $q->fetch($mode);
     }
-
-    static function fetchAll($sql, $data = []){
-        return self::query($sql, $data)->fetchAll();
+    
+    public static function fetchAll($sql, $datas = [], $mode = \PDO::FETCH_OBJ){
+        $q = self::getDB()->prepare($sql);
+        $q->execute($datas);
+        return $q->fetchAll($mode);
     }
 }

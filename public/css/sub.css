@@ -1,0 +1,55 @@
+.party-footer { 
+    width: 150px;
+    height: 50px; 
+
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #383838;
+    text-align: center;
+    line-height: 50px;
+
+    border: 2px solid #383838;
+    cursor: pointer;
+}
+.party {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 30px;
+}
+
+.board { background-color: white; text-align: center; }
+
+.list-img { height: 230px; }
+.list-img > img { height: 230px; }
+
+.fa-star { text-align: center; }
+
+.party-footer:hover { background-color: #383838; color: #ffffff; }
+.party-footer:hover > a { color: #ffffff; }
+
+#rating-btn { 
+    font-weight: bold;
+    color: #383838;
+    text-align: center;
+
+    border: 2px solid #383838;
+    margin: 0 auto;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.review-btn { width: 180px; border: 2px solid #383838; position: absolute; left: calc(50% - 90px); top: 55%; padding: 10px 20px; cursor: pointer; }
+.review-btn:hover { background-color: #383838; color: white; }
+
+/* 시공견적 */
+
+#build { height: 700px; position: relative; background-color: #f0f1f5; }
+.build-bar { 
+    height: 5px;
+    
+    background-color: #c7b299;
+
+    position: absolute;
+    left: -10%; top: 13em;
+}

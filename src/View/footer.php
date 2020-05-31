@@ -4,5 +4,6 @@
             <p>Copyright (C) 2020 by MyHome Inc All Rights Reserved.</p>
         </div>
     </footer>
+<!-- </div> -->
 </body>
 </html>
